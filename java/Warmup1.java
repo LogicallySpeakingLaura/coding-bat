@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/05
+ * @version 2020/10/06
  * Simple warmup problems to get started.
  * https://codingbat.com/java/Warmup-1
  */
@@ -168,10 +168,7 @@ public class Warmup1
      */
     public boolean loneTeen( int a, int b )
     {
-        boolean aIsTeen = ( a >= 13 && a <= 19 );                  //local vars that evaluate to both being teenagers
-        boolean bIsTeen = ( b >= 13 && b <= 19 );
-
-        return ( aIsTeen && !bIsTeen ) || ( !aIsTeen && bIsTeen ); //each expression has one teen and one not teen
+        return ( a >= 13 && a <= 19 && !( b >= 13 && b <= 19 ) ) || ( !( a >= 13 && a <= 19 ) && b >= 13 && b <= 19 );
     }
 
     /**
@@ -212,10 +209,7 @@ public class Warmup1
      */
     public int intMax( int a, int b, int c )
     {
-        a = Math.max( a, b );    //find biggest between a & b
-        a = Math.max( a, c );   //find biggest between larger of a & b when compared to c
-
-        return a;
+        return Math.max( Math.max( a, b ), c );
     }
 
     /**
