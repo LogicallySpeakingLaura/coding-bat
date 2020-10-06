@@ -1,6 +1,6 @@
 """
 Author: LogicallySpeakingLaura
-Date last modified: 2020/10/04
+Date last modified: 2020/10/05
 Medium warmup string/list problems with loops.
 https://codingbat.com/python/Warmup-2
 """
@@ -15,8 +15,8 @@ def string_times(str, n):
 def front_times(str, n):
     """
     Given a string and a non-negative int n, we'll say that the front of the string is the first 3 chars, or whatever is there if the string is less than length 3. Return n copies of the front;
-    """ # check for length, return substring is longer than 3 chars
-    return str * n if len(str) < 3 else str[: 3] * n
+    """
+    return str * n if len(str) < 3 else str[: 3] * n # check for length, return substring is longer than 3 chars
 
 
 def string_bits(str):
@@ -102,9 +102,8 @@ def string_match(a, b):
     Given 2 strings, a and b, return the number of the positions where they contain the same length 2 substring. So "xxcaazz" and "xxbaaz" yields 3, since the "xx", "aa", and "az" substrings appear in the same place in both strings.
     """
     count = 0
-    smaller = min(len(a), len(b))  # find smaller string for iterations so not going out of bounds
 
-    for i in range(smaller - 1):
+    for i in range(min(len(a), len(b)) - 1):
         if a[i: i + 2] == b[i: i + 2]:
             count += 1
 

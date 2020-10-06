@@ -30,35 +30,35 @@ def make_out_word( out, word ):
     """
     Given an "out" string length 4, such as "<<>>", and a word, return a new string where the word is in the middle of the out string, e.g. "<<word>>".
     """
-    return out[ : len(out) / 2 ] + word + out[ len(out) / 2 : ] # word goes between equal substrings of out
+    return out[: len(out) / 2 ] + word + out[ len(out) / 2 :] # word goes between equal substrings of out
 
 
 def extra_end(str):
     """
     Given a string, return a new string made of 3 copies of the last 2 chars of the original string. The string length will be at least 2.
     """
-    return str[ len(str) - 2 : ] * 3 # 3 copies of same char set
+    return str[len(str) - 2 :] * 3 # 3 copies of same char set
 
 
 def first_two(str):
     """
     Given a string, return the string made of its first two chars, so the String "Hello" yields "He". If the string is shorter than length 2, return whatever there is, so "X" yields "X", and the empty string "" yields the empty string "".
     """
-    return str[ : 2 ] if len(str) > 2 else str # remember to check length
+    return str[:2] if len(str) > 2 else str # remember to check length
 
 
 def first_half(str):
     """
     Given a string of even length, return the first half. So the string "WooHoo" yields "Woo".
     """
-    return str[ : len(str) / 2 ]
+    return str[: len(str) / 2]
 
 
 def without_end(str):
     """
     Given a string, return a version without the first and last char, so "Hello" yields "ell". The string length will be at least 2.
     """
-    return str[ 1 : len(str) - 1 ] if len(str) > 2 else "" # if length is 2 removing chars creates an empty String
+    return str[1: len(str) - 1] if len(str) > 2 else "" # if length is 2 removing chars creates an empty String
 
 
 def combo_string( a, b ):
@@ -72,11 +72,11 @@ def non_start( a, b ):
     """
     Given 2 strings, return their concatenation, except omit the first char of each. The strings will be at least length 1.
     """
-    return a[ 1 : ] + b[ 1 : ] # same substring numbers for each String
+    return a[1:] + b[1:] # same substring numbers for each String
 
 
 def left2(str):
     """
     Given a string, return a "rotated left 2" version where the first 2 chars are moved to the end. The string length will be at least 2.
     """
-    return str[2:] + str[: 2] # concat split Strings together
+    return str[2:] + str[:2] # concat split Strings together
