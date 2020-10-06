@@ -5,7 +5,6 @@ Medium warmup string/list problems with loops.
 https://codingbat.com/python/Warmup-2
 """
 
-
 def string_times(str, n):
     """
     Given a string and a non-negative int n, return a larger string that is n copies of the original string.
