@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/06
+ * @version 2020/10/07
  * Simple warmup problems to get started.
  * https://codingbat.com/java/Warmup-1
  */
@@ -87,7 +87,7 @@ public class Warmup1
      */
     public String missingChar( String str, int n )
     {
-        return str.substring( 0, n ) + str.substring( n + 1, str.length() ); //first substring up to n, concat second starting at n + 1
+        return str.substring( 0, n ) + str.substring( n + 1 ); //first substring up to n, concat second starting at n + 1
     }
 
     /**
@@ -136,7 +136,7 @@ public class Warmup1
      */
     public boolean startHi( String str )
     {
-        return str.length() >= 2 && str.substring( 0, 2 ).equals( "hi" ); //str has to have more than 2 letters, otherwise impossible to spell "hi"
+        return str.length() >= 2 && str.startsWith( "hi" ); //str has to have more than 2 letters, otherwise impossible to spell "hi"
     }
 
     /**
@@ -177,7 +177,7 @@ public class Warmup1
     public String delDel( String str )
     {
         //str has to be 4 chars or more, otherwise "del" cannot be part of str
-        return str.length() > 3 && str.substring( 1, 4 ).equals( "del" ) ? str.substring( 0, 1 ) + str.substring(4) : str;
+        return str.length() > 3 && str.startsWith( "del", 1) ? str.substring( 0, 1 ) + str.substring(4) : str;
     }
 
     /**
@@ -185,7 +185,7 @@ public class Warmup1
      */
     public boolean mixStart( String str )
     {
-        return str.length() > 2 && str.substring( 1, 3 ).equals( "ix" );
+        return str.length() > 2 && str.startsWith( "ix", 1);
     }
 
     /**
