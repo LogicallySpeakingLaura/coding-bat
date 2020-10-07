@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/05
+ * @version 2020/10/07
  * Basic string problems -- no loops.
  * https://codingbat.com/java/String-1
  */
@@ -76,21 +76,7 @@ public class String1
      */
     public String comboString( String a, String b )
     {
-        String shorter;
-        String longer;
-
-        if( a.length() < b.length() ) //find which String is longer and assign to respective variable
-        {
-            shorter = a;
-            longer = b;
-        }
-        else
-        {
-            shorter = b;
-            longer = a;
-        }
-
-        return shorter + longer + shorter;  //concat in given order
+        return a.length() < b.length() ? a + b + a : b + a + b;
     }
 
     /**
@@ -187,14 +173,7 @@ public class String1
      */
     public String atFirst( String str )
     {
-        if( str.length() >= 2 )
-            str = str.substring( 0, 2 );
-        else if( str.length() == 1 )
-            str = str + "@";
-        else
-            str = "@@"; //empty String
-
-        return str;
+       return str.length() >= 2 ? str.substring( 0, 2 ) : str.length() == 1 ? str + "@" : "@@";
     }
 
     /**
@@ -216,7 +195,8 @@ public class String1
      */
     public String conCat( String a, String b )
     {
-        return a.length() > 0 && b.length() > 0 && b.startsWith( a.substring( a.length() - 1 ) ) ? a + b.substring(1) : a + b; //get rid of first char on b if there is overlap
+                                                                                //get rid of first char on b if there is overlap
+        return a.length() > 0 && b.length() > 0 && b.startsWith( a.substring( a.length() - 1 ) ) ? a + b.substring(1) : a + b;
     }
 
     /**
@@ -224,12 +204,8 @@ public class String1
      */
     public String lastTwo( String str )
     {
-        if( str.length() == 2 )     //don't need to check for empty of length 1 as nothing would swap
-            str = str.substring(1) + str.substring( 0, 1 ); //last + first
-        else if( str.length() > 2 )                         //word + last + 2nd last
-            str = str.substring( 0, str.length() - 2 ) + str.substring( str.length() - 1 ) + str.substring( str.length() - 2, str.length() - 1 );
-
-        return str;
+        // : str at end is str <== 1 so can be returned as is
+        return str.length() == 2 ? str.substring(1) + str.substring( 0, 1 ) : str.length() > 2 ? str.substring( 0, str.length() - 2 ) + str.substring( str.length() - 1 ) + str.substring( str.length() - 2, str.length() - 1 ) : str;
     }
 
     /**
@@ -237,14 +213,8 @@ public class String1
      */
     public String seeColor( String str )
     {
-        if( str.startsWith( "red" ) )
-            str = "red";
-        else if( str.startsWith( "blue" ) )
-            str = "blue";
-        else
-            str = ""; //neither matches so empty String
-
-        return str;
+        // : "" at end is n either matching
+        return str.startsWith( "red" ) ? "red" : str.startsWith( "blue" ) ? "blue" : "";
     }
 
     /**
@@ -260,14 +230,8 @@ public class String1
      */
     public String minCat( String a, String b )
     {
-        if( a.length() > b.length() )
-            a = a.substring( a.length() - b.length() ) + b; //substring begins at difference between lengths
-        else if( a.length() < b.length() )
-            a = a + b.substring( b.length() - a.length() );
-        else
-            a = a + b; //lengths are same
-
-        return a;
+        //begin substring at difference between lengths
+        return a.length() > b.length() ? a.substring( a.length() - b.length() ) + b : a.length() < b.length() ? a + b.substring( b.length() - a.length() ) : a + b;
     }
 
     /**
@@ -283,12 +247,7 @@ public class String1
      */
     public String without2( String str )
     {
-        if( str.length() == 2 ) //length is 2 so begin and ends with same substring
-            str = "";
-        else if( str.length() > 2 && str.endsWith( str.substring( 0, 2 ) ) )
-            str = str.substring(2);
-
-        return str;
+        return str.length() == 2 ? "" : str.length() > 2 && str.endsWith( str.substring( 0, 2 ) ) ? str.substring(2) : str;
     }
 
     /**
@@ -296,15 +255,12 @@ public class String1
      */
     public String deFront( String str )
     {
-        if( str.charAt(0) == 'a' && str.charAt(1) == 'b' );     //return str as is and immediately because a and b are first 2 char
-        else if( str.charAt(0) != 'a' && str.charAt(1) != 'b' ) //no a or b, so return str - first 2 char
-            str = str.substring(2);
-        else if( str.charAt(0) == 'a' )                         //only a present
-            str = "a" + str.substring(2);
-        else if( str.charAt(1) == 'b' )                         //only b present
-            str = "b" + str.substring(2);
+        return str.charAt(0) == 'a' && str.charAt(1) == 'b' ? str : //return str as is and immediately because a and b are first 2 char
+                str.charAt(0) != 'a' && str.charAt(1) != 'b' ? str.substring(2) : //no a or b, so return str - first 2 char
+                        str.charAt(0) == 'a' ?  "a" + str.substring(2) : //only a present
+                                str.charAt(1) == 'b' ? "b" + str.substring(2) : str; //only b present
 
-        return str;
+
     }
 
     /**
@@ -323,7 +279,7 @@ public class String1
     public String withoutX( String str )
     {
         //no if-else as need to be able to check each condition and the second and third if statements can be:
-        //both true, both false, one true the other false, if-else hard to use as check for that
+        //both true, both false, one true the other false
         if( str.equals( "xx" ) ) //str can be two char of both x
             str = "";
 
@@ -341,15 +297,9 @@ public class String1
      */
     public String withoutX2( String str )
     {
-        //must check length for all
-        if( str.length() > 1 && str.charAt(0) == 'x' && str.charAt(1) == 'x' ) //first 2 chars are x
-            str = str.substring(2);
-        else if( str.length() > 0 && str.charAt(0) == 'x' ) //first char x
-            str = str.substring(1);
-        else if( str.length() > 1 && str.charAt(1) == 'x' ) //second char x
-            str = str.charAt(0) + str.substring(2);
-
-        return str;
+        return str.length() > 1 && str.charAt(0) == 'x' && str.charAt(1) == 'x' ? str.substring(2) : //both x
+                str.length() > 0 && str.charAt(0) == 'x' ? str.substring(1) :   //first x
+                str.length() > 1 && str.charAt(1) == 'x'  ?  str.charAt(0) + str.substring(2) : str; //second x or none x
     }
 
 }
