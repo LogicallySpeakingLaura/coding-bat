@@ -217,14 +217,10 @@ public class Warmup1
      */
     public int close10( int a, int b )
     {
-        if( Math.abs( a - 10 ) == Math.abs( b - 10 ) ) //tie == 0
-            a = 0;
-        else if( Math.abs( a - 10 ) < Math.abs( b - 10 ) ); //return a as is
-        else if( Math.abs( a - 10 ) > Math.abs( b - 10 ) )  //return b
-            a = b;
-
-        return a;
+            //check for tie and return 0,                   a nearer to 10 so return 10,     b near to 10 so return  b, b : b because no else but syntax needs
+        return Math.abs( a - 10 ) == Math.abs( b - 10 ) ? 0 : Math.abs( a - 10 ) < Math.abs( b - 10 ) ? a : Math.abs( a - 10 ) > Math.abs( b - 10 ) ? b : b;
     }
+
 
     /**
      * Given 2 int values, return true if they are both in the range 30..40 inclusive, or they are both in the range 40..50 inclusive.
