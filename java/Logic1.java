@@ -39,4 +39,174 @@ public class Logic1
         return ( isSummer && temp >= 60 && temp <= 100 ) || ( !isSummer && temp >= 60 && temp <= 90 );
     }
 
+    /**
+     * You are driving a little too fast, and a police officer stops you. Write code to compute the result, encoded as an int value: 0=no ticket, 1=small ticket, 2=big ticket. If speed is 60 or less, the result is 0. If speed is between 61 and 80 inclusive, the result is 1. If speed is 81 or more, the result is 2. Unless it is your birthday -- on that day, your speed can be 5 higher in all cases.
+     */
+    public int caughtSpeeding( int speed, boolean isBirthday )
+    {
+        int ticket = 0;
+
+        if( isBirthday )
+        {
+            if( speed >= 66 && speed <= 85 )
+                ticket = 1;
+            else if( speed > 85 ) //could do >= 86 if that logic is easier to understand
+                ticket = 2;
+        }       //first embedded if-else needs to be in {} otherwise it is not considered nested
+        else    //if there was no else stmt no need for braces, but there is so...
+            if( speed >= 61 && speed <= 80 )
+                ticket = 1;
+            else if( speed > 80 )
+                ticket = 2;
+
+        return ticket;
+    }
+
+    /**
+     * Given 2 ints, a and b, return their sum. However, sums in the range 10..19 inclusive, are forbidden, so in that case just return 20.
+     */
+    public int sortaSum(int a, int b)
+    {
+        return a + b >= 10 && a + b < 20 ? 20 : a + b; //could do <= 19 if that logic is easier to understand
+    }
+
+    /**
+     * Given a day of the week encoded as 0=Sun, 1=Mon, 2=Tue, ...6=Sat, and a boolean indicating if we are on vacation, return a string of the form "7:00" indicating when the alarm clock should ring. Weekdays, the alarm should be "7:00" and on the weekend it should be "10:00". Unless we are on vacation -- then on weekdays it should be "10:00" and weekends it should be "off".
+     */
+    public String alarmClock( int day, boolean vacation )
+    {
+        String alarm = "10:00";
+
+        if( vacation && ( day == 0 || day == 6 ) ) //is it a vacation and a weekend day
+            alarm = "off";
+        else if( !vacation && !( day == 0 || day == 6 ) ) //is it a weekday and no vacation
+            alarm = "7:00";
+
+        return alarm;
+    }
+
+    /**
+     * The number 6 is a truly great number. Given two int values, a and b, return true if either one is 6. Or if their sum or difference is 6. Note: the function Math.abs(num) computes the absolute value of a number.
+     */
+    public boolean love6( int a, int b )
+    {
+        return a == 6 || b == 6 || a + b == 6 || Math.abs( a - b ) == 6;
+    }
+
+    /**
+     * Given a number n, return true if n is in the range 1..10, inclusive. Unless outsideMode is true, in which case return true if the number is less or equal to 1, or greater or equal to 10.
+     */
+    public boolean in1To10( int n, boolean outsideMode )
+    {
+        return ( outsideMode && ( n <= 1 || n >= 10 ) ) || ( !outsideMode && n >= 1 && n <= 10 );
+    }
+
+    /**
+     * We'll say a number is special if it is a multiple of 11 or if it is one more than a multiple of 11. Return true if the given non-negative number is special.
+     */
+    public boolean specialEleven( int n )
+    {
+        return n % 11 == 0 || ( n - 1 ) % 11 == 0;
+    }
+
+    /**
+     * Return true if the given non-negative number is 1 or 2 more than a multiple of 20.
+     */
+    public boolean more20( int n )
+    {
+        return ( n - 1 ) % 20 == 0 || ( n - 2 ) % 20 == 0;
+    }
+
+    /**
+     * Return true if the given non-negative number is a multiple of 3 or 5, but not both. Use the % "mod" operator -- see Introduction to Mod
+     */
+    public boolean old35( int n )
+    {
+        //first OR checks for either or so one will match, AND checks to make sure a second doesn't match
+        return ( n % 3 == 0 || n % 5 == 0 ) && !( n % 3 == 0 && n % 5 == 0 );
+    }
+
+    /**
+     * Return true if the given non-negative number is 1 or 2 less than a multiple of 20. So for example 38 and 39 return true, but 40 returns false.
+     */
+    public boolean less20( int n )
+    {
+        return ( n + 1 ) % 20 == 0 || ( n + 2 ) % 20 == 0;
+    }
+
+    /**
+     * Given a non-negative number "num", return true if num is within 2 of a multiple of 10.
+     */
+    public boolean nearTen( int num )
+    {
+        return num % 10 <= 2 || num % 10 >= 8; //want result to equal 1, 2, 8 or 9
+    }
+
+    /**
+     * Given 2 ints, a and b, return their sum. However, "teen" values in the range 13..19 inclusive, are extra lucky. So if either value is a teen, just return 19.
+     */
+    public int teenSum( int a, int b )
+    {
+        return ( a >= 13 && a <= 19 ) || ( b >= 13 && b <= 19 ) ? 19 : a + b;
+    }
+
+    /**
+     * Your cell phone rings. Return true if you should answer it. Normally you answer, except in the morning you only answer if it is your mom calling. In all cases, if you are asleep, you do not answer.
+     */
+    public boolean answerCell( boolean isMorning, boolean isMom, boolean isAsleep )
+    {
+            //must be awake, if it's morning only if mom, else must be not morning
+        return !isAsleep && ( ( isMorning && isMom ) || !isMorning );
+    }
+
+    /**
+     * We are having a party with amounts of tea and candy. Return the int outcome of the party encoded as 0=bad, 1=good, or 2=great. A party is good (1) if both tea and candy are at least 5. However, if either tea or candy is at least double the amount of the other one, the party is great (2). However, in all cases, if either tea or candy is less than 5, the party is always bad (0).
+     */
+    public int teaParty( int tea, int candy )
+    {
+        int outcome = 1; //assume party is good, both at least 5
+
+        if( tea * 2 <= candy || candy * 2 <= tea ) //check to see if great first, can still be double if other is less than 5
+            outcome = 2;
+
+        if( tea < 5 || candy < 5 ) //check to see if bad
+            outcome = 0;
+
+        return outcome;
+    }
+
+    /**
+     * Given a string str, if the string starts with "f" return "Fizz". If the string ends with "b" return "Buzz". If both the "f" and "b" conditions are true, return "FizzBuzz".
+     */
+    public String fizzString( String str )
+    {
+        if( str.startsWith( "f" ) && str.endsWith( "b" ) ) //order of conditions important, if this written last but it's true it will never be evaluated
+            str = "FizzBuzz";
+        else if( str.startsWith( "f" ) )
+            str = "Fizz";
+        else if( str.endsWith( "b" ) )
+            str = "Buzz";
+
+        return str;
+    }
+
+    /**
+     * Given an int n, return the string form of the number followed by "!". So the int 6 yields "6!". Except if the number is divisible by 3 use "Fizz" instead of the number, and if the number is divisible by 5 use "Buzz", and if divisible by both 3 and 5, use "FizzBuzz".
+     */
+    public String fizzString2( int n )
+    {
+        String str;
+
+        if( n % 3 == 0 && n % 5 == 0 ) //order of conditions important, if this written last but it's true it will never be evaluated
+            str = "FizzBuzz!";
+        else if( n % 3 == 0)
+            str = "Fizz!";
+        else if( n % 5 == 0 )
+            str = "Buzz!";
+        else
+            str = n + "!";
+
+        return str;
+    }
+
 }
