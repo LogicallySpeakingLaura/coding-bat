@@ -52,7 +52,7 @@ public class Logic1
                 ticket = 1;
             else if( speed > 85 ) //could do >= 86 if that logic is easier to understand
                 ticket = 2;
-        }       //first embedded if-else needs to be in {} otherwise it is not considered nested
+        }       //first embedded if-else-if needs to be in {} otherwise it is not considered nested and will go to outer else
         else    //if there was no else stmt no need for braces, but there is so...
             if( speed >= 61 && speed <= 80 )
                 ticket = 1;
@@ -207,6 +207,142 @@ public class Logic1
             str = n + "!";
 
         return str;
+    }
+
+    /**
+     * Given three ints, a b c, return true if it is possible to add two of the ints to get the third.
+     */
+    public boolean twoAsOne( int a, int b, int c )
+    {
+        return a + b == c || a + c == b || b + c == a;
+    }
+
+    /**
+     * Given three ints, a b c, return true if b is greater than a, and c is greater than b. However, with the exception that if "bOk" is true, b does not need to be greater than a.
+     */
+    public boolean inOrder( int a, int b, int c, boolean bOk )
+    {
+        return ( bOk && c > b ) || ( !bOk && b > a && c > b );
+    }
+
+    /**
+     * Given three ints, a b c, return true if they are in strict increasing order, such as 2 5 11, or 5 6 7, but not 6 5 7 or 5 5 7. However, with the exception that if "equalOk" is true, equality is allowed, such as 5 5 7 or 5 5 5.
+     */
+    public boolean inOrderEqual( int a, int b, int c, boolean equalOk )
+    {
+        return ( !equalOk && a < b && b < c ) || ( equalOk && a <= b && b <= c ); //no need to compare a with c as using &&
+    }
+
+    /**
+     * Given three ints, a b c, return true if two or more of them have the same rightmost digit. The ints are non-negative.
+     */
+    public boolean lastDigit( int a, int b, int c )
+    {
+        return a % 10 == b % 10 || a % 10 == c % 10 || b % 10 == c % 10;
+    }
+
+    /**
+     * Given three ints, a b c, return true if one of them is 10 or more less than one of the others.
+     */
+    public boolean lessBy10( int a, int b, int c )
+    {
+        return Math.abs( a - b ) >= 10 || Math.abs( a - c ) >= 10 || Math.abs( b - c ) >= 10;
+
+    }
+
+    /**
+     * Return the sum of two 6-sided dice rolls, each in the range 1..6. However, if noDoubles is true, if the two dice show the same value, increment one die to the next value, wrapping around to 1 if its value was 6.
+     */
+    public int withoutDoubles( int die1, int die2, boolean noDoubles )
+    {
+        if( noDoubles && die1 == die2 ) //noDoubles can be true and the die have different values, check for equality
+            if( die1 == 6 )
+                die1 = 1 + die2;
+            else
+                die1 = ( die1 + 1 ) + die2;
+        else
+            die1 += die2;
+
+        return die1;
+    }
+
+    /**
+     * Given two int values, return whichever value is larger. However if the two values have the same remainder when divided by 5, then the return the smaller value. However, in all cases, if the two values are the same, return 0.
+     */
+    public int maxMod5( int a, int b )
+    {
+        if( a == b ) //check for same value first as this has higher priority than % 5
+            a = 0;
+        else if( a % 5 == b % 5 )
+            a = Math.min( a, b );
+        else
+            a = Math.max( a, b );
+
+        return a;
+    }
+
+    /**
+     * You have a red lottery ticket showing ints a, b, and c, each of which is 0, 1, or 2. If they are all the value 2, the result is 10. Otherwise if they are all the same, the result is 5. Otherwise so long as both b and c are different from a, the result is 1. Otherwise the result is 0.
+     */
+    public int redTicket( int a, int b, int c )
+    {
+        if( a == 2 && b == 2 && c == 2 ) //check this before same value, value can be same and not 2 giving different result
+            a = 10;
+        else if( a == b && b == c ) //same value but value is not 2
+            a = 5;
+        else if( a != b && a != c ) //b and c different from a
+            a = 1;
+        else
+            a = 0;
+
+        return a;
+    }
+
+    /**
+     * You have a green lottery ticket, with ints a, b, and c on it. If the numbers are all different from each other, the result is 0. If all of the numbers are the same, the result is 20. If two of the numbers are the same, the result is 10.
+     */
+    public int greenTicket( int a, int b, int c )
+    {
+        if( a == b && b == c ) //all same
+            a = 20;
+        else if( a == b || a == c || b == c ) //2 same
+            a = 10;
+        else if( a != b && a != c && b != c ) //all different
+            a = 0;
+
+        return a;
+    }
+
+    /**
+     * You have a blue lottery ticket, with ints a, b, and c on it. This makes three pairs, which we'll call ab, bc, and ac. Consider the sum of the numbers in each pair. If any pair sums to exactly 10, the result is 10. Otherwise if the ab sum is exactly 10 more than either bc or ac sums, the result is 5. Otherwise the result is 0.
+     */
+    public int blueTicket( int a, int b, int c )
+    {
+        if( a + b == 10 || b + c == 10 || a + c == 10 ) //all equal 10
+            a = 10;
+        else if( a + b == b + c + 10 || a + b == a + c + 10 ) //question is not absolute sum, but the sum of a + b is 10 more than other sums
+            a = 5;
+        else
+            a = 0;
+
+        return a;
+    }
+
+    /**
+     * Given two ints, each in the range 10..99, return true if there is a digit that appears in both numbers, such as the 2 in 12 and 23.
+     */
+    public boolean shareDigit( int a, int b )
+    {
+            //first a to first b, first a to second b, second a to first b, second a to second b
+        return a / 10 == b / 10 || a / 10 == b % 10 || a % 10 == b / 10 || a % 10 == b % 10;
+    }
+
+    /**
+     * Given 2 non-negative ints, a and b, return their sum, so long as the sum has the same number of digits as a. If the sum has more digits than a, just return a without b.
+     */
+    public int sumLimit( int a, int b )
+    {
+        return String.valueOf( a + b ).length() > String.valueOf(a).length() ? a : a + b; //String.valueOf(x).length() counts number of digits in an int
     }
 
 }
