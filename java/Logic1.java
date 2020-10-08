@@ -75,14 +75,8 @@ public class Logic1
      */
     public String alarmClock( int day, boolean vacation )
     {
-        String alarm = "10:00";
-
-        if( vacation && ( day == 0 || day == 6 ) ) //is it a vacation and a weekend day
-            alarm = "off";
-        else if( !vacation && !( day == 0 || day == 6 ) ) //is it a weekday and no vacation
-            alarm = "7:00";
-
-        return alarm;
+                //is it a vacation and a weekend day,       is it a weekday and no vacation
+        return vacation && ( day == 0 || day == 6 ) ? "off" : !vacation && !( day == 0 || day == 6 ) ? "7:00" : "10:00";
     }
 
     /**
@@ -180,14 +174,7 @@ public class Logic1
      */
     public String fizzString( String str )
     {
-        if( str.startsWith( "f" ) && str.endsWith( "b" ) ) //order of conditions important, if this written last but it's true it will never be evaluated
-            str = "FizzBuzz";
-        else if( str.startsWith( "f" ) )
-            str = "Fizz";
-        else if( str.endsWith( "b" ) )
-            str = "Buzz";
-
-        return str;
+        return str.startsWith( "f" ) && str.endsWith( "b" ) ? "FizzBuzz" : str.startsWith( "f" ) ? "Fizz" : str.endsWith( "b" ) ? "Buzz" : str;
     }
 
     /**
@@ -195,18 +182,7 @@ public class Logic1
      */
     public String fizzString2( int n )
     {
-        String str;
-
-        if( n % 3 == 0 && n % 5 == 0 ) //order of conditions important, if this written last but it's true it will never be evaluated
-            str = "FizzBuzz!";
-        else if( n % 3 == 0)
-            str = "Fizz!";
-        else if( n % 5 == 0 )
-            str = "Buzz!";
-        else
-            str = n + "!";
-
-        return str;
+        return n % 3 == 0 && n % 5 == 0 ? "FizzBuzz!" : n % 3 == 0 ? "Fizz!" : n % 5 == 0 ? "Buzz!" : n + "!";
     }
 
     /**
@@ -247,7 +223,6 @@ public class Logic1
     public boolean lessBy10( int a, int b, int c )
     {
         return Math.abs( a - b ) >= 10 || Math.abs( a - c ) >= 10 || Math.abs( b - c ) >= 10;
-
     }
 
     /**
@@ -271,14 +246,7 @@ public class Logic1
      */
     public int maxMod5( int a, int b )
     {
-        if( a == b ) //check for same value first as this has higher priority than % 5
-            a = 0;
-        else if( a % 5 == b % 5 )
-            a = Math.min( a, b );
-        else
-            a = Math.max( a, b );
-
-        return a;
+        return a == b ? 0 : a % 5 == b % 5 ? Math.min( a, b ) : Math.max( a, b );
     }
 
     /**
@@ -286,16 +254,7 @@ public class Logic1
      */
     public int redTicket( int a, int b, int c )
     {
-        if( a == 2 && b == 2 && c == 2 ) //check this before same value, value can be same and not 2 giving different result
-            a = 10;
-        else if( a == b && b == c ) //same value but value is not 2
-            a = 5;
-        else if( a != b && a != c ) //b and c different from a
-            a = 1;
-        else
-            a = 0;
-
-        return a;
+        return a == 2 && b == 2 && c == 2 ? 10 : a == b && b == c ? 5 : a != b && a != c ? 1 : 0;
     }
 
     /**
@@ -303,14 +262,7 @@ public class Logic1
      */
     public int greenTicket( int a, int b, int c )
     {
-        if( a == b && b == c ) //all same
-            a = 20;
-        else if( a == b || a == c || b == c ) //2 same
-            a = 10;
-        else if( a != b && a != c && b != c ) //all different
-            a = 0;
-
-        return a;
+        return a == b && b == c ? 20 : a == b || a == c || b == c ? 10 : a != b && a != c && b != c ? 0 : a;
     }
 
     /**
@@ -318,14 +270,7 @@ public class Logic1
      */
     public int blueTicket( int a, int b, int c )
     {
-        if( a + b == 10 || b + c == 10 || a + c == 10 ) //all equal 10
-            a = 10;
-        else if( a + b == b + c + 10 || a + b == a + c + 10 ) //question is not absolute sum, but the sum of a + b is 10 more than other sums
-            a = 5;
-        else
-            a = 0;
-
-        return a;
+        return a + b == 10 || b + c == 10 || a + c == 10 ? 10 : a + b == b + c + 10 || a + b == a + c + 10 ? 5 : 0;
     }
 
     /**
