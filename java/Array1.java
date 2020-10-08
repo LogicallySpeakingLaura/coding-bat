@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/05
+ * @version 2020/10/07
  * Basic array problems -- no loops.
  * https://codingbat.com/java/Array-1
  */
@@ -76,14 +76,7 @@ public class Array1
      */
     public int sum2( int[] nums )
     {
-        int sum = 0; //no need to check for 0 with this assignment
-
-        if( nums.length == 1 )
-            sum = nums[0];
-        else if( nums.length >= 2 )
-            sum = nums[0] + nums[1];
-
-        return sum;
+        return nums.length == 1 ? nums[0] : nums.length >= 2 ? nums[0] + nums[1] : 0;
     }
 
     /**
@@ -271,18 +264,9 @@ public class Array1
      */
     public int[] front11( int[] a, int[] b )
     {
-        int[] rtrnArr;
-
-        if( a.length == 0 && b.length == 0 ) //empty arrays, nothing returned
-            rtrnArr = new int[] {};
-        else if( a.length == 0 ) //new array made from just b
-            rtrnArr = new int[] { b[0] };
-        else if( b.length == 0 ) //new array made from just a
-            rtrnArr = new int[] { a[0] };
-        else
-            rtrnArr = new int[] { a[0], b[0] }; //both arrays incl.
-
-        return rtrnArr;
+        return a.length == 0 && b.length == 0 ? new int[] {} : //empty arrays, nothing returned
+                a.length == 0 ? new int[] { b[0] } : //new array made from just b
+                        b.length == 0 ? new int[] { a[0] } : new int[] { a[0], b[0] }; //new array made from just a or both incl.
     }
 
 }
