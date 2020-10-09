@@ -259,8 +259,6 @@ public class String1
                 str.charAt(0) != 'a' && str.charAt(1) != 'b' ? str.substring(2) : //no a or b, so return str - first 2 char
                         str.charAt(0) == 'a' ?  "a" + str.substring(2) : //only a present
                                 str.charAt(1) == 'b' ? "b" + str.substring(2) : str; //only b present
-
-
     }
 
     /**

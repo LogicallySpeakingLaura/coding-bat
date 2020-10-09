@@ -202,9 +202,9 @@ public class Warmup2
 
         for( int i = 0 ; i < str.length() ; i ++ ) //remember to check for length
             if( i + 2 < str.length() && str.charAt(i) == 'y' && str.charAt( i + 2 ) == 'k' )
-                i =  i + 2; //if 'yak' is there, jump loop past it and check again
+                i += 2; //if 'yak' is there, jump loop past it and check again
             else            //if there's no yak, count the current index
-                result = result + str.charAt(i);
+                result += str.charAt(i);
 
         return result;
     }

@@ -236,16 +236,10 @@ public class Warmup1
      */
     public int max1020( int a, int b )
     {
-        int aTemp = 0;             //local vars to work with passed params
-        int bTemp = 0;             //set both to 0 so don't have to check for 0
+        a = a >= 10 && a <= 20 ? a : 0;
+        b = b >= 10 && b <= 20 ? b : 0;
 
-        if( a >= 10 && a <= 20 )   //check for incl range, will stay 0 if out of range
-            aTemp = a;
-
-        if( b >= 10 && b <= 20 )   //check for incl range, will stay 0 if out of range
-            bTemp = b;
-
-        return Math.max( aTemp, bTemp );
+        return Math.max( a, b );
     }
 
     /**

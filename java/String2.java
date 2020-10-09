@@ -56,8 +56,10 @@ public class String2
 
         for( int i = 0 ; i < str.length() - 3 ; i++ ) //length - 3 so don't go out of bounds
                     //checks first 2 chars          checks 4th
-            if( str.startsWith( "co", i ) && str.charAt( i + 3 ) == 'e' )
+            if( str.startsWith( "co", i ) && str.charAt( i + 3 ) == 'e' ) {
                 count++;
+                i += 3;
+            }
 
         return count;
     }
