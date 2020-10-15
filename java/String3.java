@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/09
+ * @version 2020/10/14
  * Harder String problems -- 2 loops.
  * https://codingbat.com/java/String-3
  */
@@ -102,6 +102,88 @@ public class String3
                 sum += Integer.parseInt( str.substring( i, i + 1 ) ); //add to running total
 
         return sum;
+    }
+
+    /**
+     * Given a string, return the longest substring that appears at both the beginning and end of the string without overlapping. For example, sameEnds("abXab") is "ab".
+     */
+    public String sameEnds( String string )
+    {
+        String str = "";
+
+        for( int i = 0 ; i < string.length() / 2 + 1 ; i++ ) //only iterate through first half of string, +1 because index starts at 0
+            if( string.startsWith( string.substring( 0, i ), string.length() - i ) ) //if same index set of characters at front are same as back
+                str = string.substring( 0, i ); //return that subset of indexes, check another index next loop to see if also matches
+
+        return str;
+    }
+
+    /**
+     * Given a string, look for a mirror image (backwards) string at both the beginning and end of the given string. In other words, zero or more characters at the very begining of the given string, and at the very end of the string in reverse order (possibly overlapping). For example, the string "abXYZba" has the mirror end "ab".
+     */
+    public String mirrorEnds( String string )
+    {
+        String mirror = "";
+
+        for( int i = 0 ; i < string.length() ; i++ )
+            if( string.charAt(i) == string.charAt( string.length() - 1 - i ) ) //length - 1 - i as -1 needed to get to last index, then move to wanted index
+                mirror += string.charAt(i); //add mirrored char
+            else
+                break; //exit loop if no more mirroring
+
+        return mirror;
+    }
+
+    /**
+     * Given a string, return the length of the largest "block" in the string. A block is a run of adjacent chars that are the same.
+     */
+    public int maxBlock( String str )
+    {
+        int block = 0; //need to count values as one will be overridden each char set
+        int count = 1; //count of current block set starts at 1 because there is 1 of a char there
+
+        for( int i = 0 ; i < str.length() - 1 ; i++ )
+        {
+            if( str.charAt(i) == str.charAt( i + 1 ) ) //if the next char matches increase count
+                count++;
+            else           //if no match, reset counter and check next potential block set
+                count = 1;
+
+            if( count > block ) //if current set is longer in length than previous, overwrite value
+                block = count;
+        }
+
+        return block;
+    }
+
+    /**
+     * Given a string, return the sum of the numbers appearing in the string, ignoring all other characters. A number is a series of 1 or more digit chars in a row.
+     */
+    public int sumNumbers( String str )
+    {
+        int sum = 0;
+        String num = "";
+
+        for( int i = 0 ; i < str.length() ; i++ )
+            if( Character.isDigit( str.charAt(i) ) )
+                if( i < str.length() - 1 && Character.isDigit( str.charAt( i + 1 ) ) ) //if next char is a digit, including maybe last char
+                    num += str.charAt(i);
+                else //if at end of number or next char not a digit
+                {
+                    num += str.charAt(i);
+                    sum += Integer.parseInt(num); //parse constructed String number and add to running total
+                    num = ""; //reset constructed number
+                }
+
+        return sum;
+    }
+
+    /**
+     * Given a string, return a string where every appearance of the lowercase word "is" has been replaced with "is not". The word "is" should not be immediately preceeded or followed by a letter -- so for example the "is" in "this" does not count.
+     */
+    public String notReplace( String str )
+    {
+        return str.replaceAll(“(?<!\\w)is(?!\\w)"),"is not");
     }
 
 }
