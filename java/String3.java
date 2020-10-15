@@ -31,7 +31,7 @@ public class String3
     public String withoutString( String base, String remove )
     {
         //regex checks for all cases of remove ignoring case and replaces w/ empty string
-        return base.replaceAll( "(?i)" + remove, "" );
+        //todo do with loop return base.replaceAll( "(?i)" + remove, "" );
     }
 
     /**
@@ -183,7 +183,7 @@ public class String3
      */
     public String notReplace( String str )
     {
-        return str.replaceAll(“(?<!\\w)is(?!\\w)"),"is not");
+        //todo do with loop  return str.replaceAll(“(?<!\\w)is(?!\\w)"),"is not");
     }
 
 }

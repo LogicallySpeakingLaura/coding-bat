@@ -226,7 +226,7 @@ public class String2
      */
     public String zipZap( String str )
     {
-        return str.replaceAll( "z.p", "zp" ); //a . stands for any letter, simply remove it
+        //todo do with loop return str.replaceAll( "z.p", "zp" ); //a . stands for any letter, simply remove it
     }
 
     /**
@@ -235,7 +235,7 @@ public class String2
     public String starOut( String str )
     {
         //without escape this is replace any wildcard * wildcard with an empty string
-        return str.replaceAll( "(\\w?\\*\\w?)", "" );
+        //todo do with loop return str.replaceAll( "(\\w?\\*\\w?)", "" );
     }
 
     /**
