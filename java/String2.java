@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/08
+ * @version 2020/10/16
  * Medium String problems -- 1 loop.
  * https://codingbat.com/java/String-2
  */
