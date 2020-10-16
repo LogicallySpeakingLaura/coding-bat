@@ -30,8 +30,16 @@ public class String3
      */
     public String withoutString( String base, String remove )
     {
-        //regex checks for all cases of remove ignoring case and replaces w/ empty string
-        //todo do with loop return base.replaceAll( "(?i)" + remove, "" );
+        String str = "";
+
+        for( int i = 0 ; i < base.length() ; i++ )
+            //check that sum of index lengths doesn't go out of bound for the base
+            if( i + remove.length() - 1 < base.length() && base.toLowerCase().startsWith( remove.toLowerCase(), i ) )
+                i += remove.length() - 1; //if there's a match skip to next index after last char of remove String
+            else
+                str += base.charAt(i); //only add char if not part of remove String
+
+        return str;
     }
 
     /**
@@ -183,7 +191,22 @@ public class String3
      */
     public String notReplace( String str )
     {
-        //todo do with loop  return str.replaceAll(“(?<!\\w)is(?!\\w)"),"is not");
+        String isNot = "";
+
+        for( int i = 0 ; i < str.length() ; i++ )
+            if( i + 1 < str.length() && str.startsWith( "is", i ) ) //'is' present and in bounds
+            {
+                if( ( i > 0 && Character.isLetter( str.charAt( i - 1 ) ) ) || i + 2 < str.length() && Character.isLetter( str.charAt( i + 2 ) ) )
+                    isNot += "is"; //left and right either a letter or out of bounds, so add with no change
+                else
+                    isNot += "is not"; //so add the 'not'
+
+                i++;    //skip to right of the 's'
+            }
+            else
+                isNot += str.charAt(i); //not 'is' so add as normal
+
+        return isNot;
     }
 
 }

@@ -77,9 +77,20 @@ public class String2
      */
     public boolean xyzThere( String str )
     {
-        //removes all .xyz from String, xyz not removed though
-        return str.replaceAll( "(\\.)(xyz)", "" ).contains( "xyz" );
-        //have to use escape for . but don't want to escape xyz so separate with ( )
+        boolean isThere = false;
+
+        for( int i = 0 ; i < str.length() - 2 ; i++ ) //set a limit on bound
+            if( str.startsWith( "xyz", i )  )
+            {
+                if( i > 0 && str.charAt( i - 1 ) == '.' ) //i > 0 as want to check char to left
+                    isThere = false;
+                else
+                    isThere = true;
+
+                i += 2; //jump to the right of the index where z is for next check, so not checking yz and z
+            }
+
+        return isThere;
     }
 
     /**
@@ -226,7 +237,18 @@ public class String2
      */
     public String zipZap( String str )
     {
-        //todo do with loop return str.replaceAll( "z.p", "zp" ); //a . stands for any letter, simply remove it
+        String zpzp = "";
+
+        for( int i = 0 ; i < str.length() ; i++ )
+            if( i + 2 < str.length() && str.charAt(i) == 'z' && str.charAt( i + 2 ) == 'p' ) //check bound as well as index value
+            {
+                zpzp += "zp";
+                i += 2; //jump to next index after p so not checking for ?p and p
+            }
+            else
+                zpzp += str.charAt(i); //if not z?p just add char as is
+
+        return zpzp;
     }
 
     /**
@@ -234,8 +256,14 @@ public class String2
      */
     public String starOut( String str )
     {
-        //without escape this is replace any wildcard * wildcard with an empty string
-        //todo do with loop return str.replaceAll( "(\\w?\\*\\w?)", "" );
+        String noStar = "";
+
+        for( int i = 0 ; i < str.length() ; i++ ) //don't put bound here as still want to add first/last char if they not *
+                    //current index *,      checking char to right,                                   checking char to the left
+            if ( !( '*' == str.charAt(i) || ( i + 1 < str.length() && '*' == str.charAt( i + 1 ) ) || ( i > 0 && '*' == str.charAt( i - 1) ) ) )
+                noStar += str.charAt(i);
+
+        return noStar;
     }
 
     /**
