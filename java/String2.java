@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/16
+ * @version 2020/10/17
  * Medium String problems -- 1 loop.
  * https://codingbat.com/java/String-2
  */
@@ -35,8 +35,7 @@ public class String2
 
     public boolean catDog( String str )
     {
-        int catCount = 0;
-        int dogCount = 0;
+        int catCount = 0, dogCount = 0;
 
         for( int i = 0 ; i < str.length() - 2 ; i++ ) //length - 2 so check doesn't go out of bounds
             if( str.startsWith( "cat", i ) ) //use if else as conditions are mutually exclusive
@@ -124,9 +123,8 @@ public class String2
      */
     public String mixString( String a, String b )
     {
-        String mix = "";
         int shorter = a.length() < b.length() ? a.length() : b.length(); //finding length of shortest String
-        String leftover = a.length() < b.length() ? b.substring( shorter ) : a.substring( shorter ); //getting leftovers of bigger String
+        String mix = "", leftover = a.length() < b.length() ? b.substring( shorter ) : a.substring( shorter ); //getting leftovers of bigger String
 
         for( int i = 0 ; i < shorter ; i++ ) //only iterate for length of shorter String
             mix += a.substring( i, i + 1 ) + b.substring( i, i + 1 ); //mixing letters

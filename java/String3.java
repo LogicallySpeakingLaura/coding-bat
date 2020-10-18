@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/16
+ * @version 2020/10/17
  * Harder String problems -- 2 loops.
  * https://codingbat.com/java/String-3
  */
@@ -47,8 +47,7 @@ public class String3
      */
     public boolean equalIsNot( String str )
     {
-        int is = 0;
-        int not = 0;
+        int is = 0, not = 0;
 
         for( int i = 0 ; i < str.length() ; i++ )
             if( str.startsWith( "is", i ) && i + 1 < str.length() ) //check length, need to check char after i
@@ -147,8 +146,8 @@ public class String3
      */
     public int maxBlock( String str )
     {
-        int block = 0; //need to count values as one will be overridden each char set
-        int count = 1; //count of current block set starts at 1 because there is 1 of a char there
+        int block = 0, count = 1; //need to count values as one will be overridden each char set
+        //count of current block set starts at 1 because there is 1 of a char there
 
         for( int i = 0 ; i < str.length() - 1 ; i++ )
         {
