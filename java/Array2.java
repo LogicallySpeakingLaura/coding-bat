@@ -67,7 +67,7 @@ public class Array2
                 if( i + 1 < nums.length ) //if there is a value after 13
                     i++; //skip past it
                 else
-                    continue; //otherwise must be at end of array so leave loop
+                    break; //otherwise must be at end of array so leave loop
             else
                 sum += nums[i]; //if not 13 add to running total
 
@@ -464,13 +464,108 @@ public class Array2
                 int[] after = new int[ nums.length - i - 1 ]; //new length will be original length - index where 4 found
 
                 for( int j = i + 1, ai = 0 ; ai < after.length ; j++, ai++ ) //separate counters, one for new array, other for moving through original
-                    after[ai] = nums[j]; 
+                    after[ai] = nums[j];
 
                 nums = after; //override old array and return
                 break;
             }
 
         return nums;
+    }
+
+    /**
+     * We'll say that an element in an array is "alone" if there are values before and after it, and those values are different from it. Return a version of the given array where every instance of the given value which is alone is replaced by whichever value to its left or right is larger.
+     */
+    public int[] notAlone( int[] nums, int val )
+    {
+        for( int i = 1 ; i < nums.length - 1 ; i++ ) //not checking first and last index as those don't count as alone
+            if( nums[i] == val && nums[i] != nums[ i - 1 ] && nums[i] != nums[ i + 1 ] )
+                nums[i] = Math.max( nums[ i - 1 ], nums[ i + 1 ] ); //replace current alone value with larger of neighbours
+
+        return nums;
+    }
+
+    /**
+     * Return an array that contains the exact same numbers as the given array, but rearranged so that all the zeros are grouped at the start of the array. The order of the non-zero numbers does not matter. So {1, 0, 0, 1} becomes {0 ,0, 1, 1}. You may modify and return the given array or make a new array.
+     */
+    public int[] zeroFront( int[] nums )
+    {
+        for( int i = 0, j = 0 ; i < nums.length ; i++) //2 counts, one for array index and one for zero count, only i always increments
+            if( nums[i] == 0 )
+            {
+                nums[i] = nums[j]; //current index value at current zero index value
+                nums[j++] = 0; //value at zero count index now equals 0, zero count only increments once its current index equals zero
+            }
+
+        return nums;
+    }
+
+    /**
+     * Return a version of the given array where all the 10's have been removed. The remaining elements should shift left towards the start of the array as needed, and the empty spaces a the end of the array should be 0. So {1, 10, 10, 2} yields {1, 2, 0, 0}. You may modify and return the given array or make a new array.
+     */
+    public int[] withoutTen( int[] nums )
+    {
+        int[] without = new int[nums.length];
+
+        for( int i = 0, j = 0 ; i < nums.length ; i++ ) //2 counts, one for nums, one for without, only nums always increments
+            if( nums[i] != 10 )
+                without[j++] = nums[i]; //fill without with non10 value from nums, increment without index
+
+        return without; //rest of array will auto be zero upon return
+    }
+
+    /**
+     * Return a version of the given array where each zero value in the array is replaced by the largest odd value to the right of the zero in the array. If there is no odd value to the right of the zero, leave the zero as a zero.
+     */
+    public int[] zeroMax( int[] nums )
+    {
+        for( int i = nums.length - 1, max = 0 ; i >= 0 ; i-- ) //start at end and work back, max hold largest odd value
+        {
+            if( nums[i] % 2 != 0 ) //if it is an odd number it is not 0, as max assigned 0 that's how 0 remains
+                max = Math.max( max, nums[i] ); //set new max number
+
+            if( nums[i] == 0 )
+                nums[i] = max; //set to max odd number or 0 if no odd number
+        }
+
+        return nums;
+    }
+
+    /**
+     * Return an array that contains the exact same numbers as the given array, but rearranged so that all the even numbers come before all the odd numbers. Other than that, the numbers can be in any order. You may modify and return the given array, or make a new array.
+     */
+    public int[] evenOdd( int[] nums )
+    {
+        int[] evenFirst = new int[nums.length];
+
+        //3 counts: array index, event index, odd index, odd and even only change once used not every loop
+        for( int i = 0, j = 0, k = nums.length - 1 ; i < nums.length ; i++ )
+            if( nums[i] % 2 == 0 ) //value is even
+                evenFirst[j++] = nums[i]; //placed towards front of array and increment index
+            else
+                evenFirst[k--] = nums[i]; //value odd, place towards back and increment index
+
+        return evenFirst;
+    }
+
+    /**
+     * This is slightly more difficult version of the famous FizzBuzz problem which is sometimes given as a first problem for job interviews. (See also: FizzBuzz Code.) Consider the series of numbers beginning at start and running up to but not including end, so for example start=1 and end=5 gives the series 1, 2, 3, 4. Return a new String[] array containing the string form of these numbers, except for multiples of 3, use "Fizz" instead of the number, for multiples of 5 use "Buzz", and for multiples of both 3 and 5 use "FizzBuzz".
+     */
+    public String[] fizzBuzz( int start, int end )
+    {
+        String[] fizz = new String[ end - start ]; //array length needs to be difference of start and end
+
+        for( int i = 0 ; i < fizz.length ; i++, start++ ) //increment start as well to get next value up to and excluding end
+            if( start % 3 == 0 && start % 5 == 0 ) //both multiple
+                fizz[i] = "FizzBuzz";
+            else if( start % 3 == 0 ) //only 3 multiple
+                fizz[i] = "Fizz";
+            else if( start % 5 == 0 ) //only 5 multiple
+                fizz[i] = "Buzz";
+            else
+                fizz[i] = String.valueOf(start); //no multiple, convert int to String
+
+        return fizz;
     }
 
 }
