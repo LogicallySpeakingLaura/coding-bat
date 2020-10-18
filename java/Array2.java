@@ -374,4 +374,103 @@ public class Array2
         return nMatches;
     }
 
+    /**
+     * Return true if the array contains, somewhere, three increasing adjacent numbers like .... 4, 5, 6, ... or 23, 24, 25.
+     */
+    public boolean tripleUp( int[] nums )
+    {
+        boolean hasUp = false;
+
+        for( int i = 0 ; i < nums.length - 2 ; i++ )
+            if( nums[ i + 1 ] == nums[i] + 1 && nums[ i + 2 ] == nums[i] + 2 ) //right == i++, right + 1 == i += 2
+            {
+                hasUp = true; //one pattern found return true
+                break;
+            }
+
+        return hasUp;
+    }
+
+    /**
+     * Given start and end numbers, return a new array containing the sequence of integers from start up to but not including end, so start=5 and end=10 yields {5, 6, 7, 8, 9}. The end number will be greater or equal to the start number.
+     */
+    public int[] fizzArray3( int start, int end )
+    {
+        int[] fizz = new int[ end - start ]; //length of new array is difference between start and end
+
+        for( int i = 0, j = start ; j < end ; i++, j++ ) //i is index of new array, j is value of start, run end - start times
+            fizz[i] = j;
+
+        return fizz;
+    }
+
+    /**
+     * Return an array that is "left shifted" by one -- so {6, 2, 5, 3} returns {2, 5, 3, 6}. You may modify and return the given array, or return a new array.
+     */
+    public int[] shiftLeft( int[] nums )
+    {
+        if( nums.length > 0 ) //make sure array not empty before switching index values
+        {
+            int temp = nums[0]; //store first index value before overriden
+            for( int i = 0 ; i < nums.length - 1 ; i++ )
+                nums[i] = nums[ i + 1 ]; //shifting of values
+
+            nums[ nums.length - 1 ] = temp; //reinsert original first index value at end
+        }
+
+        return nums;
+    }
+
+    /**
+     * For each multiple of 10 in the given array, change all the values following it to be that multiple of 10, until encountering another multiple of 10. So {2, 10, 3, 4, 20, 5} yields {2, 10, 10, 10, 20, 20}.
+     */
+    public int[] tenRun( int[] nums )
+    {
+        for( int i = 0 ; i < nums.length - 1 ; i++ ) //set bound length - 1
+            if( nums[i] % 10 == 0 && nums[ i + 1 ] % 10 != 0 ) // %10 == 0 is a multiple of 10, if i+1 is not set i+1 to i
+                nums[ i + 1 ] = nums[i]; //if i+1 already a multiple loop iterates and that is the new multiple value
+
+        return nums;
+    }
+
+    /**
+     * Given a non-empty array of ints, return a new array containing the elements from the original array that come before the first 4 in the original array. The original array will contain at least one 4.
+     */
+    public int[] pre4( int[] nums )
+    {
+        for( int i = 0 ; i < nums.length ; i++ )
+            if( nums[i] == 4 )
+            {
+                int[] before = new int[i]; //one 4 found create new array of length equal to 4 value index
+
+                for( int j = 0 ; j < i ; j++ )
+                    before[j] = nums[j]; //nexted loop fills array from nums[0] to nums[ index of 4 ] exclusive
+
+                nums = before; //override original array with new one then break to return
+                break;
+            }
+
+        return nums;
+    }
+
+    /**
+     * Given a non-empty array of ints, return a new array containing the elements from the original array that come after the last 4 in the original array. The original array will contain at least one 4.
+     */
+    public int[] post4( int[] nums )
+    {
+        for( int i = nums.length - 1 ; i >= 0 ; i-- ) //start at end and move back, so first 4 found is last in array
+            if( nums[i] == 4 )
+            {
+                int[] after = new int[ nums.length - i - 1 ]; //new length will be original length - index where 4 found
+
+                for( int j = i + 1, ai = 0 ; ai < after.length ; j++, ai++ ) //separate counters, one for new array, other for moving through original
+                    after[ai] = nums[j]; 
+
+                nums = after; //override old array and return
+                break;
+            }
+
+        return nums;
+    }
+
 }
