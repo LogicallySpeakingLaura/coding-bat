@@ -1,6 +1,6 @@
 """
 Author: LogicallySpeakingLaura
-Date last modified: 2020/10/08
+Date last modified: 2020/10/18
 Medium python string problems -- 1 loop.
 https://codingbat.com/python/String-2
 """

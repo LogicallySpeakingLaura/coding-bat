@@ -32,6 +32,7 @@ def common_end(a, b):
     """
     return a[0] == b[0] or a[len(a) - 1] == b[len(b) - 1] # indexes are same if length is 1
 
+
 def sum3(nums):
     """
     Given an array of ints length 3, return the sum of all the elements.
