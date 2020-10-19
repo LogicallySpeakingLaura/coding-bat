@@ -9,7 +9,7 @@ def double_char(str):
     """
     Given a string, return a string where for every char in the original, there are two chars.
     """
-    return ''.join(char * 2 for char in str) # need to have something to join to so ''
+    return ''.join(char * 2 for char in str) # add another char of current char before moving onto next char
 
 
 def count_hi(str):
