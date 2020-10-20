@@ -61,7 +61,7 @@ def array123(nums):
     has_seq = False
 
     for i in range(len(nums) - 2):
-        if nums[i: i + 3] == [1, 2, 3]:  # do indexes i .. i + 3 equal 1, 2, 3
+        if nums[i: i + 3] == [1, 2, 3]:  # do indexes i .. i + 2 equal 1, 2, 3
             has_seq = True
             break  # exit loop if condition met
 
