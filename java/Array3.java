@@ -25,4 +25,118 @@ public class Array3
         return span;
     }
 
+    /**
+     * Return an array that contains exactly the same numbers as the given array, but rearranged so that every 3 is immediately followed by a 4. Do not move the 3's, but every other number may move. The array contains the same number of 3's and 4's, every 3 has a number after it that is not a 3, and a 3 appears in the array before any 4.
+     */
+    public int[] fix34( int[] nums )
+    {
+        for ( int i = 0 ; i < nums.length ; i++ )
+            if ( nums[i] == 3 )
+            {
+                int temp = nums[ i + 1 ]; //the value right of 3 assigned to var independent of inner loop
+                nums[ i + 1 ] = 4; //right of 3 is now 4
+
+                for ( int j = i + 2 ; j < nums.length ; j++ ) //j = i+2 as i=3 and i+1=4, want to find next instance of 4
+                    if ( nums[j] == 4 )
+                        nums[j] = temp; //set j to what used to be at i+1, so the 4 and non 4 value have switched indexes
+            }
+
+        return nums;
+    }
+
+    /**
+     * (This is a slightly harder version of the fix34 problem.) Return an array that contains exactly the same numbers as the given array, but rearranged so that every 4 is immediately followed by a 5. Do not move the 4's, but every other number may move. The array contains the same number of 4's and 5's, and every 4 has a number after it that is not a 4. In this version, 5's may appear anywhere in the original array.
+     */
+    public int[] fix45( int[] nums )
+    {
+        for( int i = 0 ; i < nums.length - 1 ; i++) //loop to find instance of 4
+            if( nums[i] == 4 && nums[ i + 1 ] != 5 ) //4 found but right of 4 is not 5
+                for( int j = 0 ; j < nums.length ; j++ ) //loop to find instance of 5
+                {
+                    if( nums[j] == 5 && j == 0 ) //if 5 is at beginning of array
+                    {
+                        nums[0] = nums[ i + 1 ]; //make beginning of array equal current value after 4
+                        nums[ i + 1 ] = 5; //set right of 4 to 5
+                    }
+
+                    if( nums[j] == 5 && nums[ j - 1 ]!= 4 ) //if 5 and left of 5 does not equal 4 after beginning of array
+                    {
+                        nums[j] = nums[ i + 1 ]; //make current index holding 5 equal current value after 4
+                        nums[ i + 1 ] = 5; //set right of 4 to 5
+                    }
+                }
+
+        return nums;
+    }
+
+    /**
+     * Given a non-empty array, return true if there is a place to split the array so that the sum of the numbers on one side is equal to the sum of the numbers on the other side.
+     */
+    public boolean canBalance(int[] nums)
+    {
+        boolean canBalance = false;
+
+        for( int i = 0 ; i < nums.length ; i++ )
+        {
+            int leftSum = 0, rightSum = 0;
+
+            for( int j = 0 ; j < i ; j++ ) //loop through first half, do not include value at i
+                leftSum += nums[j];
+
+            for( int k = nums.length - 1 ; k >= i ; k-- ) //reverse loop through second half, include vaue at i
+                rightSum += nums[k];
+
+            if( leftSum == rightSum ) //compare values, if they are same there is balance
+            {
+                canBalance = true;
+                break; //break when balance found to avoid unnecessary iterations
+            }
+        }
+
+        return canBalance;
+    }
+
+    public boolean linearIn( int[] outer, int[] inner )
+    {
+        int numsFound = 0;
+
+        for( int i = 0, j = 0 ; i < outer.length && j < inner.length ; i++ ) //i hold index for outer, j for inner
+            if( outer[i] == inner[j] ) //if both match
+            {
+                numsFound++; //increment count
+                j++; //move along inner array, as arrays sorted no need to reset i back to 0
+            }
+
+        return numsFound == inner.length; //only complete match if the number found equals length of array
+    }
+
+    /**
+     * Given n>=0, create an array length n*n with the following pattern, shown here for n=3 : {0, 0, 1,    0, 2, 1,    3, 2, 1} (spaces added to show the 3 groups).
+     */
+    public int[] squareUp( int n )
+    {
+        int[] squared = new int[ n * n ];
+
+        if( n != 0 ) //no need to fill empty array
+            for( int i = n - 1 ; i < squared.length ; i += n ) //start at end of block, run for as long as array is, but jump one block at a time
+                for( int j = i ; j >= i - ( i / n ) ; j-- ) //create fill pattern, where to stop and fill with 0
+                    squared[j] = i - j + 1; //fill with difference + 1 because of indexing
+
+        return squared;
+    }
+
+    /**
+     * Given n>=0, create an array with the pattern {1,    1, 2,    1, 2, 3,   ... 1, 2, 3 .. n} (spaces added to show the grouping). Note that the length of the array will be 1 + 2 + 3 ... + n, which is known to sum to exactly n*(n + 1)/2.
+     */
+    public int[] seriesUp( int n )
+    {
+        int[] series = new int[ n * ( n + 1 ) / 2 ];
+
+        for( int i = 0, j = 1 ; j <= n ; ++j ) //i is new array index, j keeps track of n value, run n times but increment then iterate
+            for ( int k = 1 ; k <= j ; ++k ) //k is value for index, run j times but increment then iterate
+                series[ i++ ] = k; //new array places value then moves to right
+
+        return series;
+    }
+
 }
