@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/18
+ * @version 2020/10/20
  * Harder array problems -- 2 loops, more complex logic.
  * https://codingbat.com/java/Array-3
  */
@@ -137,6 +137,52 @@ public class Array3
                 series[ i++ ] = k; //new array places value then moves to right
 
         return series;
+    }
+
+    /**
+     * We'll say that a "mirror" section in an array is a group of contiguous elements such that somewhere in the array, the same group appears in reverse order. For example, the largest mirror section in {1, 2, 3, 8, 9, 3, 2, 1} is length 3 (the {1, 2, 3} part). Return the size of the largest mirror section found in the given array.
+     */
+    public int maxMirror( int[] nums )
+    {
+        int max = 0; //count of mirrored values for biggest section
+
+        for( int i = 0, j ; i < nums.length ; i++ )
+        {
+            j = 0; //tracks mirror count/position, assign here as need to reset each outer loop
+
+            //loop to reverse, put bound on count, can't reverse if already at the end of the array
+            for( int k = nums.length - 1 ; k >= 0 && i + j < nums.length ; k-- )
+                if( nums[ i + j ] == nums[k] )
+                    j++; //increment mirror/count position if there's a match
+                else if( j > 0 ) //only reassign max if there is a match
+                {
+                    max = Math.max( max, j );
+                    j = 0; //reset for next iteration of inner loop
+                }
+
+            max = Math.max( max, j ); //check for max reassign here as there is chance it did not happen in inner loop
+        }
+
+        return max;
+    }
+
+    /**
+     * Say that a "clump" in an array is a series of 2 or more adjacent elements of the same value. Return the number of clumps in the given array.
+     */
+    public int countClumps( int[] nums )
+    {
+        int count = 0;
+
+        for( int i = 0 ; i < nums.length - 1 ; i++ ) //set bound here so can check right of index
+        {
+            if( nums[i] == nums[ i + 1 ] ) //if right of i matches that is one clump
+                count++;
+
+            while ( i + 1 < nums.length && nums[i] == nums[ i + 1 ] ) //find end of current clump so next for iteration starts at right of end
+                i++;
+        }
+
+        return count;
     }
 
 }
