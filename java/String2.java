@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/17
+ * @version 2020/10/20
  * Medium String problems -- 1 loop.
  * https://codingbat.com/java/String-2
  */
@@ -33,6 +33,9 @@ public class String2
         return count;
     }
 
+    /**
+     * Return true if the string "cat" and "dog" appear the same number of times in the given string.
+     */
     public boolean catDog( String str )
     {
         int catCount = 0, dogCount = 0;
@@ -183,6 +186,9 @@ public class String2
         return str.substring(n).contains( str.substring( 0, n ) ); //does substring from index n to end contain substring from 0 to index n - 1
     }
 
+    /**
+     * Given a string, does "xyz" appear in the middle of the string? To define middle, we'll say that the number of chars to the left and right of the "xyz" must differ by at most one. This problem is harder than it looks.
+     */
     public boolean xyzMiddle( String str )
     {
         //length has to be at least 3
