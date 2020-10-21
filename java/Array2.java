@@ -14,8 +14,8 @@ public class Array2
     {
         int count = 0;
 
-        for( int i = 0 ; i < nums.length ; i++ )
-            if( nums[i] % 2 == 0 ) //even%2 == 0, odd%2 == 1
+        for( int n : nums )
+            if( n % 2 == 0 ) //even%2 == 0, odd%2 == 1
                 count++;
 
         return count;
@@ -28,10 +28,10 @@ public class Array2
     {
         int small = nums[0], large = nums[0]; //set to first value in array
 
-        for( int i = 1 ; i < nums.length ; i++ ) //start at 1 as 0 already assigned to variables
+        for( int n : nums )
         {
-            small = Math.min( small, nums[i] );
-            large = Math.max( large, nums[i] );
+            small = Math.min( small, n );
+            large = Math.max( large, n );
         }
 
         return large - small;
@@ -42,13 +42,13 @@ public class Array2
      */
     public int centeredAverage( int[] nums )
     {
-        int sum = nums[0], smallest = nums[0], largest = nums[0];
+        int sum = 0, smallest = nums[0], largest = nums[0];
 
-        for( int i = 1 ; i < nums.length ; i++ ) //start at 1 as nums[0] used in variable assignment
+        for( int n : nums )
         {
-            sum += nums[i];
-            smallest = Math.min( smallest, nums[i] );
-            largest = Math.max( largest, nums[i] );
+            sum += n;
+            smallest = Math.min( smallest, n );
+            largest = Math.max( largest, n );
         }
 
         //subtract small and largest, - 2 to remove small/large from division
@@ -117,8 +117,8 @@ public class Array2
     {
         boolean isUnlucky = true;
 
-        for( int i = 0 ; i < nums.length ; i++ )
-            if( nums[i] == 1 || nums[i] == 3 ) //as soon as a 1 or 3 is found...
+        for( int n : nums )
+            if( n == 1 || n == 3 ) //as soon as a 1 or 3 is found...
             {
                 isUnlucky = false; //flag false and break loop
                 break;
@@ -134,9 +134,9 @@ public class Array2
     {
         int sum = 0;
 
-        for( int i = 0 ; i < nums.length ; i++ )
-            if( nums[i] == 2 )
-                sum += 2; //could be += nums[i]
+        for( int n : nums )
+            if( n == 2 )
+                sum += 2; //could be += n, as long as 2 added to running total
 
         return sum == 8;
     }
@@ -148,13 +148,13 @@ public class Array2
     {
         int oneCount = 0, fourCount = 0;
 
-        for( int i = 0 ; i < nums.length ; i++ )
-            if( nums[i] == 1 )
+        for( int n : nums )
+            if( n == 1 )
                 oneCount++;
-            else if( nums[i] == 4 )
+            else if( n == 4 )
                 fourCount++;
 
-        return oneCount > fourCount;
+        return oneCount > fourCount; //will return true if there are more 1's
     }
 
     /**
@@ -177,8 +177,8 @@ public class Array2
     {
         boolean is1or4 = true;
 
-        for( int i= 0 ; i < nums.length ; i++ )
-            if( nums[i] != 1 && nums[i] != 4 ) //&& becasue both must be false
+        for( int n : nums )
+            if( n != 1 && n != 4 ) //&& because both must be false
             {
                 is1or4 = false; //as soon as something not 1 or 4 found, flip boolean and break loop
                 break;
@@ -207,10 +207,10 @@ public class Array2
     {
         boolean hasOne = false, hasFour = false;
 
-        for( int i = 0 ; i < nums.length ; i++ )
-            if( nums[i] == 1 ) //as soon as a 1 or 4 is found flip to true
+        for( int n : nums )
+            if( n == 1 ) //as soon as a 1 or 4 is found flip to true
                 hasOne = true;
-            else if( nums[i] == 4 )
+            else if( n == 4 )
                 hasFour = true;
 
         return !( hasOne && hasFour ); //if both are true we want to return false, all other options are OK

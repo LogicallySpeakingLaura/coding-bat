@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/05
+ * @version 2020/10/20
  * Medium warmup string/array loops.
  * https://codingbat.com/java/Warmup-2
  */
@@ -105,8 +105,8 @@ public class Warmup2
     {
         int count = 0;
 
-        for( int i = 0 ; i < nums.length ; i++ )
-            if( nums[i] == 9 )
+        for( int n : nums ) //check every element in array
+            if( n == 9 )
                 count++;
 
         return count;
