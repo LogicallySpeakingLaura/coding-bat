@@ -69,5 +69,6 @@ def has22(nums):
             has2 = True
             break # return as soon as match found
 
-    return has2 # TODO   make work: return bool(True for i in range(len(nums)-1) if nums[i] == 2 and nums[ i + 1 ] == 2)
+    # return any(nums[i] == 2 and nums[ i + 1 ] == 2 for i in range(len(nums)-1)) - possible one line solution
+    return has2
 

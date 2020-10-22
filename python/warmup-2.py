@@ -65,7 +65,8 @@ def array123(nums):
             has_seq = True
             break  # exit loop if condition met
 
-    return has_seq #   return bool(True for i in range(len(nums) - 2) if nums[i: i + 3] == [1, 2, 3]) TODO figure out why won't work
+    #   return any(nums[i: i + 3] == [1, 2, 3] for i in range(len(nums) - 2)) is a possible one line solution
+    return has_seq
 
 
 def string_match(a, b):
