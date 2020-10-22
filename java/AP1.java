@@ -127,13 +127,35 @@ public class AP1
      */
     public boolean hasOne( int n )
     {
-        return String.valueOf(n).contains( "1" ); //converts int to String then performs check, easy regardless of # of digits
-    }
+        boolean isOne = false;
 
-    public boolean dividesSelf( int n )
-    {
-        //TODO solve later...
-    }
+        while( n > 0 ) //set bound, nothing left to check when n == 0
+            if( n % 10 == 1 ) //check right digit
+            {
+                isOne = true;
+                break;
+            }
+            else
+                n /= 10; //discard right digit if it's not 1
+
+        return isOne;     }
+
+    /**
+     * We'll say that a positive int divides itself if every digit in the number divides into the number evenly. So for example 128 divides itself since 1, 2, and 8 all divide into 128 evenly. We'll say that 0 does not divide into anything evenly, so no number with a 0 digit divides itself.
+     */
+        public boolean dividesSelf( int n )
+        {
+            boolean canDivide = true;
+
+            for( int i = n ; i > 0 ; i /= 10) //assign n to i so i can be manipulated and still compared to n, /=10 to discard right digit
+                if( i % 10 == 0 || n % ( i % 10 ) != 0 ) //if right digit is 0 or n cannot divide by current digit(s)
+                {
+                    canDivide = false; //return false
+                    break;
+                }
+
+            return canDivide;
+        }
 
     /**
      * Given an array of positive ints, return a new array of length "count" containing the first even numbers from the original array. The original array will contain at least "count" even numbers.
@@ -150,6 +172,96 @@ public class AP1
             }
 
         return even;
+    }
+
+    /**
+     * We'll say that a positive int n is "endy" if it is in the range 0..10 or 90..100 (inclusive). Given an array of positive ints, return a new array of length "count" containing the first endy numbers from the original array. Decompose out a separate isEndy(int n) method to test if a number is endy. The original array will contain at least "count" endy numbers.
+     */
+    public int[] copyEndy( int[] nums, int count )
+    {
+        int[] copy = new int[count]; //new array of count length
+
+        for( int i = 0, j = 0 ; j < copy.length ; i++ ) //i for nums, j for copy, iterate count times, increment nums index
+            if( isEndy( nums[i] ) ) //if value is an endy
+                copy[j++] = nums[i]; //place it in next available index of copy and increment j
+
+        return copy;
+    }
+    public boolean isEndy( int n )
+    {
+        return ( 0 <= n && n <= 10 ) || ( 90 <= n && n <= 100 );
+    }
+
+    /**
+     * Given 2 arrays that are the same length containing strings, compare the 1st string in one array to the 1st string in the other array, the 2nd to the 2nd and so on. Count the number of times that the 2 strings are non-empty and start with the same char. The strings may be any length, including 0.
+     */
+    public int matchUp( String[] a, String[] b )
+    {
+        int count = 0;
+
+        for( int i = 0 ; i < a.length ; i++ ) //lengths are same, doesn't matter which used
+                //check for empty String elements,      compare equality of first chars
+            if( !a[i].equals("") && !b[i].equals("") && a[i].charAt(0) == b[i].charAt(0) )
+                count++;
+
+        return count;
+    }
+
+    /**
+     * The "key" array is an array containing the correct answers to an exam, like {"a", "a", "b", "b"}. the "answers" array contains a student's answers, with "?" representing a question left blank. The two arrays are not empty and are the same length. Return the score for this array of answers, giving +4 for each correct answer, -1 for each incorrect answer, and +0 for each blank answer.
+     */
+    public int scoreUp( String[] key, String[] answers )
+    {
+        int score = 0;
+
+        for( int i = 0 ; i < key.length ; i++ )
+            if( key[i] == answers[i] )
+                score += 4;
+            else if( answers[i] == "?" ) //check for blank before wrong answer, as != will prove true for a blank answer
+                score += 0;
+            else if( key[i] != answers[i] )
+                score -= 1;
+
+        return score;
+    }
+
+    /**
+     * Given an array of strings, return a new array without the strings that are equal to the target string. One approach is to count the occurrences of the target string, make a new array of the correct length, and then copy over the correct strings.
+     */
+    public String[] wordsWithout( String[] words, String target )
+    {
+        int count = 0;
+
+        for( String w : words ) //check every element
+            if( !w.equals(target) ) //if element != target increment count
+                count++;
+
+        String[] without = new String[count]; //new array of length count
+
+        for( int i = 0, j = 0 ; j < without.length ; i++ ) //i for words, j for without, loop count times, increment words index
+            if( !words[i].equals(target) )
+                without[j++] = words[i]; //if there isn't a target match assign current words element to appropriate without index, increment j
+
+        return without;
+    }
+
+    /**
+     *
+     Given two arrays, A and B, of non-negative int scores. A "special" score is one which is a multiple of 10, such as 40 or 90. Return the sum of largest special score in A and the largest special score in B. To practice decomposition, write a separate helper method which finds the largest special score in an array.
+     */
+    public int scoresSpecial( int[] a, int[] b )
+    {
+        return largestSpecial(a) + largestSpecial(b);
+    }
+    public int largestSpecial( int[] scores )
+    {
+        int largest = 0;
+
+        for( int i = 0 ; i < scores.length ; i++ )
+            if( scores[i] % 10 == 0 ) //check if multiple of 10
+                largest = Math.max( largest, scores[i]); //is current element larger than last largest element
+
+        return largest;
     }
 
 }
