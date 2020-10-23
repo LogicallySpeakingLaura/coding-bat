@@ -65,7 +65,7 @@ public class Logic1
     /**
      * Given 2 ints, a and b, return their sum. However, sums in the range 10..19 inclusive, are forbidden, so in that case just return 20.
      */
-    public int sortaSum(int a, int b)
+    public int sortaSum( int a, int b )
     {
         return a + b >= 10 && a + b < 20 ? 20 : a + b; //could do <= 19 if that logic is easier to understand
     }
@@ -231,10 +231,7 @@ public class Logic1
     public int withoutDoubles( int die1, int die2, boolean noDoubles )
     {
         if( noDoubles && die1 == die2 ) //noDoubles can be true and the die have different values, check for equality
-            if( die1 == 6 )
-                die1 = 1 + die2;
-            else
-                die1 = ( die1 + 1 ) + die2;
+            die1 = die1 == 6 ? 1 + die2 : ( die1 + 1 ) + die2;
         else
             die1 += die2;
 

@@ -347,12 +347,12 @@ public class AP1
         int count = 0;
         String duplicate = "";
 
-        for( int i = 0 ; i < a.length ; i++ ) //check array a
-            for( int j = 0 ; j < b.length && !a[i].equals(duplicate) ; j++ ) //only check array b if there isn't a duplicate for array a
-                if( a[i].equals(b[j]) )
+        for( String strA : a ) //check array a
+            for( String strB : b ) //check array b
+                if( strA.equals(strB) && !strA.equals(duplicate) ) //if they current elements match and there's no duplicate
                 {
                     count++;
-                    duplicate = a[i]; //current value found equal assigned to duplicate so it's not checked next iteration
+                    duplicate = strA; //current value found equal assigned to duplicate so it's skipped next iteration
                     break; //leave inner loop so array b duplicates avoided
                 }
 

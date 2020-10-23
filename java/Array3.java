@@ -83,7 +83,7 @@ public class Array3
             for( int j = 0 ; j < i ; j++ ) //loop through first half, do not include value at i
                 leftSum += nums[j];
 
-            for( int k = nums.length - 1 ; k >= i ; k-- ) //reverse loop through second half, include vaue at i
+            for( int k = nums.length - 1 ; k >= i ; k-- ) //reverse loop through second half, include value at i
                 rightSum += nums[k];
 
             if( leftSum == rightSum ) //compare values, if they are same there is balance

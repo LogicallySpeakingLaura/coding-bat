@@ -84,10 +84,7 @@ public class String2
         for( int i = 0 ; i < str.length() - 2 ; i++ ) //set a limit on bound
             if( str.startsWith( "xyz", i )  )
             {
-                if( i > 0 && str.charAt( i - 1 ) == '.' ) //i > 0 as want to check char to left
-                    isThere = false;
-                else
-                    isThere = true;
+                isThere = i > 0 && str.charAt( i - 1 ) == '.' ? false : true; //i > 0 as want to check char to left
 
                 i += 2; //jump to the right of the index where z is for next check, so not checking yz and z
             }
