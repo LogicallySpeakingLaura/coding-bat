@@ -138,7 +138,8 @@ public class AP1
             else
                 n /= 10; //discard right digit if it's not 1
 
-        return isOne;     }
+        return isOne;
+    }
 
     /**
      * We'll say that a positive int divides itself if every digit in the number divides into the number evenly. So for example 128 divides itself since 1, 2, and 8 all divide into 128 evenly. We'll say that 0 does not divide into anything evenly, so no number with a 0 digit divides itself.
@@ -166,10 +167,7 @@ public class AP1
 
         for( int i = 0, j = 0 ; i < nums.length && j < even.length ; i++  ) //i for nums, j for even
             if( nums[i] % 2 == 0 )
-            {
-                even[j] = nums[i];
-                j++; //only increment even index once an even value placed
-            }
+                even[j++] = nums[i]; //only increment even index once an even value placed
 
         return even;
     }
@@ -264,4 +262,100 @@ public class AP1
         return largest;
     }
 
+    /**
+     * We have an array of heights, representing the altitude along a walking trail. Given start/end indexes into the array, return the sum of the changes for a walk beginning at the start index and ending at the end index. For example, with the heights {5, 3, 6, 7, 2} and start=2, end=4 yields a sum of 1 + 5 = 6. The start end end index will both be valid indexes into the array with start <= end.
+     */
+    public int sumHeights( int[] heights, int start, int end )
+    {
+        int sum = 0;
+
+        for( int i = start ; i < end ; i++ ) //begin at start index, loop till end index
+            sum += Math.abs( heights[i] - heights[ i + 1 ] ); //compound difference between current alt. and next alt.
+
+        return sum;
+    }
+
+    /**
+     * (A variation on the sumHeights problem.) We have an array of heights, representing the altitude along a walking trail. Given start/end indexes into the array, return the sum of the changes for a walk beginning at the start index and ending at the end index, however increases in height count double. For example, with the heights {5, 3, 6, 7, 2} and start=2, end=4 yields a sum of 1*2 + 5 = 7. The start end end index will both be valid indexes into the array with start <= end.
+     */
+    public int sumHeights2( int[] heights, int start, int end )
+    {
+        int sum = 0;
+
+        for( int i = start ; i < end ; i++ ) //begin at start index, loop till end index
+            sum +=  heights[i] < heights[ i + 1 ] ? 2 * Math.abs( heights[i] - ( heights[ i + 1 ] ) ) : //if next step an increase compound double
+                    Math.abs( heights[i] - heights[ i + 1 ] ); //else just compound difference as is
+
+        return sum;
+    }
+
+    /**
+     * (A variation on the sumHeights problem.) We have an array of heights, representing the altitude along a walking trail. Given start/end indexes into the array, return the number of "big" steps for a walk starting at the start index and ending at the end index. We'll say that step is big if it is 5 or more up or down. The start end end index will both be valid indexes into the array with start <= end.
+     */
+    public int bigHeights( int[] heights, int start, int end )
+    {
+        int count = 0;
+
+        for( int i = start ; i < end ; i++ )
+            if( Math.abs( heights[i] - heights[ i + 1 ] ) >= 5 ) //check if difference between alt. is at least 5
+                count++;
+
+        return count;
+    }
+
+    /**
+     *
+     We have data for two users, A and B, each with a String name and an int id. The goal is to order the users such as for sorting. Return -1 if A comes before B, 1 if A comes after B, and 0 if they are the same. Order first by the string names, and then by the id numbers if the names are the same. Note: with Strings str1.compareTo(str2) returns an int value which is negative/0/positive to indicate how str1 is ordered to str2 (the value is not limited to -1/0/1).
+     */
+    public int userCompare( String aName, int aId, String bName, int bId )
+    {
+        return aName.equals( bName ) && aId == bId ? 0 : //all values are the same
+                aName.compareTo(bName) < 0 ? -1 : //String a comes before b
+                        aName.compareTo(bName) > 0 ? 1 : //String b comes before a
+                                aId > bId ? 1 : -1; //ID a comes before ID b otherwise return -1
+    }
+
+    /**
+     * Start with two arrays of strings, A and B, each with its elements in alphabetical order and without duplicates. Return a new array containing the first N elements from the two arrays. The result array should be in alphabetical order and without duplicates. A and B will both have a length which is N or more. The best "linear" solution makes a single pass over A and B, taking advantage of the fact that they are in alphabetical order, copying elements directly to the new array.
+     */
+    public String[] mergeTwo( String[] a, String[] b, int n )
+    {
+        String[] merged = new String[n];
+
+        for( int i = 0, j = 0, k = 0 ; i < n ; i++ ) //or i < merged.length, j for a index, k for b index
+            if( a[j].compareTo(b[k]) < 0 ) //a element comes before b
+            {
+                merged[i] = a[j++]; //assign a element to current index of merged and increment index
+                if( merged[i].compareTo(b[k]) == 0 ) //check that current index element of b does not match merged element to avoid duplicates
+                    k++;
+            }
+            else //b element comes before a
+            {
+                merged[i] = b[k++]; //assign b element to current index of merged and increment index
+                if( merged[i].compareTo(a[j]) == 0 ) //check that current index element of a does not match merged element to avoid duplicates
+                    j++;
+            }
+
+        return merged;
+    }
+
+    /**
+     * Start with two arrays of strings, a and b, each in alphabetical order, possibly with duplicates. Return the count of the number of strings which appear in both arrays. The best "linear" solution makes a single pass over both arrays, taking advantage of the fact that they are in alphabetical order.
+     */
+    public int commonTwo( String[] a, String[] b )
+    {
+        int count = 0;
+        String duplicate = "";
+
+        for( int i = 0 ; i < a.length ; i++ ) //check array a
+            for( int j = 0 ; j < b.length && !a[i].equals(duplicate) ; j++ ) //only check array b if there isn't a duplicate for array a
+                if( a[i].equals(b[j]) )
+                {
+                    count++;
+                    duplicate = a[i]; //current value found equal assigned to duplicate so it's not checked next iteration
+                    break; //leave inner loop so array b duplicates avoided
+                }
+
+        return count;
+    }
 }
