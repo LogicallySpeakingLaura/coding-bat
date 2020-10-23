@@ -255,9 +255,9 @@ public class AP1
     {
         int largest = 0;
 
-        for( int i = 0 ; i < scores.length ; i++ )
-            if( scores[i] % 10 == 0 ) //check if multiple of 10
-                largest = Math.max( largest, scores[i]); //is current element larger than last largest element
+        for( int s : scores )
+            if( s % 10 == 0 ) //check if multiple of 10
+                largest = Math.max( largest, s ); //is current element larger than last largest element
 
         return largest;
     }
