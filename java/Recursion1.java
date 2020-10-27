@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/23
+ * @version 2020/10/26
  * Basic recursion problems.
  * https://codingbat.com/java/Recursion-1
  */
@@ -180,6 +180,97 @@ public class Recursion1
     {
                                         //if an 'x' add to end of next function call,           else add char as is
         return str.length() <= 1 ? str : str.charAt(0) == 'x' ? endX( str.substring(1) ) + 'x' : str.charAt(0) + endX( str.substring(1) );
+    }
+
+    /**
+     * We'll say that a "pair" in a string is two instances of a char separated by a char. So "AxA" the A's make a pair. Pair's can overlap, so "AxAxA" contains 3 pairs -- 2 for A and 1 for x. Recursively compute the number of pairs in the given string.
+     */
+    public int countPairs( String str )
+    {
+        //stop at 2 as 0-1 doesn't make pair, compare chars and if match increase count and remove first char, else just remove first char
+        return str.length() <= 2 ? 0 : str.charAt(0) == str.charAt(2) ? 1 + countPairs( str.substring(1) ) : countPairs( str.substring(1) );
+    }
+
+    /**
+     * Count recursively the total number of "abc" and "aba" substrings that appear in the given string.
+     */
+    public int countAbc( String str )
+    {
+                                                                //start at 2 because if "aba" there may be overlap with next pair
+        return str.length() <= 2 ? 0 : str.startsWith( "abc" ) || str.startsWith( "aba" ) ? 1 + countAbc( str.substring(2) ) : countAbc( str.substring(1) );
+    }
+
+    /**
+     * Given a string, compute recursively (no loops) the number of "11" substrings in the string. The "11" substrings should not overlap.
+     */
+    public int count11( String str )
+    {
+                        //move completely past "11" to avoid overlap, so substring starting at 2
+        return str.length() <= 1 ? 0 : str.startsWith( "11" ) ? 1 + count11( str.substring(2) ) : count11( str.substring(1) );
+    }
+
+    /**
+     * Given a string, return recursively a "cleaned" string where adjacent chars that are the same have been reduced to a single char. So "yyzzza" yields "yza".
+     */
+    public String stringClean( String str )
+    {
+                                //adjacent chars are same so leave first one off else keep it, move up one at a time as there can be 3 in a row of the same
+        return str.length() <= 1 ? str : str.charAt(0) == str.charAt(1) ? stringClean( str.substring(1) ) : str.charAt(0) + stringClean( str.substring(1) );
+    }
+
+    /**
+     * Given a string, compute recursively the number of times lowercase "hi" appears in the string, however do not count "hi" that have an 'x' immedately before them.
+     */
+    public int countHi2( String str )
+    {
+                                        //skip past "xh", assume not "xhi" as can be "xhh", logically here there is no "x" before as previous comparison accounts for that
+        return str.length() <= 1 ? 0 : str.startsWith( "xh" ) ? countHi2( str.substring(2) ) : str.startsWith( "hi" ) ? 1 + countHi2( str.substring(1) ): countHi2( str.substring(1) );
+    }
+
+    /**
+     * Given a string that contains a single pair of parenthesis, compute recursively a new string made of only of the parenthesis and their contents, so "xyz(abc)123" yields "(abc)".
+     */
+    public String parenBit( String str )
+    {
+                //removes anything to left of open parenthesis,     removes anything to right of close parenthesis
+        return str.charAt(0) != '(' ? parenBit( str.substring(1) ) : str.charAt( str.length() - 1 ) != ')' ? parenBit( str.substring( 0, str.length() - 1 ) ) : str; //one just parenthesis and contents left then it is returned
+    }
+
+    /**
+     * Given a string, return true if it is a nesting of zero or more pairs of parenthesis, like "(())" or "((()))". Suggestion: check the first and last chars, and then recur on what's inside them.
+     */
+    public boolean nestParen( String str )
+    {
+        //if not left with an empty String then letters are breaking up parentheses so they aren't nested so return false at the end
+        return str.equals( "" ) ? true : str.charAt(0) == '(' && str.charAt( str.length() - 1 ) == ')'  ? nestParen( str.substring( 1, str.length() - 1 ) ) : false;
+                                        //check leftmost char for open and rightmost for close, both must be true else not nested, move indexes at both ends by 1
+    }
+
+    /**
+     * Given a string and a non-empty substring sub, compute recursively the number of times that sub appears in the string, without the sub strings overlapping.
+     */
+    public int strCount( String str, String sub )
+    {
+        //sub can't be in str if it is bigger,   if sub starts at str index 0 increase count and move index to right of sub, else just jump right by one
+        return str.length() < sub.length() ? 0 : str.startsWith(sub) ? 1 + strCount( str.substring( sub.length() ), sub ) : strCount( str.substring(1), sub );
+    }
+
+    /**
+     * Given a string and a non-empty substring sub, compute recursively if at least n copies of sub appear in the string somewhere, possibly with overlapping. N will be non-negative.
+     */
+    public boolean strCopies( String str, String sub, int n )
+    {
+            //2 stopping cases both for true and false,                 if sub appears decrement n and move index,                      else just move index
+        return n == 0 ? true : str.length() < sub.length() ? false : str.startsWith(sub) ? strCopies( str.substring(1), sub, n - 1 ) : strCopies( str.substring(1), sub, n );
+    }
+
+    /**
+     * Given a string and a non-empty substring sub, compute recursively the largest substring which starts and ends with sub and return its length.
+     */
+    public int strDist( String str, String sub )
+    {
+                                                    //sub is at beginning and end of str so return current str length,                                 str doesn't start with sub so increment index,       otherwise remove last index to check end of str for sub
+        return str.length() < sub.length() ? 0 : str.startsWith(sub) && str.startsWith( sub, str.length() - sub.length() ) ? str.length() : !str.startsWith(sub) ? strDist( str.substring(1), sub ) : strDist( str.substring( 0, str.length() - 1 ), sub );
     }
 
 }
