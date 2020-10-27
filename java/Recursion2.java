@@ -120,5 +120,5 @@ public class Recursion2
 
         return checkMultiples( nums, start + 1, a + nums[start], b ) || checkMultiples( nums, start + 1, a, b + nums[start] );
     }
-    
+
 }
