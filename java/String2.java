@@ -1,22 +1,23 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/20
+ * @version 2020/10/28
  * Medium String problems -- 1 loop.
  * https://codingbat.com/java/String-2
  */
 public class String2
 {
+
     /**
      * Given a string, return a string where for every char in the original, there are two chars.
      */
     public String doubleChar( String str )
     {
-        String rtrn = "";
+        String s = "";
 
-        for( int i = 0 ; i < str.length() ; i++ )
-            rtrn += str.substring( i, i + 1 ) + str.substring( i, i + 1 ); //add same char twice
+        for ( int i = 0  ;  i < str.length()  ;  i++ )
+            s += String.valueOf( str.charAt(i) ) + str.charAt(i); //add same char twice
 
-        return rtrn;
+        return s;
     }
 
     /**
@@ -26,7 +27,7 @@ public class String2
     {
         int count = 0;
 
-        for( int i = 0 ; i < str.length() - 1 ; i++ ) //length - 1 so "hi" doesn't go out of bounds
+        for ( int i = 0  ;  i < str.length() - 1  ;  i++ ) //length - 1 so "hi" doesn't go out of bounds
             if( str.startsWith( "hi", i ) )
                 count++;
 
@@ -40,13 +41,13 @@ public class String2
     {
         int catCount = 0, dogCount = 0;
 
-        for( int i = 0 ; i < str.length() - 2 ; i++ ) //length - 2 so check doesn't go out of bounds
-            if( str.startsWith( "cat", i ) ) //use if else as conditions are mutually exclusive
+        for ( int i = 0  ;  i < str.length() - 2  ;  i++ ) //length - 2 so check doesn't go out of bounds
+            if ( str.startsWith( "cat", i ) ) //use if else as conditions are mutually exclusive
                 catCount++;
-            else if( str.startsWith( "dog", i ) )
+            else if ( str.startsWith( "dog", i ) )
                 dogCount++;
 
-        return catCount == dogCount;
+        return catCount == dogCount; //check count equality
     }
 
     /**
@@ -56,11 +57,11 @@ public class String2
     {
         int count = 0;
 
-        for( int i = 0 ; i < str.length() - 3 ; i++ ) //length - 3 so don't go out of bounds
-                    //checks first 2 chars          checks 4th
-            if( str.startsWith( "co", i ) && str.charAt( i + 3 ) == 'e' ) {
+        for ( int i = 0  ;  i < str.length() - 3  ;  i++ ) //length - 3 so don't go out of bounds
+            if ( str.startsWith( "co", i ) && str.charAt( i + 3 ) == 'e' ) //checks first 2 chars and then checks 4th
+            {
                 count++;
-                i += 3;
+                i += 3; //move index to right of 'e'
             }
 
         return count;
@@ -71,7 +72,7 @@ public class String2
      */
     public boolean endOther( String a, String b )
     {
-        return a.toLowerCase().endsWith( b.toLowerCase() ) || b.toLowerCase().endsWith( a.toLowerCase() );
+        return a.toLowerCase().endsWith( b.toLowerCase() )  ||  b.toLowerCase().endsWith( a.toLowerCase() ); //convert to lower case to ignore case
     }
 
     /**
@@ -81,11 +82,10 @@ public class String2
     {
         boolean isThere = false;
 
-        for( int i = 0 ; i < str.length() - 2 ; i++ ) //set a limit on bound
-            if( str.startsWith( "xyz", i )  )
+        for ( int i = 0  ;  i < str.length() - 2  ;  i++ ) //set correct bound
+            if( str.startsWith( "xyz", i ) )
             {
-                isThere = i > 0 && str.charAt( i - 1 ) == '.' ? false : true; //i > 0 as want to check char to left
-
+                isThere = i > 0  &&  str.charAt( i - 1 ) == '.'  ?  false  :  true; //i > 0 as want to check char to left
                 i += 2; //jump to the right of the index where z is for next check, so not checking yz and z
             }
 
@@ -99,12 +99,11 @@ public class String2
     {
         boolean hasBob = false;
 
-        for( int i = 0 ; i < str.length() - 2 ; i++ ) //length - 3 so don't go out of bounds
-            //checks first b            check second b
-            if( str.charAt( i ) == 'b' && str.charAt( i + 2 ) == 'b' )
+        for ( int i = 0  ;  i < str.length() - 2  ;  i++ ) //length - 3 so don't go out of bounds
+            if( str.charAt( i ) == 'b'  &&  str.charAt( i + 2 ) == 'b' ) //checks first b and then check second b
             {
                 hasBob = true;
-                break; //exit loop as soon as condition met
+                break; //exit loop as soon as condition met, avoid further iterations
             }
 
         return hasBob;
@@ -115,7 +114,7 @@ public class String2
      */
     public boolean xyBalance( String str )
     {
-        return str.lastIndexOf( 'x' ) < str.lastIndexOf( 'y' ) || !str.contains( "x" ); //if there is no x str auto balanced
+        return str.lastIndexOf( 'x' ) < str.lastIndexOf( 'y' )  ||  !str.contains( "x" ); //if there is no x str auto balanced
     }
 
     /**
@@ -123,11 +122,11 @@ public class String2
      */
     public String mixString( String a, String b )
     {
-        int shorter = a.length() < b.length() ? a.length() : b.length(); //finding length of shortest String
-        String mix = "", leftover = a.length() < b.length() ? b.substring( shorter ) : a.substring( shorter ); //getting leftovers of bigger String
+        int shorter = a.length() < b.length()  ?  a.length()  :  b.length(); //finding length of shortest String
+        String mix = "", leftover = a.length() < b.length()  ?  b.substring( shorter )  :  a.substring( shorter ); //getting leftovers of bigger String
 
-        for( int i = 0 ; i < shorter ; i++ ) //only iterate for length of shorter String
-            mix += a.substring( i, i + 1 ) + b.substring( i, i + 1 ); //mixing letters
+        for ( int i = 0  ;  i < shorter  ;  i++ ) //only iterate for length of shorter String
+            mix += String.valueOf( a.charAt(i) ) + b.charAt(i); //mixing letters
 
         return mix + leftover;
     }
@@ -137,12 +136,12 @@ public class String2
      */
     public String repeatEnd( String str, int n )
     {
-        String nTimes = "";
+        String s = "";
 
-        for( int i = 0 ; i < n ; i++ ) //iterate n times
-            nTimes += str.substring( str.length() - n );
+        for( int i = 0  ;  i < n  ;  i++ ) //iterate n times
+            s += str.substring( str.length() - n ); //adds end of str plus extra char going in reverse each iteration
 
-        return nTimes;
+        return s;
     }
 
     /**
@@ -150,13 +149,12 @@ public class String2
      */
     public String repeatFront( String str, int n )
     {
-        String nDec = "";
+        String s = "";
 
-        //index starts at what will be end of substring
-        for( int i = n ; i > 0 ; i-- ) //still running n times but decrementing
-            nDec += str.substring( 0, i ); //substring decreases in length each iteration
+        for( int i = n  ;  i > 0  ;  i-- ) //index starts at what will be end of substring
+            s += str.substring( 0, i ); //substring decreases in length each iteration
 
-        return nDec;
+        return s;
     }
 
     /**
@@ -164,15 +162,15 @@ public class String2
      */
     public String repeatSeparator( String word, String sep, int count )
     {
-        String big = count == 0 ? "" : word; //if count is 0 want to return ""
+        String s = count == 0  ?  ""  :  word; //if count is 0 want to return ""
 
         while( count > 1 ) //if count == 1 want to return one instance of word, assigned above
         {
-            big += sep + word; //concat together
+            s += sep + word; //concat together
             count--;           //decrement count so when it equals 1 loop exited
         }
 
-        return big;
+        return s;
     }
 
     /**
@@ -188,9 +186,8 @@ public class String2
      */
     public boolean xyzMiddle( String str )
     {
-        //length has to be at least 3
-        return str.length() >= 3 && str.startsWith( "xyz", str.length() / 2 - 1 ) ? true : //uneven length
-                str.length() >= 3 && str.length() % 2 == 0 && str.startsWith( "xyz", str.length() / 2 - 2 ); //even length
+        return str.length() >= 3  &&  str.startsWith( "xyz", str.length() / 2 - 1 )  ?  true  : //uneven length, length has to be at least 3
+                str.length() >= 3  &&  str.length() % 2 == 0  &&  str.startsWith( "xyz", str.length() / 2 - 2 ); //even length
     }
 
     /**
@@ -198,8 +195,7 @@ public class String2
      */
     public String getSandwich( String str )
     {
-        //length must be more than 10 for a sandwich
-        return str.length() > 10 ? str.substring( str.indexOf( "bread" ) + 5, str.lastIndexOf( "bread" ) ) : "";
+        return str.length() > 10  ?  str.substring( str.indexOf( "bread" ) + 5, str.lastIndexOf( "bread" ) )  :  ""; //length must be more than 10 for a sandwich, + 5 moves to right of 'd' for first "bread"
     }
 
     /**
@@ -207,17 +203,17 @@ public class String2
      */
     public boolean sameStarChar( String str )
     {
-        boolean same = true; //assume true so as soon as found false can return false
+        boolean isSame = true;
 
-        for( int i = 1 ; i < str.length() - 1 ; i++ ) //start at index 1 and go length - 1 as * at 0 or end is true
-            if( str.charAt(i) == '*' )
-                if( str.charAt( i - 1 ) != str.charAt( i + 1 ) ) //checking char either side of *
+        for ( int i = 1  ;  i < str.length() - 1  ;  i++ ) //start at index 1 and go length - 1 as * at 0 or last index is true
+            if ( str.charAt(i) == '*' )
+                if ( str.charAt( i - 1 ) != str.charAt( i + 1 ) ) //checking char either side of *
                 {
-                    same = false;
-                    break; //exit first time found false
+                    isSame = false;
+                    break; //exit first time found false to avoid unnecessary iterations
                 }
 
-        return same;
+        return isSame;
     }
 
     /**
@@ -225,12 +221,12 @@ public class String2
      */
     public String oneTwo( String str )
     {
-        String rtrn = "";
+        String s = "";
 
-        for ( int i = 0; i < str.length() - 2; i += 3 ) //length - 2 for bounds, increment by 3 to get to start of next group
-            rtrn += str.substring( i + 1, i + 3 ) + str.charAt(i); //append char 2 and 3, then 1
+        for ( int i = 0  ;  i < str.length() - 2  ;  i += 3 ) //length - 2 for bounds, increment by 3 to get to start of next group
+            s += str.substring( i + 1, i + 3 ) + str.charAt(i); //append char 2 and 3, then 1
 
-        return rtrn;
+        return s;
     }
 
     /**
@@ -238,18 +234,18 @@ public class String2
      */
     public String zipZap( String str )
     {
-        String zpzp = "";
+        String s = "";
 
-        for( int i = 0 ; i < str.length() ; i++ )
-            if( i + 2 < str.length() && str.charAt(i) == 'z' && str.charAt( i + 2 ) == 'p' ) //check bound as well as index value
+        for ( int i = 0  ;  i < str.length()  ;  i++ )
+            if ( i + 2 < str.length()  &&  str.charAt(i) == 'z'  &&  str.charAt( i + 2 ) == 'p' ) //check bound as well as index value, length checked here as if true i incremented
             {
-                zpzp += "zp";
+                s += "zp";
                 i += 2; //jump to next index after p so not checking for ?p and p
             }
             else
-                zpzp += str.charAt(i); //if not z?p just add char as is
+                s += str.charAt(i); //if not z?p just add char as is
 
-        return zpzp;
+        return s;
     }
 
     /**
@@ -257,14 +253,13 @@ public class String2
      */
     public String starOut( String str )
     {
-        String noStar = "";
+        String s = "";
 
-        for( int i = 0 ; i < str.length() ; i++ ) //don't put bound here as still want to add first/last char if they not *
-                    //current index *,      checking char to right,                                   checking char to the left
-            if ( !( '*' == str.charAt(i) || ( i + 1 < str.length() && '*' == str.charAt( i + 1 ) ) || ( i > 0 && '*' == str.charAt( i - 1) ) ) )
-                noStar += str.charAt(i);
+        for ( int i = 0  ;  i < str.length()  ;  i++ ) //don't put bound here as still want to add first/last char if they not *
+            if ( !( '*' == str.charAt(i)   ||   i + 1 < str.length()  &&  '*' == str.charAt( i + 1 )   ||   i > 0  &&  '*' == str.charAt( i - 1) ) ) //check current index *, then check char to right, then char to the left
+                s += str.charAt(i);
 
-        return noStar;
+        return s;
     }
 
     /**
@@ -272,18 +267,18 @@ public class String2
      */
     public String plusOut( String str, String word )
     {
-        String plus = "";
+        String s = "";
 
-        for( int i = 0 ; i < str.length() ; i++ )
-            if( str.startsWith( word, i ) ) //word exists at current index
+        for ( int i = 0  ;  i < str.length()  ;  i++ )
+            if ( str.startsWith( word, i ) ) //word exists at current index
             {
-                plus += word;
-                i += word.length() - 1; //iterate so next index is word + 1, don't want to check last char of word
+                s += word;
+                i += word.length() - 1; //iterate so next index is right of word
             }
             else
-                plus += "+";
+                s += "+";
 
-        return plus;
+        return s;
     }
 
     /**
@@ -291,18 +286,18 @@ public class String2
      */
     public String wordEnds( String str, String word )
     {
-        String bfAft = "";
+        String s = "";
 
-        for( int i = 0 ; i < str.length() - word.length() + 1 ; i++ )
+        for ( int i = 0  ;  i < str.length() - word.length() + 1  ;  i++ )
         {
-            if( i > 0 && str.startsWith( word, i ) ) //char before word
-                bfAft += str.substring( i - 1, i );
+            if ( i > 0  &&  str.startsWith( word, i ) ) //char before word
+                s += String.valueOf( str.charAt( i - 1 ) );
 
-            if( i < str.length() - word.length() && str.startsWith( word, i ) ) //char after word
-                bfAft += str.substring( i + word.length(), i + word.length() + 1);
+            if ( i < str.length() - word.length()  &&  str.startsWith( word, i ) ) //char after word
+                s += String.valueOf( str.charAt( i + word.length() ) );
         }
 
-        return bfAft;
+        return s;
     }
 
 }
