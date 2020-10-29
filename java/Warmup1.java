@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/07
+ * @version 2020/10/28
  * Simple warmup problems to get started.
  * https://codingbat.com/java/Warmup-1
  */
@@ -12,7 +12,7 @@ public class Warmup1
      */
     public boolean sleepIn( boolean weekday, boolean vacation )
     {
-        return !weekday || vacation;    //weekday is false and vacation is true
+        return !weekday  ||  vacation; //weekday is false and vacation is true
     }
 
     /**
@@ -20,8 +20,7 @@ public class Warmup1
      */
     public boolean monkeyTrouble( boolean aSmile, boolean bSmile )
     {
-        //this is the same as checking for if ( aSmile && bSmile ) or ( !aSmile && !bSmile )
-        return aSmile == bSmile;
+        return aSmile == bSmile; //this is the same as checking for if ( aSmile && bSmile ) or !( aSmile && bSmile )
     }
 
     /**
@@ -29,7 +28,7 @@ public class Warmup1
      */
     public int sumDouble( int a, int b )
     {
-        return  a == b ? ( a + b ) * 2 : a + b; //if a and b are same return double sum otherwise sum
+        return  a == b  ?  ( a + b ) * 2  :  a + b; //if a and b are same return double sum otherwise sum
     }
 
     /**
@@ -37,7 +36,7 @@ public class Warmup1
      */
     public int diff21( int n )
     {
-        return n > 21 ? ( n - 21 ) * 2 : 21 - n; //if n is bigger return double diff, otherwise abs diff
+        return n > 21  ?  ( n - 21 ) * 2  :  21 - n; //if n is bigger return double diff, otherwise abs diff
     }
 
     /**
@@ -45,7 +44,7 @@ public class Warmup1
      */
     public boolean parrotTrouble( boolean talking, int hour )
     {
-        return talking && ( hour < 7 || hour > 20 );    //talking is true AND it's before 7 OR after 20
+        return talking  &&  ( hour < 7  ||  hour > 20 ); //talking is true AND it's before 7 OR after 20
     }
 
     /**
@@ -53,7 +52,7 @@ public class Warmup1
      */
     public boolean makes10( int a, int b )
     {
-        return ( a + b == 10 ) || a == 10 || b == 10; //each expression evaluates to 10
+        return ( a + b == 10 )  ||  a == 10  || b == 10; //each expression evaluates to 10
     }
 
     /**
@@ -61,7 +60,7 @@ public class Warmup1
      */
     public boolean nearHundred( int n )
     {
-        return Math.abs( 100 - n ) <= 10 || Math.abs( 200 - n ) <= 10; //each expression evaluates to within 10 of target number
+        return Math.abs( 100 - n ) <= 10  ||  Math.abs( 200 - n ) <= 10; //each expression evaluates to within 10 of target number
     }
 
     /**
@@ -69,8 +68,7 @@ public class Warmup1
      */
     public boolean posNeg( int a, int b, boolean negative )
     {
-                //neg true and a and b < 0          neg false       checking of ints
-        return ( negative &&  a < 0 && b < 0 ) || ( !negative && ( ( a < 0 && b > 0 ) || ( a > 0 && b < 0 ) ) );
+        return  negative  &&  a < 0  &&  b < 0   ||   !negative  &&  ( a < 0  &&  0 < b   ||   b < 0  &&  0 < a ); //neg true and a and b < 0 or neg false or checking of ints
     }
 
     /**
@@ -78,8 +76,7 @@ public class Warmup1
      */
     public String notString( String str )
     {
-        //length must be at least 3 to contain "not"
-        return ( ( str.length() >= 3 && !str.startsWith( "not" ) ) || str.length() <= 2 ) ? "not " + str : str;
+        return str.length() >= 3  &&  !str.startsWith( "not" )   ||   str.length() <= 2  ?  "not " + str  :  str; //length must be at least 3 to contain "not"
     }
 
     /**
@@ -95,8 +92,7 @@ public class Warmup1
      */
     public String frontBack(String str)
     {
-        //if length is one no chars to exchange so return as is
-        return str.length() <= 1 ? str : str.charAt( str.length() - 1 ) + str.substring( 1, str.length() - 1 ) + str.charAt(0);
+        return str.length() <= 1  ?  str  :  str.charAt( str.length() - 1 ) + str.substring( 1, str.length() - 1 ) + str.charAt(0); //if length is one no chars to exchange so return as is
     }
 
     /**
@@ -104,7 +100,7 @@ public class Warmup1
      */
     public String front3( String str )
     {
-        return str.length() <= 3 ? str + str + str : str.substring( 0, 3 ) + str.substring( 0, 3 ) + str.substring( 0, 3 );
+        return str.length() <= 3  ?  str + str + str  :  str.substring( 0, 3 ) + str.substring( 0, 3 ) + str.substring( 0, 3 ); //when length is 3 or less can return as-is
     }
 
     /**
@@ -112,7 +108,7 @@ public class Warmup1
      */
     public String backAround( String str )
     {
-        return str.substring( str.length() - 1 ) + str + str.substring( str.length() - 1 ); //last char + str + last char
+        return str.charAt( str.length() - 1 ) + str + str.charAt( str.length() - 1 ); //last char + str + last char
     }
 
     /**
@@ -120,7 +116,7 @@ public class Warmup1
      */
     public boolean or35( int n )
     {
-        return n % 3 == 0 || n % 5 == 0; //will only evaluate to 0 if n is a multiple of either/or
+        return n % 3 == 0  ||  n % 5 == 0; //will only evaluate to 0 if n is a multiple of either/or
     }
 
     /**
@@ -128,7 +124,7 @@ public class Warmup1
      */
     public String front22( String str )
     {
-        return str.length() < 2 ? str + str + str : str.substring( 0, 2 ) + str + str.substring( 0, 2 );
+        return str.length() < 2  ?  str + str + str  :  str.substring( 0, 2 ) + str + str.substring( 0, 2 ); //< 2 as index starts at 0
     }
 
     /**
@@ -136,7 +132,7 @@ public class Warmup1
      */
     public boolean startHi( String str )
     {
-        return str.length() >= 2 && str.startsWith( "hi" ); //str has to have more than 2 letters, otherwise impossible to spell "hi"
+        return str.length() >= 2  &&  str.startsWith( "hi" ); //str has to have more than 2 letters, otherwise impossible to spell "hi"
     }
 
     /**
@@ -144,7 +140,7 @@ public class Warmup1
      */
     public boolean icyHot( int temp1, int temp2 )
     {
-        return ( temp1 < 0 && temp2 > 100 ) || ( temp1 > 100 && temp2 < 0 ); //each expression meets condition, if neither do will be false, as || used will pass with just one
+        return temp1 < 0  &&  100 < temp2   ||   temp2 < 0  &&  100 < temp1; //each expression meets condition, if neither do will be false, as || used will pass with just one
     }
 
     /**
@@ -152,7 +148,7 @@ public class Warmup1
      */
     public boolean in1020( int a, int b )
     {
-        return ( ( a >= 10 && a <= 20 ) || ( b >= 10 && b <= 20 ) ); //each expression meets condition, if neither do will be false, as || used will pass with just one
+        return 10 <= a  &&  a <= 20   ||   10 <= b  &&  b <= 20; //each expression meets condition, if neither do will be false, as || used will pass with just one
     }
 
     /**
@@ -160,7 +156,7 @@ public class Warmup1
      */
     public boolean hasTeen( int a, int b, int c )
     {
-        return ( a >= 13 && a <= 19 ) || ( b >= 13 && b <= 19 ) || ( c >= 13 && c <= 19 ); //each expression meets condition, if none do will be false, as || used will pass with just one
+        return 13 <= a  &&  a <= 19   ||   13 <= b  &&  b <= 19   ||   13 <= c  &&  c <= 19; //each expression meets condition, if none do will be false, as || used will pass with just one
     }
 
     /**
@@ -168,7 +164,7 @@ public class Warmup1
      */
     public boolean loneTeen( int a, int b )
     {
-        return ( a >= 13 && a <= 19 && !( b >= 13 && b <= 19 ) ) || ( !( a >= 13 && a <= 19 ) && b >= 13 && b <= 19 );
+        return 13 <= a  &&  a <= 19  &&  !( 13 <= b  &&  b <= 19 )   ||   !( 13 <= a  &&  a <= 19 )  &&  13 <= b  &&  b <= 19; //negate opposite teen either side of ||
     }
 
     /**
@@ -176,8 +172,7 @@ public class Warmup1
      */
     public String delDel( String str )
     {
-        //str has to be 4 chars or more, otherwise "del" cannot be part of str
-        return str.length() > 3 && str.startsWith( "del", 1) ? str.substring( 0, 1 ) + str.substring(4) : str;
+        return str.length() > 3  &&  str.startsWith( "del", 1 )  ?  str.charAt( 0 ) + str.substring(4)  :  str; //str has to be 4 chars or more, otherwise "del" cannot be part of str
     }
 
     /**
@@ -185,23 +180,23 @@ public class Warmup1
      */
     public boolean mixStart( String str )
     {
-        return str.length() > 2 && str.startsWith( "ix", 1);
+        return str.length() > 2  &&  str.startsWith( "ix", 1 ); //only need to check indexes 1-2 as 0 can be anything
     }
 
     /**
      * Given a string, return a string made of the first 2 chars (if present), however include first char only if it is 'o' and include the second only if it is 'z', so "ozymandias" yields "oz".
      */
-    public String startOz(String str)
+    public String startOz( String str )
     {
-        String returnStr = "";
+        String s = "";
 
-        if( str.length() >= 1 && str.charAt(0) == 'o' ) //check for 'o' at first index
-            returnStr += str.charAt(0);                 //add to returnStr
-                                                        //cannot add a char to a String, so returnStr = returnStr + str.charAt(x) is needed for logic
-        if( str.length() >= 2 && str.charAt(1) == 'z' ) //check for 'z' at second index
-            returnStr += str.charAt(1);                 //add to returnStr, 'o' already added if applicable as 2 separate if stmts, not an if-else
+        if ( str.length() >= 1  &&  str.charAt(0) == 'o' ) //check for 'o' at first index
+            s += str.charAt(0);                 //add to returnStr
 
-        return returnStr;
+        if ( str.length() >= 2  &&  str.charAt(1) == 'z' ) //check for 'z' at second index
+            s += str.charAt(1);                 //add to returnStr, 'o' already added if applicable as 2 separate if stmts, not an if-else
+
+        return s;
     }
 
     /**
@@ -209,16 +204,17 @@ public class Warmup1
      */
     public int intMax( int a, int b, int c )
     {
-        return Math.max( Math.max( a, b ), c );
+        return Math.max( Math.max( a, b ), c ); //nested Math.max find biggest of 3 ints at once
     }
 
     /**
-     * Given 2 int values, return whichever value is nearest to the value 10, or return 0 in the event of a tie. Note that Math.abs(n) returns the absolute value of a number.
+     * Given 2 int values, return whichever value is nearest to the value 10, or return 0 in the event of a tie.
      */
     public int close10( int a, int b )
     {
-            //check for tie and return 0,                   a nearer to 10 so return 10,     b near to 10 so return  b, b : b because no else but syntax needs
-        return Math.abs( a - 10 ) == Math.abs( b - 10 ) ? 0 : Math.abs( a - 10 ) < Math.abs( b - 10 ) ? a : Math.abs( a - 10 ) > Math.abs( b - 10 ) ? b : b;
+        return Math.abs( a - 10 ) == Math.abs( b - 10 )  ?  0  : //check for tie and return 0,
+                Math.abs( a - 10 ) < Math.abs( b - 10 )  ?  a  : //a nearer to 10 so return 10,
+                        Math.abs( a - 10 ) > Math.abs( b - 10 )  ?  b  :  b; //b near to 10 so return b, b : b because no else but syntax needs
     }
 
 
@@ -227,8 +223,7 @@ public class Warmup1
      */
     public boolean in3050( int a, int b )
     {
-                        //both 30 - 40 inclusive          or        both 40 - 50 inclusive
-        return (a >= 30 && a <= 40 && b >= 30 && b <= 40) || (a >= 40 && a <= 50 && b >= 40 && b <= 50);
+        return 30 <= a  &&  a <= 40  &&  30 <= b  &&  b <= 40   ||   40 <= a  &&  a <= 50  &&  40 <= b  &&  b <= 50; //both 30 - 40 inclusive or both 40 - 50 inclusive
     }
 
     /**
@@ -236,10 +231,10 @@ public class Warmup1
      */
     public int max1020( int a, int b )
     {
-        a = a >= 10 && a <= 20 ? a : 0;
-        b = b >= 10 && b <= 20 ? b : 0;
+        a = 10 <= a  &&  a <= 20  ?  a  :  0; //assign 0 if not in inclusive range
+        b = 10 <= b  &&  b <= 20  ?  b  :  0;
 
-        return Math.max( a, b );
+        return Math.max( a, b ); //if neither in range then both values here are 0, so 0 returned
     }
 
     /**
@@ -247,15 +242,15 @@ public class Warmup1
      */
     public boolean stringE( String str )
     {
-        int count = 0;                   //int var will hold number of 'e's
+        int count = 0; //int var will hold number of 'e's
 
-        for( int i = 0 ; i < str.length() ; i++ )
+        for ( int i = 0  ;  i < str.length()  ;  i++ )
         {
-            if( str.charAt(i) == 'e' )
-                count++;                 //if there is an 'e' count increases by one, repeat till each char checked
+            if ( str.charAt(i) == 'e' )
+                count++; //if there is an 'e' count increases by one, repeat till each char checked
         }
 
-        return count >= 1 && count <= 3; //checking value of count
+        return 1 <= count  &&  count <= 3; //return true if count in correct range
     }
 
     /**
@@ -263,7 +258,7 @@ public class Warmup1
      */
     public boolean lastDigit( int a, int b )
     {
-        return a % 10 == b % 10; //%10 removes all digits but last
+        return a % 10 == b % 10; //% 10 removes all digits but last
     }
 
     /**
@@ -271,7 +266,7 @@ public class Warmup1
      */
     public String endUp( String str )
     {
-       return str.length() <= 3 ? str.toUpperCase() : str.substring( 0, str.length() - 3 ) + str.substring( str.length() - 3 ).toUpperCase();
+       return str.length() <= 3  ?  str.toUpperCase()  :  str.substring( 0, str.length() - 3 ) + str.substring( str.length() - 3 ).toUpperCase(); //length 3 or less just uppercase str as-is
     }
 
     /**
@@ -279,12 +274,12 @@ public class Warmup1
      */
     public String everyNth( String str, int n )
     {
-        String nStr = "";
+        String s = "";
 
-        for( int i = 0 ; i < str.length() ; i += n ) //i = i + n will increment loop by n
-            nStr += str.charAt(i);
+        for ( int i = 0  ;  i < str.length()  ;  i += n ) //i = i + n will increment loop by n
+            s += str.charAt(i);
 
-        return nStr;
+        return s;
     }
 
 }

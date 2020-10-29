@@ -1,22 +1,23 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/20
+ * @version 2020/10/28
  * Medium warmup string/array loops.
  * https://codingbat.com/java/Warmup-2
  */
 public class Warmup2
 {
+
     /**
      * Given a string and a non-negative int n, return a larger string that is n copies of the original string.
      */
     public String stringTimes( String str, int n )
     {
-        String returnStr = "";
+        String s = "";
 
-        for( int i = 0 ; i < n ; i++ ) //set loop to run n times
-            returnStr += str;
+        for ( int i = 0  ;  i < n  ;  i++ ) //set loop to run n times and compound str each time
+            s += str;
 
-        return returnStr;
+        return s;
     }
 
     /**
@@ -24,15 +25,15 @@ public class Warmup2
      */
     public String frontTimes( String str, int n )
     {
-        String returnStr = "";
+        String s = "";
 
-        for( int i = 0 ; i < n ; i++ )
-            if( str.length() > 3 )
-                returnStr += str.substring( 0, 3 );
-            else                    //check length first, if less than 3 add as is
-                returnStr += str;
+        for ( int i = 0  ;  i < n  ;  i++ )
+            if( str.length() > 3 ) //check length first, more than add substring
+                s += str.substring( 0, 3 );
+            else                   //else add as is
+                s += str;
 
-        return returnStr;
+        return s;
     }
 
     /**
@@ -40,13 +41,13 @@ public class Warmup2
      */
     int countXX( String str )
     {
-        int xCount = 0;
+        int count = 0;
 
-        for( int i = 0 ; i < str.length() - 1 ; i++ ) //i++ as we want to check for overlap
-            if( str.startsWith( "xx", i) )
-                xCount++;
+        for ( int i = 0  ;  i < str.length() - 1  ;  i++ ) //i++ as we want to check for overlap, length - 1 to check i + 1 each time
+            if ( str.startsWith( "xx", i ) )
+                count++;
 
-        return xCount;
+        return count;
     }
 
     /**
@@ -54,7 +55,7 @@ public class Warmup2
      */
     boolean doubleX( String str )
     {
-        return str.indexOf( "x" ) < str.length() - 1 && str.charAt( str.indexOf( "x" ) + 1 ) == 'x';
+        return str.indexOf( "x" ) < str.length() - 1  &&  str.charAt( str.indexOf( "x" ) + 1 ) == 'x'; //indexOf find first instance
     }
 
     /**
@@ -62,12 +63,12 @@ public class Warmup2
      */
     public String stringBits( String str )
     {
-        String returnStr = "";
+        String s = "";
 
-        for( int i = 0 ; i < str.length() ; i += 2 ) //+= 2 to skip chars
-            returnStr += str.charAt(i);
+        for ( int i = 0  ;  i < str.length()  ;  i += 2 ) //+= 2 to skip every other char
+            s += str.charAt(i);
 
-        return returnStr;
+        return s;
     }
 
     /**
@@ -75,12 +76,12 @@ public class Warmup2
      */
     public String stringSplosion( String str )
     {
-        String returnStr = "";
+        String s = "";
 
-        for( int i = 0 ; i < str.length() ; i++ )
-            returnStr += str.substring( 0, i + 1 ); //pattern is 1, 12, 123, 1234, so compound on another char each loop
+        for ( int i = 0  ;  i < str.length()  ;  i++ )
+            s += str.substring( 0, i + 1 ); //pattern is 1, 12, 123, 1234, so compound on another char each loop
 
-        return returnStr;
+        return s;
     }
 
     /**
@@ -90,9 +91,9 @@ public class Warmup2
     {
         int count = 0;
 
-        if( str.length() >= 2 )
-            for( int i = 0 ; i < str.length() - 2 ; i++ ) //pattern is does the last 2 characters repeat anywhere else in str
-                if( str.substring( i, i +2 ).equals( str.substring( str.length() - 2 ) ) )
+        if ( str.length() >= 2 ) //if this condition not met then length < 2 so return count as 0
+            for ( int i = 0  ;  i < str.length() - 2  ;  i++ ) //pattern is does the last 2 characters repeat anywhere else in str, length - 2 as we don't count the end as an instance
+                if ( str.startsWith( str.substring( str.length() - 2 ), i ) )
                     count++;
 
         return count;
@@ -105,8 +106,8 @@ public class Warmup2
     {
         int count = 0;
 
-        for( int n : nums ) //check every element in array
-            if( n == 9 )
+        for ( int n : nums ) //check every element in array
+            if ( n == 9 )
                 count++;
 
         return count;
@@ -117,17 +118,17 @@ public class Warmup2
      */
     public boolean arrayFront9( int[] nums )
     {
-        boolean first4 = false;
-        int arrayEnd = nums.length > 4 ? 4 : nums.length; //this value needs a var as some arrays will be less than 4, so i < nums.length won't work
+        boolean has9 = false;
+        int arrayEnd = nums.length > 4  ?  4  :  nums.length; //array ends at 4 or length of array, whichever is larger as some arrays will be less than 4
 
-        for( int i = 0 ; i < arrayEnd ; i++ ) //so runs up to 4, or if array is less, end of array
-            if( nums[i] == 9 )
+        for ( int i = 0  ;  i < arrayEnd  ;  i++ ) //runs up to 4, or if array is less, end of array
+            if ( nums[i] == 9 )
             {
-                first4 = true;
-                break; //exit loop as soon as condition met to return as true
+                has9 = true;
+                break; //exit loop as soon as condition met to return as true and avoid unnecessary iterations
             }
 
-        return first4;
+        return has9;
     }
 
     /**
@@ -135,16 +136,16 @@ public class Warmup2
      */
     public boolean array123( int[] nums )
     {
-        boolean numsPresent = false;
+        boolean hasSeq = false;
 
-        for( int i = 0 ; i < nums.length - 2 ; i++ ) //length-2 so loop does not go out of bounds
-            if( nums[i] == 1 && nums[ i + 1 ] == 2 && nums[ i + 2 ] == 3 )
+        for ( int i = 0  ;  i < nums.length - 2  ;  i++ ) //length - 2 so loop does not go out of bounds, can check 3 indexes at once
+            if ( nums[i] == 1  &&  nums[ i + 1 ] == 2  &&  nums[ i + 2 ] == 3 )
             {
-                numsPresent = true;
-                break; //exit loop as soon as condition met to return as true
+                hasSeq = true;
+                break; //exit loop as soon as condition met to return as true and avoid unnecessary iterations
             }
 
-        return numsPresent;
+        return hasSeq;
     }
 
     /**
@@ -154,7 +155,7 @@ public class Warmup2
     {
         int count = 0;
 
-        for( int i = 0 ; i < Math.min( a.length(), b.length() ) - 1 ; i++ ) //have to run loop against smaller str otherwise will go out of bounds
+        for ( int i = 0  ;  i < Math.min( a.length(), b.length() ) - 1  ;  i++ ) //have to run loop against smaller str otherwise will go out of bounds
             if( a.substring( i, i + 2 ).equals( b.substring( i, i + 2 ) ) )
                 count++;
 
@@ -166,13 +167,13 @@ public class Warmup2
      */
     public String stringX( String str )
     {
-        String returnStr = "";
+        String s = "";
 
-        for ( int i = 0 ; i < str.length() ; i++ )
-            if ( !( i > 0 && i < str.length() - 1 && str.charAt(i) == 'x' ) ) //make sure i isn't first or last char when comparing
-                returnStr += str.charAt(i);
+        for ( int i = 0  ;  i < str.length()  ;  i++ )
+            if ( !( i > 0  &&  i < str.length() - 1  &&  str.charAt(i) == 'x' ) ) //make sure i isn't first or last char when comparing
+                s += str.charAt(i);
 
-        return returnStr;
+        return s;
     }
 
     /**
@@ -180,17 +181,17 @@ public class Warmup2
      */
     public String altPairs( String str )
     {
-        String returnStr = "";
+        String s = "";
 
-        for( int i = 0 ; i < str.length() ; i += 4 ) //adding at every 4th index
+        for ( int i = 0  ;  i < str.length()  ;  i += 4 ) //adding at every 4th index
         {
-            returnStr += str.charAt(i);
+            s += str.charAt(i);
 
-            if( i + 1 < str.length() ) //check not at end of String before adding second char
-                returnStr += str.charAt( i + 1 );
+            if ( i + 1 < str.length() ) //check not at end of String before adding second char
+                s += str.charAt( i + 1 );
         }
 
-        return returnStr;
+        return s;
     }
 
     /**
@@ -198,15 +199,15 @@ public class Warmup2
      */
     public String stringYak( String str )
     {
-        String result = "";
+        String s = "";
 
-        for( int i = 0 ; i < str.length() ; i ++ ) //remember to check for length
-            if( i + 2 < str.length() && str.charAt(i) == 'y' && str.charAt( i + 2 ) == 'k' )
-                i += 2; //if 'yak' is there, jump loop past it and check again
-            else            //if there's no yak, count the current index
-                result += str.charAt(i);
+        for ( int i = 0  ;  i < str.length()  ;  i ++ ) //have to check length in if stmt as result is incrementing index, doing that here may go out of bounds
+            if ( i + 2 < str.length()  &&  str.charAt(i) == 'y'  &&  str.charAt( i + 2 ) == 'k' )
+                i += 2; //if 'yak' is there, jump loop past it to start next loop at right of 'k'
+            else        //if there's no yak, count the current char at index
+                s += str.charAt(i);
 
-        return result;
+        return s;
     }
 
     /**
@@ -216,8 +217,8 @@ public class Warmup2
     {
         int count = 0;
 
-        for( int i = 0 ; i < nums.length - 1 ; i++ ) //make sure to not go out of bounds, length - 1
-            if( nums[i] == 6 && ( nums[ i + 1 ] == 6 || nums[ i + 1 ] == 7 ) )
+        for ( int i = 0  ;  i < nums.length - 1  ;  i++ ) //make sure to not go out of bounds, length - 1 to check next index at same time
+            if ( nums[i] == 6   &&   nums[ i + 1 ] == 6  ||  nums[ i + 1 ] == 7 )
                 count++;
 
         return count;
@@ -228,16 +229,16 @@ public class Warmup2
      */
     public boolean noTriples( int[] nums )
     {
-        boolean triple = true; //assuming true triples
+        boolean noTriple = true;
 
-        for( int i = 0 ; i < nums.length - 2 ; i++ ) //bound check, length - 2
-            if( nums[i] == nums[ i + 1 ] && nums[ i + 1 ] == nums[ i + 2 ] )
+        for ( int i = 0  ;  i < nums.length - 2  ;  i++ ) //bound check, length - 2 allows checking 3 indexes at once
+            if ( nums[i] == nums[ i + 1 ]  &&  nums[ i + 1 ] == nums[ i + 2 ] )
             {
-                triple = false; //as soon as a triple is found, return false
+                noTriple = false; //as soon as a triple is found, return false to avoid unnecessary iterations
                 break;
             }
 
-        return triple;
+        return noTriple;
     }
 
     /**
@@ -245,16 +246,16 @@ public class Warmup2
      */
     public boolean has271( int[] nums )
     {
-        boolean pattern = false;
+        boolean hasPattern = false;
 
-        for( int i = 0 ; i < nums.length - 2 ; i++ )
-            if( nums[ i + 1 ] == nums[i] + 5 && Math.abs( nums[ i + 2 ] - ( nums[i] - 1 ) ) <= 2 )
-            {                                   //checking that third value of value - 1 differs by 2
-                pattern = true; //as soon as pattern is found, return false
+        for ( int i = 0  ;  i < nums.length - 2  ;  i++ ) //bound check, length - 2 allows checking 3 indexes at once
+            if( nums[ i + 1 ] == nums[i] + 5  &&  Math.abs( nums[ i + 2 ] - ( nums[i] - 1 ) ) <= 2 ) //checking that third value of value - 1 differs by 2
+            {
+                hasPattern = true; //as soon as pattern is found, return false to avoid unnecessary iterations
                 break;
             }
 
-        return pattern;
+        return hasPattern;
     }
 
 }
