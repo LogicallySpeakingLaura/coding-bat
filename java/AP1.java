@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/20
+ * @version 2020/10/28
  * AP CS medium problems. These problems are based on free response questions from old AP CS-A exams, 2004 and later. Some are from the exams and some were just created to have a similar difficulty. These problems are good practice for the logic/loop/array aspects of the exam.
  * https://codingbat.com/java/AP-1
  */
@@ -12,16 +12,16 @@ public class AP1
      */
     public boolean scoresIncreasing( int[] scores )
     {
-        boolean increase = true;
+        boolean hasIncrease = true;
 
-        for( int i = scores.length - 1 ; i > 0 ; i-- ) //start at end and move back
-            if( scores[i] < scores[ i - 1 ] ) //if left of i is greater than i, condition not met
+        for ( int i = scores.length - 1  ;  i > 0  ;  i-- ) //start at end and move back
+            if ( scores[i] < scores[ i - 1 ] ) //if left of i is greater than i, condition not met
             {
-                increase = false; //reverse boolean and return it immediately
+                hasIncrease = false; //reverse boolean and return it immediately
                 break;
             }
 
-        return increase;
+        return hasIncrease;
     }
 
     /**
@@ -29,16 +29,16 @@ public class AP1
      */
     public boolean scores100( int[] scores )
     {
-        boolean hundred = false;
+        boolean has100 = false;
 
-        for( int i = 0 ; i < scores.length - 1 ; i++ ) //set bound as want to check pairs
-            if( scores[i] == 100 && scores[ i + 1 ] == 100 )
+        for ( int i = 0  ;  i < scores.length - 1  ;  i++ ) //set bound as want to check pairs
+            if ( scores[i] == 100  &&  scores[ i + 1 ] == 100 )
             {
-                hundred = true; //as soon as match found return true
+                has100 = true; //as soon as match found return true
                 break;
             }
 
-        return hundred;
+        return has100;
     }
 
     /**
@@ -46,16 +46,16 @@ public class AP1
      */
     public boolean scoresClump( int[] scores )
     {
-        boolean increase = false;
+        boolean hasIncrease = false;
 
-        for( int i = 0 ; i < scores.length - 2 ; i++ )
+        for( int i = 0  ;  i < scores.length - 2  ;  i++ )
             if( scores[ i + 2 ] - scores[i] <= 2 ) //only need to check first and last in clump of three as array already sorted
             {
-                increase = true;
+                hasIncrease = true; //as soon as match found return true
                 break;
             }
 
-        return increase;
+        return hasIncrease;
     }
 
     /**
@@ -73,7 +73,7 @@ public class AP1
     {
         int sum = 0;
 
-        for( int i = start ; i < end ; i++ ) //add each i value to running total
+        for ( int i = start  ;  i < end  ;  i++ ) //add each i value to running total
             sum += scores[i];
 
         return sum / ( end - start ); //return calculate average
@@ -86,8 +86,8 @@ public class AP1
     {
         int count = 0;
 
-        for( String w : words ) //w is each element, will increment through each element in order
-            if( w.length() == len ) //if length of the String for the element equals given length
+        for ( String w : words )
+            if ( w.length() == len ) //if length of the String for the element equals given length
                 count++;
 
         return count;
@@ -100,7 +100,7 @@ public class AP1
     {
         String[] nArr = new String[n]; //new array of length n
 
-        for( int i = 0 ; i < n ; i++ ) //only iterate n times or for nArr.length
+        for ( int i = 0  ;  i < n  ;  i++ ) //only iterate n times or for nArr.length
             nArr[i] = words[i]; //index values same for each array
 
         return nArr;
@@ -115,8 +115,8 @@ public class AP1
         //otherwise would have to do extra loop to figure out count, then create new array, then fill it
         ArrayList without = new ArrayList();
 
-        for( String w : words ) //check each element
-            if( w.length() != len )
+        for ( String w : words )
+            if ( w.length() != len )
                 without.add(w); //only add to list if lengths don't match
 
         return without;
@@ -129,10 +129,10 @@ public class AP1
     {
         boolean isOne = false;
 
-        while( n > 0 ) //set bound, nothing left to check when n == 0
-            if( n % 10 == 1 ) //check right digit
+        while ( n > 0 ) //set bound, nothing left to check when n == 0
+            if ( n % 10 == 1 ) //check right digit
             {
-                isOne = true;
+                isOne = true; //return true as soon as match found
                 break;
             }
             else
@@ -148,10 +148,10 @@ public class AP1
         {
             boolean canDivide = true;
 
-            for( int i = n ; i > 0 ; i /= 10) //assign n to i so i can be manipulated and still compared to n, /=10 to discard right digit
-                if( i % 10 == 0 || n % ( i % 10 ) != 0 ) //if right digit is 0 or n cannot divide by current digit(s)
+            for ( int i = n  ;  i > 0  ;  i /= 10 ) //assign n to i so i can be manipulated and still compared to n, /=10 to discard right digit
+                if ( i % 10 == 0  ||  n % ( i % 10 ) != 0 ) //if right digit is 0 or n cannot divide by current digit(s)
                 {
-                    canDivide = false; //return false
+                    canDivide = false; //return false as soon as found
                     break;
                 }
 
@@ -165,8 +165,8 @@ public class AP1
     {
         int[] even = new int[count]; //new array has to be length of count
 
-        for( int i = 0, j = 0 ; i < nums.length && j < even.length ; i++  ) //i for nums, j for even
-            if( nums[i] % 2 == 0 )
+        for ( int i = 0, j = 0  ;  i < nums.length  &&  j < even.length  ;  i++ ) //i for nums, j for even
+            if ( nums[i] % 2 == 0 )
                 even[j++] = nums[i]; //only increment even index once an even value placed
 
         return even;
@@ -179,15 +179,15 @@ public class AP1
     {
         int[] copy = new int[count]; //new array of count length
 
-        for( int i = 0, j = 0 ; j < copy.length ; i++ ) //i for nums, j for copy, iterate count times, increment nums index
-            if( isEndy( nums[i] ) ) //if value is an endy
+        for ( int i = 0, j = 0  ;  j < copy.length  ;  i++ ) //i for nums, j for copy, iterate count times, increment nums index
+            if ( isEndy( nums[i] ) ) //if value is an endy
                 copy[j++] = nums[i]; //place it in next available index of copy and increment j
 
         return copy;
     }
     public boolean isEndy( int n )
     {
-        return ( 0 <= n && n <= 10 ) || ( 90 <= n && n <= 100 );
+        return 0 <= n  &&  n <= 10   ||   90 <= n  &&  n <= 100;
     }
 
     /**
@@ -197,9 +197,8 @@ public class AP1
     {
         int count = 0;
 
-        for( int i = 0 ; i < a.length ; i++ ) //lengths are same, doesn't matter which used
-                //check for empty String elements,      compare equality of first chars
-            if( !a[i].equals("") && !b[i].equals("") && a[i].charAt(0) == b[i].charAt(0) )
+        for ( int i = 0  ;  i < a.length  ;  i++ ) //lengths are same, doesn't matter which used
+            if( !a[i].equals("")  &&  !b[i].equals("")  &&  a[i].charAt(0) == b[i].charAt(0) ) //check for empty String elements and compare equality of first chars
                 count++;
 
         return count;
@@ -212,12 +211,12 @@ public class AP1
     {
         int score = 0;
 
-        for( int i = 0 ; i < key.length ; i++ )
-            if( key[i] == answers[i] )
+        for ( int i = 0  ;  i < key.length  ;  i++ )
+            if ( key[i] == answers[i] )
                 score += 4;
-            else if( answers[i] == "?" ) //check for blank before wrong answer, as != will prove true for a blank answer
+            else if ( answers[i] == "?" ) //check for blank before wrong answer, as != will prove true for a blank answer
                 score += 0;
-            else if( key[i] != answers[i] )
+            else if ( key[i] != answers[i] )
                 score -= 1;
 
         return score;
@@ -230,14 +229,14 @@ public class AP1
     {
         int count = 0;
 
-        for( String w : words ) //check every element
-            if( !w.equals(target) ) //if element != target increment count
+        for ( String w : words ) //check every element
+            if ( !w.equals(target) ) //if element != target increment count
                 count++;
 
         String[] without = new String[count]; //new array of length count
 
-        for( int i = 0, j = 0 ; j < without.length ; i++ ) //i for words, j for without, loop count times, increment words index
-            if( !words[i].equals(target) )
+        for ( int i = 0, j = 0  ;  j < without.length  ;  i++ ) //i for words, j for without, loop count times, increment words index
+            if ( !words[i].equals(target) )
                 without[j++] = words[i]; //if there isn't a target match assign current words element to appropriate without index, increment j
 
         return without;
@@ -255,8 +254,8 @@ public class AP1
     {
         int largest = 0;
 
-        for( int s : scores )
-            if( s % 10 == 0 ) //check if multiple of 10
+        for ( int s : scores )
+            if ( s % 10 == 0 ) //check if multiple of 10
                 largest = Math.max( largest, s ); //is current element larger than last largest element
 
         return largest;
@@ -269,7 +268,7 @@ public class AP1
     {
         int sum = 0;
 
-        for( int i = start ; i < end ; i++ ) //begin at start index, loop till end index
+        for ( int i = start  ;  i < end  ;  i++ ) //begin at start index, loop till end index
             sum += Math.abs( heights[i] - heights[ i + 1 ] ); //compound difference between current alt. and next alt.
 
         return sum;
@@ -282,8 +281,8 @@ public class AP1
     {
         int sum = 0;
 
-        for( int i = start ; i < end ; i++ ) //begin at start index, loop till end index
-            sum +=  heights[i] < heights[ i + 1 ] ? 2 * Math.abs( heights[i] - ( heights[ i + 1 ] ) ) : //if next step an increase compound double
+        for ( int i = start  ;  i < end  ;  i++ ) //begin at start index, loop till end index
+            sum += heights[i] < heights[ i + 1 ]  ?  2 * Math.abs( heights[i] - ( heights[ i + 1 ] ) )  : //if next step an increase compound double
                     Math.abs( heights[i] - heights[ i + 1 ] ); //else just compound difference as is
 
         return sum;
@@ -296,8 +295,8 @@ public class AP1
     {
         int count = 0;
 
-        for( int i = start ; i < end ; i++ )
-            if( Math.abs( heights[i] - heights[ i + 1 ] ) >= 5 ) //check if difference between alt. is at least 5
+        for ( int i = start  ;  i < end  ;  i++ )
+            if ( Math.abs( heights[i] - heights[ i + 1 ] ) >= 5 ) //check if difference between alt. is at least 5
                 count++;
 
         return count;
@@ -309,10 +308,10 @@ public class AP1
      */
     public int userCompare( String aName, int aId, String bName, int bId )
     {
-        return aName.equals( bName ) && aId == bId ? 0 : //all values are the same
-                aName.compareTo(bName) < 0 ? -1 : //String a comes before b
-                        aName.compareTo(bName) > 0 ? 1 : //String b comes before a
-                                aId > bId ? 1 : -1; //ID a comes before ID b otherwise return -1
+        return aName.equals(bName)  &&  aId == bId  ?  0  : //all values are the same
+                aName.compareTo(bName) < 0  ?  -1  : //String a comes before b
+                        aName.compareTo(bName) > 0  ?  1  : //String b comes before a
+                                aId > bId  ?  1  :  -1; //ID a comes before ID b otherwise return -1
     }
 
     /**
@@ -322,17 +321,19 @@ public class AP1
     {
         String[] merged = new String[n];
 
-        for( int i = 0, j = 0, k = 0 ; i < n ; i++ ) //or i < merged.length, j for a index, k for b index
-            if( a[j].compareTo(b[k]) < 0 ) //a element comes before b
+        for ( int i = 0, j = 0, k = 0  ;  i < n  ;  i++ ) //or i < merged.length, j for a index, k for b index
+            if ( a[j].compareTo(b[k]) < 0 ) //a element comes before b
             {
                 merged[i] = a[j++]; //assign a element to current index of merged and increment index
-                if( merged[i].compareTo(b[k]) == 0 ) //check that current index element of b does not match merged element to avoid duplicates
+
+                if ( merged[i].compareTo(b[k]) == 0 ) //check that current index element of b does not match merged element to avoid duplicates
                     k++;
             }
             else //b element comes before a
             {
                 merged[i] = b[k++]; //assign b element to current index of merged and increment index
-                if( merged[i].compareTo(a[j]) == 0 ) //check that current index element of a does not match merged element to avoid duplicates
+
+                if ( merged[i].compareTo(a[j]) == 0 ) //check that current index element of a does not match merged element to avoid duplicates
                     j++;
             }
 
@@ -347,9 +348,9 @@ public class AP1
         int count = 0;
         String duplicate = "";
 
-        for( String strA : a ) //check array a
-            for( String strB : b ) //check array b
-                if( strA.equals(strB) && !strA.equals(duplicate) ) //if they current elements match and there's no duplicate
+        for ( String strA : a ) //check array a
+            for ( String strB : b ) //check array b
+                if ( strA.equals(strB)  &&  !strA.equals(duplicate) ) //if they current elements match and there's no duplicate
                 {
                     count++;
                     duplicate = strA; //current value found equal assigned to duplicate so it's skipped next iteration
@@ -358,4 +359,5 @@ public class AP1
 
         return count;
     }
+
 }

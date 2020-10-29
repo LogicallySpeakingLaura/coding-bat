@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/20
+ * @version 2020/10/28
  * Harder array problems -- 2 loops, more complex logic.
  * https://codingbat.com/java/Array-3
  */
@@ -12,11 +12,11 @@ public class Array3
      */
     public int maxSpan( int[] nums )
     {
-        int span = nums.length > 0 ? 1 : 0; //if array not empty the max span is 1, otherwise return 0
+        int span = nums.length > 0  ?  1  :  0; //if array not empty the starting span is 1, otherwise return 0
 
-        for( int i = 0 ; i < nums.length ; i++ )
-            for( int j = nums.length - 1 ; j > i ; j-- ) //move back till index i, this will find latest/largest first
-                if( nums[i] == nums[j] ) //if index value at j is same as i, that's the max span for that value
+        for ( int i = 0  ;  i < nums.length  ;  i++ )
+            for ( int j = nums.length - 1  ;  j > i  ;  j-- ) //move back till index i, this will find latest/largest first
+                if ( nums[i] == nums[j] ) //if index value at j is same as i, that's the max span for that value
                 {
                     span = Math.max( span, 1 + j - i ); //span = larger of previous span and span of current value (+1 because of indexing)
                     break; //break inner loop so outer loop can move to next value
@@ -30,15 +30,15 @@ public class Array3
      */
     public int[] fix34( int[] nums )
     {
-        for ( int i = 0 ; i < nums.length ; i++ )
+        for ( int i = 0  ;  i < nums.length  ;  i++ )
             if ( nums[i] == 3 )
             {
                 int temp = nums[ i + 1 ]; //the value right of 3 assigned to var independent of inner loop
                 nums[ i + 1 ] = 4; //right of 3 is now 4
 
-                for ( int j = i + 2 ; j < nums.length ; j++ ) //j = i+2 as i=3 and i+1=4, want to find next instance of 4
+                for ( int j = i + 2  ;  j < nums.length  ;  j++ ) //j = i + 2 as i == 3 and i + 1 == 4, want to find next instance of 4
                     if ( nums[j] == 4 )
-                        nums[j] = temp; //set j to what used to be at i+1, so the 4 and non 4 value have switched indexes
+                        nums[j] = temp; //set j to what used to be at i + 1, so the 4 and non 4 value have switched indexes
             }
 
         return nums;
@@ -49,19 +49,19 @@ public class Array3
      */
     public int[] fix45( int[] nums )
     {
-        for( int i = 0 ; i < nums.length - 1 ; i++) //loop to find instance of 4
-            if( nums[i] == 4 && nums[ i + 1 ] != 5 ) //4 found but right of 4 is not 5
-                for( int j = 0 ; j < nums.length ; j++ ) //loop to find instance of 5
+        for ( int i = 0  ;  i < nums.length - 1  ;  i++) //outer loop to find instance of 4 and check for 5
+            if ( nums[i] == 4  &&  nums[ i + 1 ] != 5 ) //4 found but right of 4 is not 5
+                for ( int j = 0  ;  j < nums.length  ;  j++ ) //inner loop to find instance of 5
                 {
-                    if( nums[j] == 5 && j == 0 ) //if 5 is at beginning of array
+                    if ( nums[j] == 5  &&  j == 0 ) //if 5 is at beginning of array
                     {
-                        nums[0] = nums[ i + 1 ]; //make beginning of array equal current value after 4
+                        nums[0] = nums[ i + 1 ]; //make beginning of array value right of 4
                         nums[ i + 1 ] = 5; //set right of 4 to 5
                     }
 
-                    if( nums[j] == 5 && nums[ j - 1 ]!= 4 ) //if 5 and left of 5 does not equal 4 after beginning of array
+                    if ( nums[j] == 5 && nums[ j - 1 ]!= 4 ) //if 5 and left of 5 does not equal 4 and not at beginning of array
                     {
-                        nums[j] = nums[ i + 1 ]; //make current index holding 5 equal current value after 4
+                        nums[j] = nums[ i + 1 ]; //make current index that equals 5 equal current value right of 4
                         nums[ i + 1 ] = 5; //set right of 4 to 5
                     }
                 }
@@ -76,17 +76,17 @@ public class Array3
     {
         boolean canBalance = false;
 
-        for( int i = 0 ; i < nums.length ; i++ )
+        for ( int i = 0  ;  i < nums.length  ;  i++ )
         {
             int leftSum = 0, rightSum = 0;
 
-            for( int j = 0 ; j < i ; j++ ) //loop through first half, do not include value at i
+            for ( int j = 0  ;  j < i  ;  j++ ) //loop through first half, do not include value at i
                 leftSum += nums[j];
 
-            for( int k = nums.length - 1 ; k >= i ; k-- ) //reverse loop through second half, include value at i
+            for ( int k = nums.length - 1  ;  k >= i  ;  k-- ) //reverse loop through second half, include value at i
                 rightSum += nums[k];
 
-            if( leftSum == rightSum ) //compare values, if they are same there is balance
+            if ( leftSum == rightSum ) //compare values, if they are same there is balance
             {
                 canBalance = true;
                 break; //break when balance found to avoid unnecessary iterations
@@ -96,18 +96,21 @@ public class Array3
         return canBalance;
     }
 
+    /**
+     * Given two arrays of ints sorted in increasing order, outer and inner, return true if all of the numbers in inner appear in outer. The best solution makes only a single "linear" pass of both arrays, taking advantage of the fact that both arrays are already in sorted order.
+     */
     public boolean linearIn( int[] outer, int[] inner )
     {
-        int numsFound = 0;
+        int count = 0;
 
-        for( int i = 0, j = 0 ; i < outer.length && j < inner.length ; i++ ) //i hold index for outer, j for inner
-            if( outer[i] == inner[j] ) //if both match
+        for ( int i = 0, j = 0  ;  i < outer.length  &&  j < inner.length  ;  i++ ) //i hold index for outer, j for inner, 2 iteration conditions as don't know which is longer
+            if ( outer[i] == inner[j] ) //if both match
             {
-                numsFound++; //increment count
+                count++; //increment count
                 j++; //move along inner array, as arrays sorted no need to reset i back to 0
             }
 
-        return numsFound == inner.length; //only complete match if the number found equals length of array
+        return count == inner.length; //only complete match if the number found equals length of array
     }
 
     /**
@@ -117,9 +120,9 @@ public class Array3
     {
         int[] squared = new int[ n * n ];
 
-        if( n != 0 ) //no need to fill empty array
-            for( int i = n - 1 ; i < squared.length ; i += n ) //start at end of block, run for as long as array is, but jump one block at a time
-                for( int j = i ; j >= i - ( i / n ) ; j-- ) //create fill pattern, where to stop and fill with 0
+        if ( n != 0 ) //no need to fill empty array
+            for ( int i = n - 1  ;  i < squared.length  ;  i += n ) //start at end of block, run for as long as array is, but jump one block at a time
+                for ( int j = i  ;  j >= i - ( i / n )  ;  j-- ) //create fill pattern, where to stop and fill with 0
                     squared[j] = i - j + 1; //fill with difference + 1 because of indexing
 
         return squared;
@@ -132,8 +135,8 @@ public class Array3
     {
         int[] series = new int[ n * ( n + 1 ) / 2 ];
 
-        for( int i = 0, j = 1 ; j <= n ; ++j ) //i is new array index, j keeps track of n value, run n times but increment then iterate
-            for ( int k = 1 ; k <= j ; ++k ) //k is value for index, run j times but increment then iterate
+        for ( int i = 0, j = 1  ;  j <= n  ;  ++j ) //i is new array index, j keeps track of n value, run n times but increment then iterate
+            for ( int k = 1  ;  k <= j  ;  ++k ) //k is value for index, run j times but increment then iterate
                 series[ i++ ] = k; //new array places value then moves to right
 
         return series;
@@ -146,15 +149,14 @@ public class Array3
     {
         int max = 0; //count of mirrored values for biggest section
 
-        for( int i = 0, j ; i < nums.length ; i++ )
+        for ( int i = 0, j  ;  i < nums.length  ;  i++ )
         {
             j = 0; //tracks mirror count/position, assign here as need to reset each outer loop
 
-            //loop to reverse, put bound on count, can't reverse if already at the end of the array
-            for( int k = nums.length - 1 ; k >= 0 && i + j < nums.length ; k-- )
-                if( nums[ i + j ] == nums[k] )
-                    j++; //increment mirror/count position if there's a match
-                else if( j > 0 ) //only reassign max if there is a match
+            for ( int k = nums.length - 1  ;  k >= 0  &&  i + j < nums.length  ;  k-- ) //loop to reverse, put bound on count, can't reverse if already at the end of the array
+                if ( nums[ i + j ] == nums[k] ) //increment mirror/count position if there's a match
+                    j++;
+                else if ( j > 0 ) //only reassign max if there is a match
                 {
                     max = Math.max( max, j );
                     j = 0; //reset for next iteration of inner loop
@@ -173,12 +175,12 @@ public class Array3
     {
         int count = 0;
 
-        for( int i = 0 ; i < nums.length - 1 ; i++ ) //set bound here so can check right of index
+        for ( int i = 0  ;  i < nums.length - 1  ;  i++ ) //set bound here so can check right of index
         {
-            if( nums[i] == nums[ i + 1 ] ) //if right of i matches that is one clump
+            if ( nums[i] == nums[ i + 1 ] ) //if right of i matches that is one clump
                 count++;
 
-            while ( i + 1 < nums.length && nums[i] == nums[ i + 1 ] ) //find end of current clump so next for iteration starts at right of end
+            while ( i + 1 < nums.length && nums[i] == nums[ i + 1 ] ) //find end of current clump so next iteration starts at right of end of clump
                 i++;
         }
 

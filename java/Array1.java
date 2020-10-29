@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/07
+ * @version 2020/10/28
  * Basic array problems -- no loops.
  * https://codingbat.com/java/Array-1
  */
@@ -12,7 +12,7 @@ public class Array1
      */
     public boolean firstLast6( int[] nums )
     {
-        return nums[0] == 6 || nums[ nums.length - 1 ] == 6; //if array length is 1 these indexes are the same
+        return nums[0] == 6  ||  nums[ nums.length - 1 ] == 6; //if array length is 1 these indexes are the same
     }
 
     /**
@@ -20,7 +20,7 @@ public class Array1
      */
     public boolean sameFirstLast( int[] nums )
     {
-        return nums.length >= 1 && nums[0] == nums[ nums.length - 1 ]; //if array length is 1 these indexes are the same
+        return nums.length >= 1  &&  nums[0] == nums[ nums.length - 1 ]; //if array length is 1 these indexes are the same
     }
 
     /**
@@ -29,14 +29,14 @@ public class Array1
     public int[] makePi()
     {
         return new int[] { 3, 1, 4 };
-    }
+    } //practice instantiating a new array
 
     /**
      * Given 2 arrays of ints, a and b, return true if they have the same first element or they have the same last element. Both arrays will be length 1 or more.
      */
     public boolean commonEnd( int[] a, int[] b )
     {
-        return a[0] == b[0] || a[ a.length - 1 ] == b[ b.length - 1 ]; //if array length is 1 these indexes are the same
+        return a[0] == b[0]  ||  a[ a.length - 1 ] == b[ b.length - 1 ]; //if array length is 1 these indexes are the same
     }
 
     /**
@@ -45,14 +45,14 @@ public class Array1
     public int sum3( int[] nums )
     {
         return nums[0] + nums[1] + nums[2];
-    }
+    } //practice summing specific indexes
 
     /**
      * Given an array of ints length 3, return an array with the elements "rotated left" so {1, 2, 3} yields {2, 3, 1}.
      */
     public int[] rotateLeft3( int[] nums )
     {
-        return new int[] { nums[1], nums[2], nums[0] };
+        return new int[] { nums[1], nums[2], nums[0] }; //practice instantiating a new array
     }
 
     /**
@@ -60,7 +60,7 @@ public class Array1
      */
     public int[] reverse3( int[] nums )
     {
-        return new int[] { nums[2], nums[1], nums[0] };
+        return new int[] { nums[2], nums[1], nums[0] }; //practice instantiating a new array
     }
 
     /**
@@ -68,7 +68,7 @@ public class Array1
      */
     public int[] maxEnd3( int[] nums )
     {
-        return new int[] { Math.max( nums[0], nums[2] ), Math.max( nums[0], nums[2] ), Math.max( nums[0], nums[2] ) };
+        return new int[] { Math.max( nums[0], nums[2] ), Math.max( nums[0], nums[2] ), Math.max( nums[0], nums[2] ) }; //practice instantiating a new array
     }
 
     /**
@@ -76,7 +76,7 @@ public class Array1
      */
     public int sum2( int[] nums )
     {
-        return nums.length == 1 ? nums[0] : nums.length >= 2 ? nums[0] + nums[1] : 0;
+        return nums.length == 1  ?  nums[0]  :  nums.length >= 2  ?  nums[0] + nums[1]  :  0; //practice summing specific indexes
     }
 
     /**
@@ -100,7 +100,7 @@ public class Array1
      */
     public boolean has23( int[] nums )
     {
-        return nums[0] == 2 || nums[0] == 3 || nums[1] == 2 || nums[1] == 3;
+        return nums[0] == 2  ||  nums[0] == 3  ||  nums[1] == 2  ||  nums[1] == 3; //practice comparing specific indexes
     }
 
     /**
@@ -108,7 +108,7 @@ public class Array1
      */
     public boolean no23( int[] nums )
     {
-        return !( nums[0] == 2 || nums[0] == 3 ) && !( nums[1] == 2 || nums[1] == 3 );
+        return !( nums[0] == 2  ||  nums[0] == 3 )   &&   !( nums[1] == 2  ||  nums[1] == 3 ); //check if there and return opposite
     }
 
     /**
@@ -129,7 +129,7 @@ public class Array1
      */
     public boolean double23( int[] nums )
     {
-        return nums.length >= 2 && ( ( nums[0] == 2 && nums[1] == 2 ) || ( nums[0] == 3 && nums[1] == 3 ) ); //check for length
+        return nums.length >= 2   &&   ( nums[0] == 2  &&  nums[1] == 2   ||   nums[0] == 3  &&  nums[1] == 3 ); //check for length
     }
 
     /**
@@ -137,9 +137,9 @@ public class Array1
      */
     public int[] fix23( int[] nums )
     {
-        if( nums[0] == 2 && nums[1] == 3 ) //can use if-else because as soon as first condition met value changes so can no longer be 2, 3
+        if ( nums[0] == 2  &&  nums[1] == 3 ) //can use if-else because as soon as first condition met value changes so can no longer be 2, 3
             nums[1] = 0;
-        else if( nums[1] == 2 && nums[2] == 3 )
+        else if ( nums[1] == 2  &&  nums[2] == 3 )
             nums[2] = 0;
 
         return nums;
@@ -152,10 +152,10 @@ public class Array1
     {
         int count = 0;
 
-        if( a.length >= 1 && a[0] == 1 )    //do not use if-else as both conditions can be true
+        if( a.length >= 1  &&  a[0] == 1 ) //do not use if-else as both conditions can be true
             count++;
 
-        if( b.length >= 1 && b[0] == 1 )
+        if( b.length >= 1  &&  b[0] == 1 )
             count++;
 
         return count;
@@ -166,7 +166,7 @@ public class Array1
      */
     public int[] biggerTwo( int[] a, int[] b )
     {
-        return ( a[0] + a[1] ) < ( b[0] + b[1] ) ? b : a; //only need to check if b is bigger, otherwise return a
+        return a[0] + a[1] < b[0] + b[1]  ?  b  :  a; //only need to check if b is bigger, otherwise return a
     }
 
     /**
@@ -174,7 +174,7 @@ public class Array1
      */
     public int[] makeMiddle( int[] nums )
     {
-        return new int[] { nums[ nums.length / 2 - 1 ], nums[ nums.length / 2 ] };
+        return new int[] { nums[ nums.length / 2 - 1 ], nums[ nums.length / 2 ] }; //- 1 to get left of middle
     }
 
     /**
@@ -182,7 +182,7 @@ public class Array1
      */
     public int[] plusTwo( int[] a, int[] b )
     {
-        return new int[] { a[0], a[1], b[0], b[1] };
+        return new int[] { a[0], a[1], b[0], b[1] }; //general practice
     }
 
     /**
@@ -190,7 +190,7 @@ public class Array1
      */
     public int[] swapEnds( int[] nums )
     {
-        if( nums.length >= 2 ) //>= 2 as array length 1 will not be swapping anything
+        if ( nums.length >= 2 ) //>= 2 as array length 1 will not be swapping anything
         {
             int last = nums[ nums.length - 1 ]; //create var here as it's not needed for arrays of length 1
             nums[ nums.length - 1 ] = nums[0];
@@ -205,7 +205,7 @@ public class Array1
      */
     public int[] midThree( int[] nums )
     {
-        return new int[] { nums[ nums.length / 2 - 1], nums[ nums.length / 2 ], nums[ nums.length / 2 + 1 ] };
+        return new int[] { nums[ nums.length / 2 - 1], nums[ nums.length / 2 ], nums[ nums.length / 2 + 1 ] }; //+- 1 gets left and right of middle
     }
 
     /**
@@ -213,7 +213,7 @@ public class Array1
      */
     public int maxTriple( int[] nums )
     {
-        return Math.max(  Math.max( nums[0], nums[nums.length / 2 ] ), nums[nums.length-1] );
+        return Math.max(  Math.max( nums[0], nums[nums.length / 2 ] ), nums[nums.length-1] ); //nested Math.max finds max of 3 values
     }
 
     /**
@@ -221,7 +221,7 @@ public class Array1
      */
     public int[] frontPiece( int[] nums )
     {
-        return nums.length <= 2 ? nums : new int[] { nums[0], nums[1] };
+        return nums.length <= 2  ?  nums  :  new int[] { nums[0], nums[1] }; //array as-is for smaller than 3
     }
 
     /**
@@ -229,8 +229,7 @@ public class Array1
      */
     public boolean unlucky1( int[] nums )
     {
-        //check length before index values, cannot be unlucky is array length less than 2
-        return nums.length >= 2 && ( ( nums[0] == 1 && nums[1] == 3) || ( nums[1] == 1 && nums[2] == 3) || ( nums[ nums.length - 1 ] == 3 && nums[ nums.length - 2 ] == 1 ) ) ? true : false;
+        return nums.length >= 2   &&   ( nums[0] == 1  &&  nums[1] == 3   ||   nums[1] == 1  &&  nums[2] == 3   ||   nums[ nums.length - 1 ] == 3  &&  nums[ nums.length - 2 ] == 1 ) ? true : false; //check length before index values, cannot be unlucky is array length less than 2
     }
 
     /**
@@ -240,18 +239,18 @@ public class Array1
     {
         int[] rtrnArr = new int[2];
 
-        if( a.length == 0 ) //a empty so new array made from b
+        if ( a.length == 0 ) //a empty so new array made from b
         {
             rtrnArr[0] = b[0];
             rtrnArr[1] = b[1];
         }
-        else if( a.length == 1 ) //one index value from each
+        else if ( a.length == 1 ) //one index value from each
         {
             rtrnArr[0] = a[0];
             rtrnArr[1] = b[0];
         }
-        else
-        {                       //a length 2 or more so new array made from a
+        else //a length 2 or more so new array made from a
+        {
             rtrnArr[0] = a[0];
             rtrnArr[1] = a[1];
         }
@@ -264,9 +263,9 @@ public class Array1
      */
     public int[] front11( int[] a, int[] b )
     {
-        return a.length == 0 && b.length == 0 ? new int[] {} : //empty arrays, nothing returned
-                a.length == 0 ? new int[] { b[0] } : //new array made from just b
-                        b.length == 0 ? new int[] { a[0] } : new int[] { a[0], b[0] }; //new array made from just a or both incl.
+        return a.length == 0  &&  b.length == 0  ?  new int[] {}  : //empty arrays, nothing returned
+                a.length == 0  ?  new int[] { b[0] }  : //new array made from just b
+                        b.length == 0  ?  new int[] { a[0] }  :  new int[] { a[0], b[0] }; //new array made from just a or both incl.
     }
 
 }

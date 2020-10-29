@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/17
+ * @version 2020/10/28
  * Medium array problems -- 1 loop.
  * https://codingbat.com/java/Array-2
  */
@@ -14,8 +14,8 @@ public class Array2
     {
         int count = 0;
 
-        for( int n : nums )
-            if( n % 2 == 0 ) //even%2 == 0, odd%2 == 1
+        for ( int n : nums )
+            if ( n % 2 == 0 ) //even % 2 == 0, odd % 2 == 1
                 count++;
 
         return count;
@@ -28,7 +28,7 @@ public class Array2
     {
         int small = nums[0], large = nums[0]; //set to first value in array
 
-        for( int n : nums )
+        for ( int n : nums )
         {
             small = Math.min( small, n );
             large = Math.max( large, n );
@@ -44,15 +44,14 @@ public class Array2
     {
         int sum = 0, smallest = nums[0], largest = nums[0];
 
-        for( int n : nums )
+        for ( int n : nums )
         {
             sum += n;
             smallest = Math.min( smallest, n );
             largest = Math.max( largest, n );
         }
 
-        //subtract small and largest, - 2 to remove small/large from division
-        return ( sum - smallest - largest ) / ( nums.length - 2 );
+        return ( sum - smallest - largest ) / ( nums.length - 2 ); //subtract small and largest, - 2 to remove small/large from division
     }
 
     /**
@@ -62,9 +61,9 @@ public class Array2
     {
         int sum = 0;
 
-        for( int i = 0 ; i < nums.length ; i++ )
-            if( nums[i] == 13 )
-                if( i + 1 < nums.length ) //if there is a value after 13
+        for ( int i = 0  ;  i < nums.length  ;  i++ )
+            if ( nums[i] == 13 )
+                if ( i + 1 < nums.length ) //if there is a value after 13
                     i++; //skip past it
                 else
                     break; //otherwise must be at end of array so leave loop
@@ -81,10 +80,10 @@ public class Array2
     {
         int sum = 0;
 
-        for( int i = 0 ; i < nums.length ; i++ )
-            if( nums[i] == 6 )
+        for ( int i = 0  ;  i < nums.length  ;  i++ )
+            if ( nums[i] == 6 )
             {
-                while( nums[i] != 7 ) //loop till i is 7, while loop will terminate and for loop i++ will move to index after 7
+                while ( nums[i] != 7 ) //loop till i is 7, inner loop will terminate and outer loop will move to right of 7
                     i++;
             }
             else
@@ -100,8 +99,8 @@ public class Array2
     {
         boolean hasTwo = false;
 
-        for( int i = 0 ; i < nums.length - 1 ; i++ ) //set bound to check proceeding index at same time
-            if( nums[i] == 2 && nums[ i + 1 ] == 2 )
+        for ( int i = 0  ;  i < nums.length - 1  ;  i++ ) //set bound to check right of index at same time
+            if ( nums[i] == 2  &&  nums[ i + 1 ] == 2 )
             {
                 hasTwo = true;
                 break; //leave loop when found true to stop further unnecessary iterations
@@ -117,8 +116,8 @@ public class Array2
     {
         boolean isUnlucky = true;
 
-        for( int n : nums )
-            if( n == 1 || n == 3 ) //as soon as a 1 or 3 is found...
+        for ( int n : nums )
+            if ( n == 1  ||  n == 3 ) //as soon as a 1 or 3 is found...
             {
                 isUnlucky = false; //flag false and break loop
                 break;
@@ -134,8 +133,8 @@ public class Array2
     {
         int sum = 0;
 
-        for( int n : nums )
-            if( n == 2 )
+        for ( int n : nums )
+            if ( n == 2 )
                 sum += 2; //could be += n, as long as 2 added to running total
 
         return sum == 8;
@@ -148,13 +147,13 @@ public class Array2
     {
         int oneCount = 0, fourCount = 0;
 
-        for( int n : nums )
-            if( n == 1 )
+        for ( int n : nums )
+            if ( n == 1 )
                 oneCount++;
-            else if( n == 4 )
+            else if ( n == 4 )
                 fourCount++;
 
-        return oneCount > fourCount; //will return true if there are more 1's
+        return oneCount > fourCount; //return true if there are more 1's
     }
 
     /**
@@ -164,7 +163,7 @@ public class Array2
     {
         int[] fizz = new int[n];
 
-        for( int i = 0 ; i < fizz.length ; i++ ) //fizz.length = n, loop will run n-1 times
+        for ( int i = 0  ;  i < fizz.length  ;  i++ ) //fizz.length = n, loop will run n-1 times
             fizz[i] = i;
 
         return fizz;
@@ -177,8 +176,8 @@ public class Array2
     {
         boolean is1or4 = true;
 
-        for( int n : nums )
-            if( n != 1 && n != 4 ) //&& because both must be false
+        for ( int n : nums )
+            if ( n != 1  &&  n != 4 ) //&& because both must be false
             {
                 is1or4 = false; //as soon as something not 1 or 4 found, flip boolean and break loop
                 break;
@@ -194,8 +193,8 @@ public class Array2
     {
         String[] fizz = new String[n];
 
-        for( int i = 0 ; i < fizz.length ; i++ ) //fizz.length = n, loop will run n-1 times
-            fizz[i] = String.valueOf(i); //conver the int value of i to String
+        for ( int i = 0  ;  i < fizz.length  ;  i++ ) //fizz.length = n, loop will run n-1 times
+            fizz[i] = String.valueOf(i); //convert the int value of i to String
 
         return fizz;
     }
@@ -207,13 +206,13 @@ public class Array2
     {
         boolean hasOne = false, hasFour = false;
 
-        for( int n : nums )
-            if( n == 1 ) //as soon as a 1 or 4 is found flip to true
+        for ( int n : nums )
+            if ( n == 1 ) //as soon as a 1 or 4 is found flip to true
                 hasOne = true;
             else if( n == 4 )
                 hasFour = true;
 
-        return !( hasOne && hasFour ); //if both are true we want to return false, all other options are OK
+        return !( hasOne  &&  hasFour ); //if both are true we want to return false, all other options are OK
     }
 
     /**
@@ -223,8 +222,8 @@ public class Array2
     {
         boolean isThere = true;
 
-        for( int i = 0 ; i < nums.length - 1 ; i++ )
-            if( nums[i] != val && nums[ i + 1 ] != val ) //as soon as neither match set to false as no way to be true again
+        for ( int i = 0  ;  i < nums.length - 1  ;  i++ )
+            if ( nums[i] != val  &&  nums[ i + 1 ] != val ) //as soon as neither match set to false as no way to be true again
             {
                 isThere = false;
                 break; //exit to return, avoid unnecessary iterations
@@ -240,13 +239,13 @@ public class Array2
     {
         boolean has2 = false, has4 = false;
 
-        for( int i = 0 ; i < nums.length - 1 ; i++ ) //set bound -1
-            if( nums[i] == 2 && nums[ i + 1 ] == 2 ) //there are two 2
+        for ( int i = 0  ;  i < nums.length - 1  ;  i++ )
+            if ( nums[i] == 2  &&  nums[ i + 1 ] == 2 ) //there are two 2
                 has2 = true;
-            else if( nums[i] == 4 && nums[ i + 1 ] == 4 ) //there are two 4
+            else if ( nums[i] == 4  &&  nums[ i + 1 ] == 4 ) //there are two 4
                 has4 = true;
 
-        return has2 != has4; //one boolean must be true but not the other, can't both be false or both true
+        return has2 != has4; //one must be true but not the other, can't both be false or both true
     }
 
     /**
@@ -256,9 +255,8 @@ public class Array2
     {
         int count = 0;
 
-        for( int i = 0 ; i < nums1.length ; i++ )
-                //checks difference,                check equality
-            if( Math.abs( nums1[i] - nums2[i] ) <= 2 && nums1[i] != nums2[i] )
+        for ( int i = 0  ;  i < nums1.length  ;  i++ )
+            if ( Math.abs( nums1[i] - nums2[i] ) <= 2  &&  nums1[i] != nums2[i] ) //checks difference and then check equality
                 count++;
 
         return count;
@@ -271,8 +269,8 @@ public class Array2
     {
         boolean has7 = false;
 
-        for( int i = 0 ; i < nums.length ; i++ ) //right index is 7,                right of right index is 7
-            if( nums[i] == 7 && ( ( i + 1 < nums.length && nums[ i + 1 ] == 7 ) || ( i + 2 < nums.length && nums[ i + 2 ] == 7 ) ) )
+        for ( int i = 0  ;  i < nums.length  ;  i++ )
+            if ( nums[i] == 7   &&   ( ( i + 1 < nums.length  &&  nums[ i + 1 ] == 7 )  ||  ( i + 2 < nums.length  &&  nums[ i + 2 ] == 7 ) ) ) //right index is 7, right of right index is 7
             {
                 has7 = true;
                 break; //break as soon as true, no need to check for more than 1 case
@@ -288,10 +286,10 @@ public class Array2
     {
         boolean has2 = false;
 
-        for( int i = 0 ; i < nums.length ; i++ )
-            if( nums[i] == 1 ) //only do second loop if there is a 1, so have to use nested loop
-                for( int j = nums.length - 1 ; j > i ; j-- ) //work backwards through array
-                    if( nums[j] == 2 ) //if there is a 2 after the 1
+        for ( int i = 0  ;  i < nums.length  ;  i++ )
+            if ( nums[i] == 1 ) //only do second loop if there is a 1, so have to use nested loop
+                for ( int j = nums.length - 1  ;  j > i  ;  j-- ) //work backwards through array
+                    if ( nums[j] == 2 ) //if there is a 2 after the 1
                     {
                         has2 = true; //flip boolean and exit to return
                         break;
@@ -307,8 +305,8 @@ public class Array2
     {
         boolean isOddEven = false;
 
-        for( int i = 0 ; i < nums.length - 2 ; i++ ) //set bound so not checking set less than 3
-            if( nums[i] % 2 == nums[ i + 1 ] % 2 && nums[i] % 2 == nums[ i + 2 ] % 2 ) //mod2 gives odd or even, if they equal both are same
+        for ( int i = 0  ;  i < nums.length - 2  ;  i++ ) //set bound so not checking set less than 3
+            if ( nums[i] % 2 == nums[ i + 1 ] % 2  &&  nums[i] % 2 == nums[ i + 2 ] % 2 ) //mod2 gives odd or even, if they equal both are same
             {
                 isOddEven = true; //as soon as case found flip boolean and exit to return
                 break;
@@ -324,7 +322,7 @@ public class Array2
     {
         int count = 0;
 
-        for( int i = 0 ; i < nums.length ; i++ )
+        for( int i = 0  ;  i < nums.length  ;  i++ )
             if( nums[i] == 3 )
             {
                 count++;
@@ -341,10 +339,9 @@ public class Array2
     {
         boolean has2 = true;
 
-        for( int i = 0 ; i < nums.length ; i++ )
+        for ( int i = 0  ;  i < nums.length  ;  i++ )
             if ( nums[i] == 2 ) //only check left and right if i is 2
-                if ( ( i > 0 && nums[ i - 1 ] == 2 ) || ( i + 1 < nums.length && nums[ i + 1 ] == 2 ) )
-                    //check left i must be at least 1 to check left, check right i ust be length - 1 to have a right
+                if ( i > 0  &&  nums[ i - 1 ] == 2   ||   i + 1 < nums.length  &&  nums[ i + 1 ] == 2 ) //i must be at least 1 to check left of i, i must be length - 1 to have a right of i
                     i++; //skip next index
                 else
                 {
@@ -364,8 +361,8 @@ public class Array2
 
         //questions is not asking if the numbers at the end going back equal the same as the front going forward
         //question asking if subarray of len starting at nums.length - len is the exact same as beginning of array to index n
-        for( int i = 0, j = nums.length - len ; i < len ; i++, j++ )
-            if( nums[i] != nums[j] )
+        for ( int i = 0, j = nums.length - len  ;  i < len  ;  i++, j++ )
+            if ( nums[i] != nums[j] )
             {
                 nMatches = false; //as soon as there isn't a match flip boolean and return false
                 break;
@@ -381,8 +378,8 @@ public class Array2
     {
         boolean hasUp = false;
 
-        for( int i = 0 ; i < nums.length - 2 ; i++ )
-            if( nums[ i + 1 ] == nums[i] + 1 && nums[ i + 2 ] == nums[i] + 2 ) //right == i++, right + 1 == i += 2
+        for ( int i = 0  ;  i < nums.length - 2  ;  i++ )
+            if ( nums[ i + 1 ] == nums[i] + 1  &&  nums[ i + 2 ] == nums[i] + 2 ) //right == i++, right + 1 == i += 2
             {
                 hasUp = true; //one pattern found return true
                 break;
@@ -398,7 +395,7 @@ public class Array2
     {
         int[] fizz = new int[ end - start ]; //length of new array is difference between start and end
 
-        for( int i = 0, j = start ; j < end ; i++, j++ ) //i is index of new array, j is value of start, run end - start times
+        for ( int i = 0, j = start  ;  j < end  ;  i++, j++ ) //i is index of new array, j is value of start, run end - start times
             fizz[i] = j;
 
         return fizz;
@@ -411,8 +408,9 @@ public class Array2
     {
         if( nums.length > 0 ) //make sure array not empty before switching index values
         {
-            int temp = nums[0]; //store first index value before overriden
-            for( int i = 0 ; i < nums.length - 1 ; i++ )
+            int temp = nums[0]; //store first index value before overridden
+
+            for ( int i = 0  ;  i < nums.length - 1  ;  i++ )
                 nums[i] = nums[ i + 1 ]; //shifting of values
 
             nums[ nums.length - 1 ] = temp; //reinsert original first index value at end
@@ -426,9 +424,9 @@ public class Array2
      */
     public int[] tenRun( int[] nums )
     {
-        for( int i = 0 ; i < nums.length - 1 ; i++ ) //set bound length - 1
-            if( nums[i] % 10 == 0 && nums[ i + 1 ] % 10 != 0 ) // %10 == 0 is a multiple of 10, if i+1 is not set i+1 to i
-                nums[ i + 1 ] = nums[i]; //if i+1 already a multiple loop iterates and that is the new multiple value
+        for ( int i = 0  ;  i < nums.length - 1  ;  i++ )
+            if ( nums[i] % 10 == 0  &&  nums[ i + 1 ] % 10 != 0 ) // % 10 == 0 is a multiple of 10, if i + 1 is not set i + 1 to i
+                nums[ i + 1 ] = nums[i]; //if i + 1 already a multiple loop iterates and that is the new multiple value
 
         return nums;
     }
@@ -438,12 +436,12 @@ public class Array2
      */
     public int[] pre4( int[] nums )
     {
-        for( int i = 0 ; i < nums.length ; i++ )
-            if( nums[i] == 4 )
+        for ( int i = 0  ;  i < nums.length  ;  i++ )
+            if ( nums[i] == 4 )
             {
-                int[] before = new int[i]; //one 4 found create new array of length equal to 4 value index
+                int[] before = new int[i]; //one 4 found create new array of length equal to index value of 4
 
-                for( int j = 0 ; j < i ; j++ )
+                for ( int j = 0  ;  j < i  ;  j++ )
                     before[j] = nums[j]; //nexted loop fills array from nums[0] to nums[ index of 4 ] exclusive
 
                 nums = before; //override original array with new one then break to return
@@ -458,13 +456,13 @@ public class Array2
      */
     public int[] post4( int[] nums )
     {
-        for( int i = nums.length - 1 ; i >= 0 ; i-- ) //start at end and move back, so first 4 found is last in array
-            if( nums[i] == 4 )
+        for ( int i = nums.length - 1  ;  i >= 0  ;  i-- ) //start at end and move back, so first 4 found is last in array
+            if ( nums[i] == 4 )
             {
                 int[] after = new int[ nums.length - i - 1 ]; //new length will be original length - index where 4 found
 
-                for( int j = i + 1, ai = 0 ; ai < after.length ; j++, ai++ ) //separate counters, one for new array, other for moving through original
-                    after[ai] = nums[j];
+                for ( int j = i + 1, k = 0  ;  k < after.length  ;  j++, k++ ) //separate counters, one for new array, other for moving through original
+                    after[k] = nums[j];
 
                 nums = after; //override old array and return
                 break;
@@ -478,9 +476,9 @@ public class Array2
      */
     public int[] notAlone( int[] nums, int val )
     {
-        for( int i = 1 ; i < nums.length - 1 ; i++ ) //not checking first and last index as those don't count as alone
-            if( nums[i] == val && nums[i] != nums[ i - 1 ] && nums[i] != nums[ i + 1 ] )
-                nums[i] = Math.max( nums[ i - 1 ], nums[ i + 1 ] ); //replace current alone value with larger of neighbours
+        for ( int i = 1  ;  i < nums.length - 1  ;  i++ ) //not checking first and last index as those don't count
+            if ( nums[i] == val  &&  nums[i] != nums[ i - 1 ]  &&  nums[i] != nums[ i + 1 ] )
+                nums[i] = Math.max( nums[ i - 1 ], nums[ i + 1 ] ); //replace current value with larger of neighbours
 
         return nums;
     }
@@ -490,11 +488,11 @@ public class Array2
      */
     public int[] zeroFront( int[] nums )
     {
-        for( int i = 0, j = 0 ; i < nums.length ; i++) //2 counts, one for array index and one for zero count, only i always increments
-            if( nums[i] == 0 )
+        for ( int i = 0, j = 0  ;  i < nums.length  ;  i++) //2 counts, one for array index and one for zero count, only i always increments
+            if ( nums[i] == 0 )
             {
-                nums[i] = nums[j]; //current index value at current zero index value
-                nums[j++] = 0; //value at zero count index now equals 0, zero count only increments once its current index equals zero
+                nums[i] = nums[j]; //current index value at current zero/j index value
+                nums[j++] = 0; //value at zero count index now equals 0, zero/j count only increments once its current index equals zero
             }
 
         return nums;
@@ -507,8 +505,8 @@ public class Array2
     {
         int[] without = new int[nums.length];
 
-        for( int i = 0, j = 0 ; i < nums.length ; i++ ) //2 counts, one for nums, one for without, only nums always increments
-            if( nums[i] != 10 )
+        for ( int i = 0, j = 0  ;  i < nums.length  ;  i++ ) //2 counts, one for nums, one for without, only nums always increments
+            if ( nums[i] != 10 )
                 without[j++] = nums[i]; //fill without with non10 value from nums, increment without index
 
         return without; //rest of array will auto be zero upon return
@@ -519,12 +517,12 @@ public class Array2
      */
     public int[] zeroMax( int[] nums )
     {
-        for( int i = nums.length - 1, max = 0 ; i >= 0 ; i-- ) //start at end and work back, max hold largest odd value
+        for ( int i = nums.length - 1, max = 0  ;  i >= 0  ;  i-- ) //start at end and work back, max hold largest odd value
         {
-            if( nums[i] % 2 != 0 ) //if it is an odd number it is not 0, as max assigned 0 that's how 0 remains
+            if ( nums[i] % 2 != 0 ) //if it is an odd number it is not 0, as max assigned 0 that's how 0 remains
                 max = Math.max( max, nums[i] ); //set new max number
 
-            if( nums[i] == 0 )
+            if ( nums[i] == 0 )
                 nums[i] = max; //set to max odd number or 0 if no odd number
         }
 
@@ -538,8 +536,7 @@ public class Array2
     {
         int[] evenFirst = new int[nums.length];
 
-        //3 counts: array index, event index, odd index, odd and even only change once used not every loop
-        for( int i = 0, j = 0, k = nums.length - 1 ; i < nums.length ; i++ )
+        for( int i = 0, j = 0, k = nums.length - 1  ;  i < nums.length  ;  i++ ) //3 counts: array index, event index, odd index, odd and even only change once used not every loop
             if( nums[i] % 2 == 0 ) //value is even
                 evenFirst[j++] = nums[i]; //placed towards front of array and increment index
             else
@@ -555,12 +552,12 @@ public class Array2
     {
         String[] fizz = new String[ end - start ]; //array length needs to be difference of start and end
 
-        for( int i = 0 ; i < fizz.length ; i++, start++ ) //increment start as well to get next value up to and excluding end
-            if( start % 3 == 0 && start % 5 == 0 ) //both multiple
+        for ( int i = 0  ;  i < fizz.length  ;  i++, start++ ) //increment start as well to get next value up to and excluding end
+            if ( start % 3 == 0  &&  start % 5 == 0 ) //both multiple
                 fizz[i] = "FizzBuzz";
-            else if( start % 3 == 0 ) //only 3 multiple
+            else if ( start % 3 == 0 ) //only 3 multiple
                 fizz[i] = "Fizz";
-            else if( start % 5 == 0 ) //only 5 multiple
+            else if ( start % 5 == 0 ) //only 5 multiple
                 fizz[i] = "Buzz";
             else
                 fizz[i] = String.valueOf(start); //no multiple, convert int to String
