@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/07
+ * @version 2020/10/28
  * Medium boolean logic puzzles -- if else && || !.
  * https://codingbat.com/java/Logic-2
  */
@@ -14,7 +14,7 @@ public class Logic2
     {
         //condition 1 - will remainder of length of goal after big bricks used be less than or equal to amount of small bricks
         //condition 2 - will length of both big and small bricks together at least equal the goal length, ok if bigger as can get rid of a brick
-        return goal % 5 <= small && big * 5 + small >= goal;
+        return goal % 5 <= small  &&  big * 5 + small >= goal;
     }
 
     /**
@@ -22,8 +22,10 @@ public class Logic2
      */
     public int loneSum( int a, int b, int c )
     {
-        //all values same so none count, a = b so just c, a = c so just b, b = a so just a, all different so return sum
-        return ( a == b && b == c ) ? 0 : ( a == b ) ? c : ( a == c ) ? b : ( b == c ) ? a : a + b + c;
+        return a == b  &&  b == c  ?  0  : //all values same so none count
+                a == b  ?  c  : //a = b so just c
+                        a == c  ?  b  : //a = c so just b
+                                b == c  ?  a  : a + b + c; //b = a so just a, else all different so return sum
     }
 
     /**
@@ -31,7 +33,9 @@ public class Logic2
      */
     public int luckySum( int a, int b, int c )
     {
-        return a == 13 ? 0 : b == 13 ? a : c == 13 ? a + b : a + b + c;
+        return a == 13  ?  0  : //a is 13 exclude b and c
+                b == 13  ?  a  : //b is 13 only return a
+                        c == 13  ?  a + b  :  a + b + c; //c is 13 return sum of a + b, else sum of all
     }
 
     /**
@@ -43,7 +47,7 @@ public class Logic2
     }
     public int fixTeen( int n )
     {
-        return (n >=13 && n < 15) || (n > 16 && n <= 19) ? 0 : n; //excluding 15 and 16 from teen range
+        return 13 <= n  &&  n < 15   ||   16 < n  &&  n <= 19  ?  0  :  n; //excluding 15 and 16 from teen range
     }
 
     /**
@@ -55,8 +59,7 @@ public class Logic2
     }
     public int round10( int num )
     {
-        //rightmost digit less than 5, round down, round up
-        return num % 10 < 5 ? num - ( num % 10 ) : num + ( 10 - ( num % 10 ) );
+        return num % 10 < 5  ?  num - ( num % 10 )  :  num + ( 10 - ( num % 10 ) ); //rightmost digit less than 5, round down, round up
     }
 
     /**
@@ -64,8 +67,8 @@ public class Logic2
      */
     public boolean closeFar( int a, int b, int c )
     {
-        return ( Math.abs( a - b ) <= 1 && Math.abs( a - c ) >= 2 && Math.abs(b - c) >= 2 ) ||
-                ( Math.abs( a - c ) <= 1 && Math.abs( a - b ) >= 2 && Math.abs(b - c) >= 2 );
+        return Math.abs( a - b ) <= 1  &&  Math.abs( a - c ) >= 2  &&  Math.abs(b - c) >= 2   || //b is close, c is far and c is far from b
+                Math.abs( a - c ) <= 1  &&  Math.abs( a - b ) >= 2  &&  Math.abs(b - c) >= 2; //c is close, b is far, and c is far from b
     }
 
     /**
@@ -73,8 +76,9 @@ public class Logic2
      */
     public int blackjack( int a, int b )
     {
-                //both over 21, if a or b is over 21 but not other, else which is closest
-        return a > 21 && b > 21 ? 0 : a > 21 ? b : b > 21 ? a : 21 - a > 21 - b ? b : a;
+        return a > 21  &&  b > 21  ?  0  : //both over 21
+                a > 21  ?  b  :  b > 21  ?  a  : //if a or b is over 21 but not other
+                                21 - a > 21 - b  ?  b : a; //else which is closest
     }
 
     /**
@@ -82,7 +86,7 @@ public class Logic2
      */
     public boolean evenlySpaced( int a, int b, int c )
     {
-        return a + b == 2 * c || a + c == 2 * b || b + c == 2 * a; //1 + 2 == 2 * 3 not spaced, 2 + 6 == 4 * 2 is spaced, run the math probability
+        return a + b == 2 * c  ||  a + c == 2 * b  ||  b + c == 2 * a; //1 + 2 == 2 * 3 not spaced, 2 + 6 == 4 * 2 is spaced, run the math probability
     }
 
     /**
@@ -90,7 +94,8 @@ public class Logic2
      */
     public int makeChocolate( int small, int big, int goal )
     {
-        return goal % 5 <= small && goal / 5 <= big ? goal % 5 : goal / 5 > big && small >= ( goal - big * 5 ) ? goal- big * 5 : -1;
+        return goal % 5 <= small  &&  goal / 5 <= big  ?  goal % 5  :
+                goal / 5 > big  &&  small >= ( goal - big * 5 )  ?  goal- big * 5  :  -1; //similar logic for makeBricks
     }
 
 }

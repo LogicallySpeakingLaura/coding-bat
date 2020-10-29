@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/06
+ * @version 2020/10/28
  * Basic boolean logic puzzles -- if else && || !.
  * https://codingbat.com/java/Logic-1
  */
@@ -12,7 +12,7 @@ public class Logic1
      */
     public boolean cigarParty( int cigars, boolean isWeekend )
     {
-        return ( cigars >= 40 && cigars <= 60 && !isWeekend ) || ( cigars >= 40 && isWeekend );
+        return cigars >= 40  &&  cigars <= 60  &&  !isWeekend   ||   cigars >= 40  &&  isWeekend; //check ranges during week and weekend
     }
 
     /**
@@ -22,10 +22,10 @@ public class Logic1
     {
         int table = 1; //assume maybe till style checked
 
-        if( you >= 8 || date >= 8 ) //do not use if-else, both conditions need to be checked
+        if ( you >= 8  ||  date >= 8 ) //do not use if-else, both conditions need to be checked
             table = 2;
 
-        if( you <= 2 || date <= 2 )
+        if(  you <= 2  ||  date <= 2 )
             table = 0;
 
         return table;
@@ -36,7 +36,7 @@ public class Logic1
      */
     public boolean squirrelPlay( int temp, boolean isSummer )
     {
-        return ( isSummer && temp >= 60 && temp <= 100 ) || ( !isSummer && temp >= 60 && temp <= 90 );
+        return isSummer  &&  temp >= 60  &&  temp <= 100   ||   !isSummer  &&  temp >= 60  &&  temp <= 90; //check ranges during summer and not summer
     }
 
     /**
@@ -46,17 +46,17 @@ public class Logic1
     {
         int ticket = 0;
 
-        if( isBirthday )
+        if ( isBirthday )
         {
-            if( speed >= 66 && speed <= 85 )
+            if ( speed >= 66  &&  speed <= 85 )
                 ticket = 1;
-            else if( speed > 85 ) //could do >= 86 if that logic is easier to understand
+            else if ( speed > 85 ) //could do >= 86 if that logic is easier to understand
                 ticket = 2;
         }       //first embedded if-else-if needs to be in {} otherwise it is not considered nested and will go to outer else
         else    //if there was no else stmt no need for braces, but there is so...
-            if( speed >= 61 && speed <= 80 )
+            if ( speed >= 61  &&  speed <= 80 )
                 ticket = 1;
-            else if( speed > 80 )
+            else if ( speed > 80 )
                 ticket = 2;
 
         return ticket;
@@ -67,7 +67,7 @@ public class Logic1
      */
     public int sortaSum( int a, int b )
     {
-        return a + b >= 10 && a + b < 20 ? 20 : a + b; //could do <= 19 if that logic is easier to understand
+        return a + b >= 10  &&  a + b < 20  ?  20  :  a + b; //could do <= 19 if that logic is easier to understand
     }
 
     /**
@@ -75,8 +75,8 @@ public class Logic1
      */
     public String alarmClock( int day, boolean vacation )
     {
-                //is it a vacation and a weekend day,       is it a weekday and no vacation
-        return vacation && ( day == 0 || day == 6 ) ? "off" : !vacation && !( day == 0 || day == 6 ) ? "7:00" : "10:00";
+        return vacation   &&   ( day == 0  ||  day == 6 )  ?  "off"  : //is it a vacation and a weekend day
+                !vacation   &&   !( day == 0  ||  day == 6 )  ?  "7:00"  :  "10:00"; //or is it a weekday and no vacation, otherwise 10
     }
 
     /**
@@ -84,7 +84,7 @@ public class Logic1
      */
     public boolean love6( int a, int b )
     {
-        return a == 6 || b == 6 || a + b == 6 || Math.abs( a - b ) == 6;
+        return a == 6  ||  b == 6  ||  a + b == 6  ||  Math.abs( a - b ) == 6; //all equal 6
     }
 
     /**
@@ -92,7 +92,7 @@ public class Logic1
      */
     public boolean in1To10( int n, boolean outsideMode )
     {
-        return ( outsideMode && ( n <= 1 || n >= 10 ) ) || ( !outsideMode && n >= 1 && n <= 10 );
+        return ( outsideMode  &&  ( n <= 1  ||  n >= 10 ) )   ||   ( !outsideMode  &&  n >= 1  &&  n <= 10 ); //ranges different depending if outside
     }
 
     /**
@@ -100,7 +100,7 @@ public class Logic1
      */
     public boolean specialEleven( int n )
     {
-        return n % 11 == 0 || ( n - 1 ) % 11 == 0;
+        return n % 11 == 0  ||  ( n - 1 ) % 11 == 0; //if one more than a multiple then n - 1 will evaluate to 0
     }
 
     /**
@@ -108,7 +108,7 @@ public class Logic1
      */
     public boolean more20( int n )
     {
-        return ( n - 1 ) % 20 == 0 || ( n - 2 ) % 20 == 0;
+        return ( n - 1 ) % 20 == 0  ||  ( n - 2 ) % 20 == 0; //subtract 1 or 2 to get back to the multiple
     }
 
     /**
@@ -116,8 +116,7 @@ public class Logic1
      */
     public boolean old35( int n )
     {
-        //first OR checks for either or so one will match, AND checks to make sure a second doesn't match
-        return ( n % 3 == 0 || n % 5 == 0 ) && !( n % 3 == 0 && n % 5 == 0 );
+        return ( n % 3 == 0  ||  n % 5 == 0 )   &&   !( n % 3 == 0  &&  n % 5 == 0 ); //first OR checks for either or so one will match, AND checks to make sure a second doesn't match
     }
 
     /**
@@ -125,7 +124,7 @@ public class Logic1
      */
     public boolean less20( int n )
     {
-        return ( n + 1 ) % 20 == 0 || ( n + 2 ) % 20 == 0;
+        return ( n + 1 ) % 20 == 0  ||  ( n + 2 ) % 20 == 0; //n itself not a multiple, so add 1 or 2
     }
 
     /**
@@ -133,7 +132,7 @@ public class Logic1
      */
     public boolean nearTen( int num )
     {
-        return num % 10 <= 2 || num % 10 >= 8; //want result to equal 1, 2, 8 or 9
+        return num % 10 <= 2  ||  num % 10 >= 8; //want result to equal 1, 2, 8 or 9
     }
 
     /**
@@ -141,7 +140,7 @@ public class Logic1
      */
     public int teenSum( int a, int b )
     {
-        return ( a >= 13 && a <= 19 ) || ( b >= 13 && b <= 19 ) ? 19 : a + b;
+        return a >= 13  &&  a <= 19   ||   b >= 13  &&  b <= 19 ? 19 : a + b; //only sum values if neither are teens
     }
 
     /**
@@ -149,8 +148,7 @@ public class Logic1
      */
     public boolean answerCell( boolean isMorning, boolean isMom, boolean isAsleep )
     {
-            //must be awake, if it's morning only if mom, else must be not morning
-        return !isAsleep && ( ( isMorning && isMom ) || !isMorning );
+        return !isAsleep   &&   ( isMorning  &&  isMom  ||  !isMorning ); //must be awake, if it's morning only if mom, else must be not morning
     }
 
     /**
@@ -160,10 +158,10 @@ public class Logic1
     {
         int outcome = 1; //assume party is good, both at least 5
 
-        if( tea * 2 <= candy || candy * 2 <= tea ) //check to see if great first, can still be double if other is less than 5
+        if ( tea * 2 <= candy  ||  candy * 2 <= tea ) //check to see if great first, can still be double if other is less than 5
             outcome = 2;
 
-        if( tea < 5 || candy < 5 ) //check to see if bad
+        if ( tea < 5  ||  candy < 5 ) //check to see if bad
             outcome = 0;
 
         return outcome;
@@ -174,7 +172,9 @@ public class Logic1
      */
     public String fizzString( String str )
     {
-        return str.startsWith( "f" ) && str.endsWith( "b" ) ? "FizzBuzz" : str.startsWith( "f" ) ? "Fizz" : str.endsWith( "b" ) ? "Buzz" : str;
+        return str.startsWith( "f" )  &&  str.endsWith( "b" )  ?  "FizzBuzz"  :
+                str.startsWith( "f" )  ?  "Fizz"  : //check for both first, otherwise if a singular checked when both are there won't return correctly
+                        str.endsWith( "b" )  ?  "Buzz"  :  str;
     }
 
     /**
@@ -182,7 +182,9 @@ public class Logic1
      */
     public String fizzString2( int n )
     {
-        return n % 3 == 0 && n % 5 == 0 ? "FizzBuzz!" : n % 3 == 0 ? "Fizz!" : n % 5 == 0 ? "Buzz!" : n + "!";
+        return n % 3 == 0  &&  n % 5 == 0  ?  "FizzBuzz!"  :
+                n % 3 == 0  ?  "Fizz!"  : //check for both first, otherwise if a singular checked when both are there won't return correctly
+                        n % 5 == 0  ?  "Buzz!"  :  n + "!";
     }
 
     /**
@@ -190,7 +192,7 @@ public class Logic1
      */
     public boolean twoAsOne( int a, int b, int c )
     {
-        return a + b == c || a + c == b || b + c == a;
+        return a + b == c  ||  a + c == b  ||  b + c == a; //matter of checking each combination
     }
 
     /**
@@ -198,7 +200,7 @@ public class Logic1
      */
     public boolean inOrder( int a, int b, int c, boolean bOk )
     {
-        return ( bOk && c > b ) || ( !bOk && b > a && c > b );
+        return bOk  &&  c > b   ||   !bOk  &&  b > a  &&  c > b; //matter of checking correct ranges for each boolean option
     }
 
     /**
@@ -206,7 +208,7 @@ public class Logic1
      */
     public boolean inOrderEqual( int a, int b, int c, boolean equalOk )
     {
-        return ( !equalOk && a < b && b < c ) || ( equalOk && a <= b && b <= c ); //no need to compare a with c as using &&
+        return !equalOk  &&  a < b  &&  b < c   ||   equalOk  &&  a <= b  &&  b <= c; //no need to compare a with c as using &&
     }
 
     /**
@@ -214,7 +216,7 @@ public class Logic1
      */
     public boolean lastDigit( int a, int b, int c )
     {
-        return a % 10 == b % 10 || a % 10 == c % 10 || b % 10 == c % 10;
+        return a % 10 == b % 10  ||  a % 10 == c % 10  ||  b % 10 == c % 10; //matter of checking each combination
     }
 
     /**
@@ -222,7 +224,7 @@ public class Logic1
      */
     public boolean lessBy10( int a, int b, int c )
     {
-        return Math.abs( a - b ) >= 10 || Math.abs( a - c ) >= 10 || Math.abs( b - c ) >= 10;
+        return Math.abs( a - b ) >= 10  ||  Math.abs( a - c ) >= 10  ||  Math.abs( b - c ) >= 10; //matter of checking each combination
     }
 
     /**
@@ -230,8 +232,8 @@ public class Logic1
      */
     public int withoutDoubles( int die1, int die2, boolean noDoubles )
     {
-        if( noDoubles && die1 == die2 ) //noDoubles can be true and the die have different values, check for equality
-            die1 = die1 == 6 ? 1 + die2 : ( die1 + 1 ) + die2;
+        if( noDoubles  &&  die1 == die2 ) //noDoubles can be true and the die have different values, check for equality
+            die1 = die1 == 6 ? 1 + die2 : ( die1 + 1 ) + die2; //wraps value around to 1 if 6 or just increments
         else
             die1 += die2;
 
@@ -243,7 +245,7 @@ public class Logic1
      */
     public int maxMod5( int a, int b )
     {
-        return a == b ? 0 : a % 5 == b % 5 ? Math.min( a, b ) : Math.max( a, b );
+        return a == b  ?  0  :  a % 5 == b % 5  ?  Math.min( a, b )  :  Math.max( a, b ); //easiest to check for exact equality first
     }
 
     /**
@@ -251,7 +253,9 @@ public class Logic1
      */
     public int redTicket( int a, int b, int c )
     {
-        return a == 2 && b == 2 && c == 2 ? 10 : a == b && b == c ? 5 : a != b && a != c ? 1 : 0;
+        return a == 2  &&  b == 2  &&  c == 2  ?  10  :
+                a == b  &&  b == c  ?  5  :
+                        a != b  &&  a != c  ?  1  :  0; //check for 2 before exact equality else will return the equal result instead of 2 result
     }
 
     /**
@@ -259,7 +263,9 @@ public class Logic1
      */
     public int greenTicket( int a, int b, int c )
     {
-        return a == b && b == c ? 20 : a == b || a == c || b == c ? 10 : a != b && a != c && b != c ? 0 : a;
+        return a == b  &&  b == c  ?  20  : //all same
+                a == b  ||  a == c  ||  b == c  ?  10  : //only 2 same
+                        a != b  &&  a != c  &&  b != c  ?  0  :  a; //none same, will never actually return just a, but syntax needs
     }
 
     /**
@@ -267,7 +273,8 @@ public class Logic1
      */
     public int blueTicket( int a, int b, int c )
     {
-        return a + b == 10 || b + c == 10 || a + c == 10 ? 10 : a + b == b + c + 10 || a + b == a + c + 10 ? 5 : 0;
+        return a + b == 10  ||  b + c == 10  ||  a + c == 10  ?  10  :
+                a + b == b + c + 10  ||  a + b == a + c + 10  ?  5  :  0; //check sum of pairs first
     }
 
     /**
@@ -275,8 +282,7 @@ public class Logic1
      */
     public boolean shareDigit( int a, int b )
     {
-            //first a to first b, first a to second b, second a to first b, second a to second b
-        return a / 10 == b / 10 || a / 10 == b % 10 || a % 10 == b / 10 || a % 10 == b % 10;
+        return a / 10 == b / 10  ||  a / 10 == b % 10  ||  a % 10 == b / 10  ||  a % 10 == b % 10; //first a to first b, first a to second b, second a to first b, second a to second b
     }
 
     /**
@@ -284,7 +290,7 @@ public class Logic1
      */
     public int sumLimit( int a, int b )
     {
-        return String.valueOf( a + b ).length() > String.valueOf(a).length() ? a : a + b; //String.valueOf(x).length() counts number of digits in an int
+        return String.valueOf( a + b ).length() > String.valueOf(a).length()  ?  a  :  a + b; //String.valueOf(x).length() counts number of digits in an int
     }
 
 }
