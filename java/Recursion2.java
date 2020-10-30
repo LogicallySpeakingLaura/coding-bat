@@ -1,6 +1,6 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/26
+ * @version 2020/10/29
  * Harder recursion problems. Currently, these are all recursive backtracking problems with arrays.
  * https://codingbat.com/java/Recursion-2
  */
@@ -12,8 +12,8 @@ public class Recursion2
      */
     public boolean groupSum( int start, int[] nums, int target )
     {
-        return start >= nums.length ? target == 0 :
-                groupSum( start + 1, nums, target - nums[start] ) || groupSum( start + 1, nums, target ) ? true : false;
+        return start >= nums.length  ?  target == 0  : //condition 1 nums[start] used and if works return true, condition 2 it is not used
+                groupSum( start + 1, nums, target - nums[start] )  ||  groupSum( start + 1, nums, target )  ?  true  :  false; //if neither work it's not possible
     }
 
     /**
@@ -21,8 +21,8 @@ public class Recursion2
      */
     public boolean groupSum6( int start, int[] nums, int target )
     {
-        return start >= nums.length ? target == 0 : //first call nums[start] == 6
-                groupSum6( start + 1, nums, target - nums[start] ) || ( nums[start] != 6 && groupSum6( start + 1, nums, target ) ) ? true : false;
+        return start >= nums.length  ?  target == 0  : //first call nums[start] == 6
+                groupSum6( start + 1, nums, target - nums[start] )  ||  ( nums[start] != 6 && groupSum6( start + 1, nums, target ) )  ?  true  :  false;
     }
 
     /**
@@ -30,8 +30,8 @@ public class Recursion2
      */
     public boolean groupNoAdj( int start, int[] nums, int target )
     {
-        return start >= nums.length ? target == 0 : //two option of +1 and +2 allow for alternating through odd indexes and skipping even and vice versa
-                groupNoAdj( start + 2, nums, target - nums[start] ) || groupNoAdj( start + 1, nums, target ) ? true : false;
+        return start >= nums.length  ?  target == 0  : //two option of + 1 and + 2 allow for alternating through odd indexes and skipping even and vice versa
+                groupNoAdj( start + 2, nums, target - nums[start] )  ||  groupNoAdj( start + 1, nums, target )  ?  true  :  false;
     }
 
     /**
@@ -39,13 +39,13 @@ public class Recursion2
      */
     public boolean groupSum5( int start, int[] nums, int target )
     {
-        if( start >= nums.length ) //base case
+        if ( start >= nums.length )
         {
-            return target == 0;
+            return target == 0; //have to use multiple return statements in recursion, no way to assign different values to a variable to return
         }
-        else if( nums[start] % 5 == 0 ) //element is a multiple of 5
+        else if ( nums[start] % 5 == 0 ) //element is a multiple of 5
         {
-            if( start + 1 < nums.length && nums[ start + 1 ] == 1 ) //right of element is 1
+            if ( start + 1 < nums.length  &&  nums[ start + 1 ] == 1 ) //right of element is 1
             {
                 return groupSum5( start + 2, nums, target - nums[start] ); //so skip that element and start at right of right element
             }
@@ -53,7 +53,7 @@ public class Recursion2
             return groupSum5( start + 1, nums, target - nums[start] ); //if right of start is not 1, include it
         }
 
-        return groupSum5( start + 1, nums, target - nums[start] ) || groupSum5( start + 1, nums, target );
+        return groupSum5( start + 1, nums, target - nums[start] )  ||  groupSum5( start + 1, nums, target );
     }
 
     /**
@@ -61,19 +61,19 @@ public class Recursion2
      */
     public boolean groupSumClump( int start, int[] nums, int target )
     {
-        if( start >= nums.length ) //base case
+        if ( start >= nums.length )
             return target == 0;
 
         int count = 1, sum = nums[start]; //count starts at 1 as value of start is first count
 
-        for( int i = start + 1 ; i < nums.length ; i++ ) //begin at index to right of start as start already counted
-            if( nums[start] == nums[i] )
+        for ( int i = start + 1  ;  i < nums.length  ;  i++ ) //begin at index to right of start as start already counted
+            if ( nums[start] == nums[i] )
             {
                 sum += nums[i]; //compound element value onto sum
                 count++; //increment count
             }
 
-        return groupSumClump( start + count, nums, target - sum ) || groupSumClump( start + count, nums, target );
+        return groupSumClump( start + count, nums, target - sum )  ||  groupSumClump( start + count, nums, target );
     }
 
     /**
@@ -85,8 +85,8 @@ public class Recursion2
     }
     public boolean checkSums( int[] nums, int start, int front, int back )
     {
-        return start >= nums.length ? front == back : //first condition  moves forward through array, second moves backwards
-                checkSums( nums, start + 1, front + nums[start], back ) || checkSums( nums, start + 1, front, back + nums[start] );
+        return start >= nums.length  ?  front == back  : //first condition  moves forward through array, second moves backwards
+                checkSums( nums, start + 1, front + nums[start], back )  ||  checkSums( nums, start + 1, front, back + nums[start] );
     }
 
     /**
@@ -98,8 +98,8 @@ public class Recursion2
     }
     public boolean checkGroups( int[] nums, int start, int a, int b )
     {
-        return start >= nums.length ? a % 10 == 0 && b % 2 == 1  ||  a % 2 == 1 && b % 10 == 0 : //%10 checks for multiple of 10, %2 checks that sum is odd
-                checkGroups( nums, start + 1, a + nums[start], b ) || checkGroups( nums, start + 1, a, b + nums[start] );
+        return start >= nums.length  ?  a % 10 == 0  &&  b % 2 == 1   ||   a % 2 == 1  &&  b % 10 == 0  : //% 10 checks for multiple of 10, % 2 checks that sum is odd
+                checkGroups( nums, start + 1, a + nums[start], b )  ||  checkGroups( nums, start + 1, a, b + nums[start] );
     }
 
     /**
@@ -111,14 +111,14 @@ public class Recursion2
     }
     public boolean checkMultiples( int[] nums, int start, int a, int b )
     {
-        if( start >= nums.length )
+        if ( start >= nums.length )
             return a == b; //sums are split into multiples and equal at base case
-        else if( nums[start] % 5 == 0 ) //multiple of 5 added to sum for group a
+        else if ( nums[start] % 5 == 0 ) //multiple of 5 added to sum for group a
             return checkMultiples( nums, start + 1, a + nums[start], b );
-        else if( nums[start] % 3 == 0 ) //multiple of 3 added to sum for group b
+        else if ( nums[start] % 3 == 0 ) //multiple of 3 added to sum for group b
             return checkMultiples( nums, start + 1, a, b + nums[start] );
 
-        return checkMultiples( nums, start + 1, a + nums[start], b ) || checkMultiples( nums, start + 1, a, b + nums[start] );
+        return checkMultiples( nums, start + 1, a + nums[start], b )  ||  checkMultiples( nums, start + 1, a, b + nums[start] );
     }
 
 }
