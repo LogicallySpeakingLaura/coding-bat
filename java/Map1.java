@@ -1,20 +1,21 @@
 /**
  * @author LogicallySpeakingLaura
- * @version 2020/10/26
+ * @version 2020/10/29
  * Basic Map get()/put(), no loops. These can be solved with just get(), put(), and containsKey(). No loops required.
  * https://codingbat.com/java/Map-1
  */
 public class Map1
 {
+
     /**
      * Modify and return the given map as follows: if the key "a" has a value, set the key "b" to have that value, and set the key "a" to have the value "". Basically "b" is a bully, taking the value and replacing it with the empty string.
      */
     public Map< String, String > mapBully( Map< String, String > map )
     {
-        if( map.containsKey( "a" ) )
+        if ( map.containsKey( "a" ) ) //check for key
         {
-            map.put( "b", map.get( "a" ) );
-            map.put( "a", "" );
+            map.put( "b", map.get( "a" ) ); //put value of key at key 'b'
+            map.put( "a", "" ); //replace 'a' value w/ empty String
         }
 
         return map;
@@ -25,10 +26,10 @@ public class Map1
      */
     public Map< String, String > mapShare( Map< String, String > map )
     {
-        if( map.containsKey( "a" ) )
+        if ( map.containsKey( "a" ) )
             map.put( "b", map.get( "a" ) );
 
-        map.remove( "c" );
+        map.remove( "c" ); //removes key and value
 
         return map;
     }
@@ -38,8 +39,8 @@ public class Map1
      */
     public Map< String, String > mapAB( Map< String, String > map )
     {
-        if( map.containsKey( "a" ) && map.containsKey( "b" ) )
-            map.put( "ab", map.get( "a" ) + map.get( "b" ) );
+        if ( map.containsKey( "a" )  &&  map.containsKey( "b" ) )
+            map.put( "ab", map.get( "a" ) + map.get( "b" ) ); //+ concats values of both keys
 
         return map;
     }
@@ -49,7 +50,7 @@ public class Map1
      */
     public Map< String, String > topping1( Map< String, String > map )
     {
-        if( map.containsKey( "ice cream" ) )
+        if ( map.containsKey( "ice cream" ) )
             map.put( "ice cream", "cherry" );
 
         map.put( "bread", "butter" );
@@ -62,10 +63,10 @@ public class Map1
      */
     public Map< String, String > topping2( Map< String, String > map )
     {
-        if( map.get( "ice cream" ) != null )
+        if ( map.get( "ice cream" ) != null ) //if key has a value
             map.put( "yogurt", map.get( "ice cream" ) );
 
-        if( map.get( "spinach" ) != null )
+        if ( map.get( "spinach" ) != null )
             map.put( "spinach", "nuts" );
 
         return map;
@@ -76,10 +77,10 @@ public class Map1
      */
     public Map< String, String > topping3( Map< String, String > map )
     {
-        if( map.get( "potato" ) != null )
+        if ( map.get( "potato" ) != null )
             map.put( "fries", map.get( "potato" ) );
 
-        if( map.get( "salad" ) != null )
+        if ( map.get( "salad" ) != null )
             map.put( "spinach", map.get( "salad" ) );
 
         return map;
@@ -90,7 +91,7 @@ public class Map1
      */
     public Map< String, String > mapAB2( Map< String, String > map )
     {
-        if( map.containsKey( "a" ) && map.containsKey( "b" ) && map.get( "a" ).equals( map.get( "b" ) ) )
+        if ( map.containsKey( "a" )  &&  map.containsKey( "b" )  &&  map.get( "a" ).equals( map.get( "b" ) ) )
         {
             map.remove( "a" );
             map.remove( "b" );
@@ -104,9 +105,9 @@ public class Map1
      */
     public Map< String, String > mapAB3( Map< String, String > map )
     {
-        if( map.containsKey( "a" ) && !map.containsKey( "b" ) )
+        if ( map.containsKey( "a" )  &&  !map.containsKey( "b" ) ) //use else-if to check for one but not the other
             map.put( "b", map.get( "a" ) );
-        else if( map.containsKey("b") && !map.containsKey( "a" ) )
+        else if ( map.containsKey("b")  &&  !map.containsKey( "a" ) )
             map.put( "a", map.get( "b" ) );
 
         return map;
@@ -117,15 +118,15 @@ public class Map1
      */
     public Map< String, String > mapAB4( Map< String, String > map )
     {
-        if( map.containsKey( "a" ) && map.containsKey( "b" ) )
+        if ( map.containsKey( "a" )  &&  map.containsKey( "b" ) )
         {
-            if( map.get( "a" ).length() > map.get( "b" ).length() )
+            if ( map.get( "a" ).length() > map.get( "b" ).length() ) //value of a has bigger length than b
                 map.put( "c", map.get( "a" ) );
-            else if( map.get( "a" ).length() < map.get( "b" ).length() )
+            else if ( map.get( "a" ).length() < map.get( "b" ).length() ) //or vice versa
                 map.put( "c", map.get( "b" ) );
             else
             {
-                map.put( "a", "" );
+                map.put( "a", "" ); //lengths are equal
                 map.put( "b", "" );
             }
         }
