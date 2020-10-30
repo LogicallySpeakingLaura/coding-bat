@@ -1,6 +1,6 @@
 """
 Author: LogicallySpeakingLaura
-Date last modified: 2020/10/04
+Date last modified: 2020/10/29
 Basic python string problems -- no loops.
 https://codingbat.com/python/String-1
 """
@@ -16,7 +16,7 @@ def make_abba( a, b ):
     """
     Given two strings, a and b, return the result of putting them together in the order abba, e.g. "Hi" and "Bye" returns "HiByeByeHi".
     """
-    return a + b + b + a # concat all the pieces together in order
+    return a + b + b + a # concat all the pieces together in order, play some ABBA, watch Mamma Mia
 
 
 def make_tags( tag, word ):
@@ -51,7 +51,7 @@ def first_half(str):
     """
     Given a string of even length, return the first half. So the string "WooHoo" yields "Woo".
     """
-    return str[: len(str) / 2]
+    return str[: len(str) / 2] # first half goes up to length - 1
 
 
 def without_end(str):

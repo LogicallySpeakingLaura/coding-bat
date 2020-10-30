@@ -1,6 +1,6 @@
 """
 Author: LogicallySpeakingLaura
-Date last modified: 2020/10/05
+Date last modified: 2020/10/29
 Simple warmup problems to get started.
 https://codingbat.com/python/Warmup-1
 """
@@ -48,7 +48,7 @@ def makes10(a, b):
     """
     Given 2 ints, a and b, return True if one if them is 10 or if their sum is 10.
     """
-    return a + b == 10 or a == 10 or b == 10  # only one of the conditions needs to be met
+    return a + b == 10 or a == 10 or b == 10  # only one of the conditions needs to be met as all equal 10
 
 
 def near_hundred(n):

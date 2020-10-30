@@ -1,6 +1,6 @@
 """
 Author: LogicallySpeakingLaura
-Date last modified: 2020/10/18
+Date last modified: 2020/10/29
 Medium python list problems -- 1 loop.
 https://codingbat.com/python/List-2
 """
@@ -9,7 +9,7 @@ def count_evens(nums):
     """
     Return the number of even ints in the given array.
     """
-    return sum(1 for i in range(len(nums)) if nums[i]%2 == 0) # only even if value%2 == 0
+    return sum(1 for i in range(len(nums)) if nums[i] % 2 == 0) # only even if value % 2 == 0
 
 
 def big_diff(nums):
@@ -69,6 +69,5 @@ def has22(nums):
             has2 = True
             break # return as soon as match found
 
-    # return any(nums[i] == 2 and nums[ i + 1 ] == 2 for i in range(len(nums)-1)) - possible one line solution
+    # return any(nums[i] == 2 and nums[ i + 1 ] == 2 for i in range(len(nums)-1)) - possible one line solution but won't run on CodingBat website
     return has2
-

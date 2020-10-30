@@ -1,6 +1,6 @@
 """
 Author: LogicallySpeakingLaura
-Date last modified: 2020/10/18
+Date last modified: 2020/10/29
 Medium python string problems -- 1 loop.
 https://codingbat.com/python/String-2
 """
@@ -16,14 +16,14 @@ def count_hi(str):
     """
     Return the number of times that the string "hi" appears anywhere in the given string.
     """
-    return str.count('hi')
+    return str.count('hi') # count() finds any and all instance
 
 
 def cat_dog(str):
     """
     Return True if the string "cat" and "dog" appear the same number of times in the given string.
     """
-    return str.count('cat') == str.count('dog')
+    return str.count('cat') == str.count('dog') # check equality of counts
 
 
 def count_code(str):
@@ -37,7 +37,7 @@ def end_other(a, b):
     """
     Given two strings, return True if either of the strings appears at the very end of the other string, ignoring upper/lower case differences (in other words, the computation should not be "case sensitive").
     """
-    return b.lower().endswith( a.lower() ) or a.lower().endswith( b.lower() )
+    return b.lower().endswith( a.lower() ) or a.lower().endswith( b.lower() ) # check one option and its opposite
 
 
 def xyz_there(str):

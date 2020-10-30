@@ -1,6 +1,6 @@
 """
 Author: LogicallySpeakingLaura
-Date last modified: 2020/10/18
+Date last modified: 2020/10/29
 Medium warmup string/list problems with loops.
 https://codingbat.com/python/Warmup-2
 """
@@ -9,7 +9,7 @@ def string_times(str, n):
     """
     Given a string and a non-negative int n, return a larger string that is n copies of the original string.
     """
-    return str * n
+    return str * n # equivalent of concat n times
 
 
 def front_times(str, n):
@@ -44,7 +44,7 @@ def array_count9(nums):
     """
     Given an array of ints, return the number of 9's in the array.
     """
-    return nums.count(9)
+    return nums.count(9) # count() finds any and all instances of 9
 
 
 def array_front9(nums):
@@ -65,7 +65,7 @@ def array123(nums):
             has_seq = True
             break  # exit loop if condition met
 
-    #   return any(nums[i: i + 3] == [1, 2, 3] for i in range(len(nums) - 2)) is a possible one line solution
+    #   return any(nums[i: i + 3] == [1, 2, 3] for i in range(len(nums) - 2)) - a possible one line solution but won't compile on CodingBat website
     return has_seq
 
 

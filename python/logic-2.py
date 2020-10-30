@@ -1,6 +1,6 @@
 """
 Author: LogicallySpeakingLaura
-Date last modified: 2020/10/08
+Date last modified: 2020/10/29
 Medium boolean logic puzzles -- if else and or not.
 https://codingbat.com/python/Logic-2
 """
@@ -18,14 +18,14 @@ def lone_sum(a, b, c):
     """
     Given 3 int values, a b c, return their sum. However, if one of the values is the same as another of the values, it does not count towards the sum.
     """
-    return 0 if a == b and b == c else c if a == b else b if a == c else a if b == c else a + b + c
+    return 0 if a == b and b == c else c if a == b else b if a == c else a if b == c else a + b + c # only return unique values
 
 
 def lucky_sum(a, b, c):
     """
     Given 3 int values, a b c, return their sum. However, if one of the values is 13 then it does not count towards the sum and values to its right do not count. So for example, if b is 13, then both b and c do not count.
     """
-    return 0 if a == 13 else a if b == 13 else a + b if c == 13 else a + b + c
+    return 0 if a == 13 else a if b == 13 else a + b if c == 13 else a + b + c # only return value(s) to right if not 13
 
 
 def no_teen_sum(a, b, c):
@@ -44,19 +44,19 @@ def round_sum(a, b, c):
     """
     return round10(a) + round10(b) + round10(c)
 
-def round10(num): # rightmost digit less than 5, round down, round up
-    return num - (num % 10) if num % 10 < 5 else num + (10 - (num % 10))
+def round10(num):
+    return num - (num % 10) if num % 10 < 5 else num + (10 - (num % 10)) # rightmost digit less than 5, round down, round up
 
 
 def close_far(a, b, c):
     """
     Given three ints, a b c, return True if one of b or c is "close" (differing from a by at most 1), while the other is "far", differing from both other values by 2 or more.
     """
-    return ( abs( a - b ) <= 1 and abs( a - c ) >= 2 and abs(b - c) >= 2 ) or ( abs( a - c ) <= 1 and abs( a - b ) >= 2 and abs(b - c) >= 2 )
+    return abs(a - b) <= 1 and abs(a - c) >= 2 and abs(b - c) >= 2 or abs(a - c) <= 1 and abs(a - b) >= 2 and abs(b - c) >= 2 # b is close to a for first half, vice versa for second
 
 
 def make_chocolate(small, big, goal):
     """
     We want make a package of goal kilos of chocolate. We have small bars (1 kilo each) and big bars (5 kilos each). Return the number of small bars to use, assuming we always use big bars before small bars. Return -1 if it can't be done.
     """
-    return goal % 5 if goal % 5 <= small and goal / 5 <= big else goal- big * 5 if goal / 5 > big and small >= ( goal - big * 5 ) else -1
+    return goal % 5 if goal % 5 <= small and goal / 5 <= big else goal- big * 5 if goal / 5 > big and small >= ( goal - big * 5 ) else -1 # same logic for make_bricks

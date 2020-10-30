@@ -1,6 +1,6 @@
 """
 Author: LogicallySpeakingLaura
-Date last modified: 2020/10/07
+Date last modified: 2020/10/29
 Basic boolean logic puzzles -- if else and or not.
 https://codingbat.com/python/Logic-1
 """
@@ -10,14 +10,14 @@ def cigar_party(cigars, is_weekend):
     """
     When squirrels get together for a party, they like to have cigars. A squirrel party is successful when the number of cigars is between 40 and 60, inclusive. Unless it is the weekend, in which case there is no upper bound on the number of cigars. Return True if the party with the given values is successful, or False otherwise.
     """
-    return (40 <= cigars <= 60 and not is_weekend) or (cigars >= 40 and is_weekend)
+    return 40 <= cigars <= 60 and not is_weekend or cigars >= 40 and is_weekend # check different ranges depending if weekend or not
 
 
 def date_fashion(you, date):
     """
     You and your date are trying to get a table at a restaurant. The parameter "you" is the stylishness of your clothes, in the range 0..10, and "date" is the stylishness of your date's clothes. The result getting the table is encoded as an int value with 0=no, 1=maybe, 2=yes. If either of you is very stylish, 8 or more, then the result is 2 (yes). With the exception that if either of you has style of 2 or less, then the result is 0 (no). Otherwise the result is 1 (maybe).
     """
-    table = 1 # assume maybe till style checked
+    table = 1 # assume maybe till checked
 
     if you >= 8 or date >= 8: # do not use if-else, both conditions need to be checked
         table = 2
@@ -32,7 +32,7 @@ def squirrel_play(temp, is_summer):
     """
     The squirrels in Palo Alto spend most of the day playing. In particular, they play if the temperature is between 60 and 90 (inclusive). Unless it is summer, then the upper limit is 100 instead of 90. Given an int temperature and a boolean is_summer, return True if the squirrels play and False otherwise.
     """
-    return ( is_summer and 60 <= temp <= 100 ) or ( not is_summer and 60 <= temp <= 90 )
+    return is_summer and 60 <= temp <= 100 or not is_summer and 60 <= temp <= 90 # check ranges depending on if summer or not
 
 
 def caught_speeding(speed, is_birthday):
@@ -66,22 +66,21 @@ def alarm_clock(day, vacation):
     """
     Given a day of the week encoded as 0=Sun, 1=Mon, 2=Tue, ...6=Sat, and a boolean indicating if we are on vacation, return a string of the form "7:00" indicating when the alarm clock should ring. Weekdays, the alarm should be "7:00" and on the weekend it should be "10:00". Unless we are on vacation -- then on weekdays it should be "10:00" and weekends it should be "off".
     """
-            # is it a vacation and a weekend day                is it a weekday and no vacation
-    return 'off' if vacation and (day == 0 or day == 6) else '7:00' if not vacation and not (day == 0 or day == 6) else '10:00'
+    return 'off' if vacation and (day == 0 or day == 6) else '7:00' if not vacation and not (day == 0 or day == 6) else '10:00' # is it a vacation and a weekend day, or is it a weekday and no vacation
 
 
 def love6(a, b):
     """
     The number 6 is a truly great number. Given two int values, a and b, return True if either one is 6. Or if their sum or difference is 6.
     """
-    return a == 6 or b == 6 or a + b == 6 or abs( a - b ) == 6
+    return a == 6 or b == 6 or a + b == 6 or abs( a - b ) == 6 # if any option is true condition met
 
 
 def in1to10(n, outside_mode):
     """
     Given a number n, return True if n is in the range 1..10, inclusive. Unless outside_mode is True, in which case return True if the number is less or equal to 1, or greater or equal to 10.
     """
-    return ( outside_mode and ( n <= 1 or n >= 10 ) ) or (not outside_mode and 1 <= n <= 10)
+    return outside_mode and (n <= 1 or 10 <= n) or (not outside_mode and 1 <= n <= 10) # check ranges depending on outside or not
 
 
 def near_ten(num):
